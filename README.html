@@ -1,0 +1,600 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>ML book &#8212; ML book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'README';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Overview" href="intro/intro_to_ML.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    ML book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to ML</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="intro/intro_to_ML.html">Overview</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro/definition.html">Definitions of ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/applications.html">Applications of ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/data.html">Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/ml_types.html">Types of ML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro/overfitting.html">Underfitting &amp; Overfitting</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Math for ML</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="math/linear_algebra.html">Linear Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="math/calculus.html">Calculus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="math/probability.html">Probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="math/statistics.html">Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="math/optimization.html">Optimization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="notation.html">Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">ML resources</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/README.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>ML book</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-book-demo">Jupyter-book demo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#course-assessment">Course assessment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-team-construction">Project team construction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-writer">Technical writer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#author-of-executable-content">Author of executable content</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#designer-of-interactive-plots">Designer of interactive plots</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#designer-of-quizzes">Designer of quizzes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-manager">Project manager</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-main-tool">The main tool</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="ml-book">
+<h1>ML book<a class="headerlink" href="#ml-book" title="Permalink to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p>We are drowning in information and starving for knowledge.</p>
+<p class="attribution">—Rutherford D. Roger</p>
+</div></blockquote>
+<p>The amount of information is enormous nowadays and it is continuously growing. See <a class="reference internal" href="resources.html"><span class="doc std std-doc">resources</span></a> to observe only a tiny fraction of machine learning content available on the Web. Isn’t it enough? Why should we create one more piece of content?</p>
+<p>There are a lot of Holy Wars about education and all around it. Leaving it aside, I personally formulate the main purpose of education as follows:</p>
+<div class="admonition-the-fundamental-goal-of-education admonition">
+<p class="admonition-title">The Fundamental Goal of Education</p>
+<p>Create conditions allowing students to acquire knowldedge and skills at the desired level in the shortest possible period of time.</p>
+</div>
+<figure class="align-center">
+<img alt="https://slideplayer.com/7520891/24/images/slide_1.jpg" src="https://slideplayer.com/7520891/24/images/slide_1.jpg" />
+</figure>
+<p>Our attempt will technically rely on <a class="reference external" href="https://jupyterbook.org/en/stable/intro.html">Jupyter book</a>, an open-source tool for building publication-quality books and documents from computational material.</p>
+<section id="jupyter-book-demo">
+<h2>Jupyter-book demo<a class="headerlink" href="#jupyter-book-demo" title="Permalink to this heading">#</a></h2>
+<p>To introduce the capabilities of Jupyter book along with some methodological ideas I wrote the <a class="reference external" href="https://fedmug.github.io/e_book/intro.html">e_book</a>. For now it consists only of one chapter devoted to the Euler number.</p>
+<p>The main features:</p>
+<ul class="simple">
+<li><p>interactive quizzes (taken “as is” from <a class="reference external" href="https://github.com/jmshea/jupyterquiz">here</a>);</p></li>
+<li><p>mix of narrative and executable content as it is usually done via markdown and code cells in Jupyter notebook;</p></li>
+<li><p>pictures and visualizations (sometimes interactive);</p></li>
+<li><p>available online on any device.</p></li>
+</ul>
+<p>Hopefully, during this course we’ll write something similar about machine learning.</p>
+</section>
+<section id="course-assessment">
+<h2>Course assessment<a class="headerlink" href="#course-assessment" title="Permalink to this heading">#</a></h2>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Activity</p></th>
+<th class="head"><p>Final scores</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Attendance</p></td>
+<td><p><span class="math notranslate nohighlight">\(10\%\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Practice</p></td>
+<td><p><span class="math notranslate nohighlight">\(10\%\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Midterm</p></td>
+<td><p><span class="math notranslate nohighlight">\(10\%\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Jupyter book project</p></td>
+<td><p><span class="math notranslate nohighlight">\(30\%\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Final exam</p></td>
+<td><p><span class="math notranslate nohighlight">\(40\%\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="project-team-construction">
+<h2>Project team construction<a class="headerlink" href="#project-team-construction" title="Permalink to this heading">#</a></h2>
+<p>Successive completion of the project requires effective team collaboration. The team should consist of several students with different roles:</p>
+<ul class="simple">
+<li><p>technical writer</p></li>
+<li><p>author of executable content</p></li>
+<li><p>designer of interactive plots</p></li>
+<li><p>designer of quizzes</p></li>
+<li><p><strike>the most useless…</strike> project manager</p></li>
+</ul>
+<p>The goal of every team is to create a nicely looking section in the ML book.</p>
+<section id="technical-writer">
+<h3>Technical writer<a class="headerlink" href="#technical-writer" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>writes clear and neat <a class="reference external" href="https://jupyterbook.org/en/stable/content/index.html#">narrative content</a> in Markdown</p></li>
+<li><p>looks for consistency with all other types of content</p></li>
+<li><p>translates some Russian texts into English if necessary</p></li>
+</ul>
+</section>
+<section id="author-of-executable-content">
+<h3>Author of executable content<a class="headerlink" href="#author-of-executable-content" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>writes <a class="reference external" href="https://jupyterbook.org/en/stable/content/executable/index.html">executable content</a> in Jupyter notebook</p></li>
+<li><p>suggests ideas of python calculations and static plots which would enrich the narrative content</p></li>
+<li><p>searches for existing datasets and visualizations</p></li>
+<li><p>tries different models of machine learning</p></li>
+</ul>
+</section>
+<section id="designer-of-interactive-plots">
+<h3>Designer of interactive plots<a class="headerlink" href="#designer-of-interactive-plots" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>uses <a class="reference external" href="https://plotly.com/python/">plotly</a> or <a class="reference external" href="https://ipywidgets.readthedocs.io/en/stable/">pywidgets</a> or something else to create interactive visualizations</p></li>
+<li><p>searches for places where it would be quite beneficial to insert interactive elements</p></li>
+<li><p>suggests ideas of quizzes which could be solved by investigating of interactive content</p></li>
+</ul>
+</section>
+<section id="designer-of-quizzes">
+<h3>Designer of quizzes<a class="headerlink" href="#designer-of-quizzes" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>searches for ideas of single/multiple choice and numeric quizzes</p></li>
+<li><p>writes quizzes using <a class="reference external" href="https://github.com/jmshea/jupyterquiz">Jupyterquiz</a> in a separate Jupyter notebook</p></li>
+<li><p>encodes the quiz bodies and inserts them into main content</p></li>
+</ul>
+</section>
+<section id="project-manager">
+<h3>Project manager<a class="headerlink" href="#project-manager" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>tracks the progress of each member of the team</p></li>
+<li><p>checks for consistency of all types of content, notations and cross-references to other parts of the book</p></li>
+<li><p>searches for different sources of information</p></li>
+<li><p>communicates with PMs of teams which work on related topics</p></li>
+<li><p>communicates with <a class="reference external" href="https://en.wikipedia.org/wiki/Benevolent_dictator_for_life">BDFL</a></p></li>
+</ul>
+</section>
+</section>
+<section id="the-main-tool">
+<h2>The main tool<a class="headerlink" href="#the-main-tool" title="Permalink to this heading">#</a></h2>
+<figure class="align-center">
+<img alt="_images/chatGPT.png" src="_images/chatGPT.png" />
+</figure>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="right-next"
+       href="intro/intro_to_ML.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Overview</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-book-demo">Jupyter-book demo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#course-assessment">Course assessment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-team-construction">Project team construction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-writer">Technical writer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#author-of-executable-content">Author of executable content</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#designer-of-interactive-plots">Designer of interactive plots</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#designer-of-quizzes">Designer of quizzes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-manager">Project manager</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-main-tool">The main tool</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By KBTU
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
