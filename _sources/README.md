@@ -8,7 +8,7 @@ We are drowning in information and starving for knowledge.
 
 The amount of information is enormous nowadays and it is continuously growing. See [resources](./resources.md) to observe only a tiny fraction of machine learning content available on the Web. Isn't it enough? Why should we create one more piece of content?
 
-There are a lot of Holy Wars about education and all around it. Leaving it aside, I personally formulate the main purpose of education as follows:
+There were a lot of Holy Wars about education and all around it. Leaving them aside, I personally formulate the main purpose of education as follows:
 
 ```{admonition} The Fundamental Goal of Education
 Create conditions allowing students to acquire knowldedge and skills at the desired level in the shortest possible period of time.

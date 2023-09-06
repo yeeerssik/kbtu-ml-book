@@ -18,14 +18,56 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-plot_runge_train(25)
+import numpy as np
+import matplotlib.pyplot as plt
+import os
+
+from sklearn.mixture import GaussianMixture
+from sklearn.datasets import load_iris
+import seaborn as sns
+
+iris = load_iris()
+X = iris.data
+
+K = 3
+y_pred = GaussianMixture(n_components=K, random_state=42).fit(X).predict(X)
+mapping = np.array([2, 0, 1])
+y_pred = np.array([mapping[cluster_id] for cluster_id in y_pred])
+
+colors = sns.color_palette()[0:K]
+markers = ("s", "x", "o", "^", "v")
+fig, ax = plt.subplots()
+for k in range(0, K):
+    ax.plot(
+        X[y_pred == k, idx1],
+        X[y_pred == k, idx2],
+        color=colors[k],
+        marker=markers[k],
+        linestyle="None",
+        label="Cluster {}".format(k),
+    )
+ax.set(xlabel=iris.feature_names[idx1])
+ax.set(ylabel=iris.feature_names[idx2])
+plt.legend(loc="upper left", fontsize=12)
+plt.show()
 ------------------
 
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mNameError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[2], line 1[0m
-[0;32m----> 1[0m [43mplot_runge_train[49m([38;5;241m25[39m)
+Cell [0;32mIn[5], line 22[0m
+[1;32m     19[0m fig, ax [38;5;241m=[39m plt[38;5;241m.[39msubplots()
+[1;32m     20[0m [38;5;28;01mfor[39;00m k [38;5;129;01min[39;00m [38;5;28mrange[39m([38;5;241m0[39m, K):
+[1;32m     21[0m     ax[38;5;241m.[39mplot(
+[0;32m---> 22[0m         X[y_pred [38;5;241m==[39m k, [43midx1[49m],
+[1;32m     23[0m         X[y_pred [38;5;241m==[39m k, idx2],
+[1;32m     24[0m         color[38;5;241m=[39mcolors[k],
+[1;32m     25[0m         marker[38;5;241m=[39mmarkers[k],
+[1;32m     26[0m         linestyle[38;5;241m=[39m[38;5;124m"[39m[38;5;124mNone[39m[38;5;124m"[39m,
+[1;32m     27[0m         label[38;5;241m=[39m[38;5;124m"[39m[38;5;124mCluster [39m[38;5;132;01m{}[39;00m[38;5;124m"[39m[38;5;241m.[39mformat(k),
+[1;32m     28[0m     )
+[1;32m     29[0m ax[38;5;241m.[39mset(xlabel[38;5;241m=[39miris[38;5;241m.[39mfeature_names[idx1])
+[1;32m     30[0m ax[38;5;241m.[39mset(ylabel[38;5;241m=[39miris[38;5;241m.[39mfeature_names[idx2])
 
-[0;31mNameError[0m: name 'plot_runge_train' is not defined
+[0;31mNameError[0m: name 'idx1' is not defined
 

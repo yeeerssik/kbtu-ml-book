@@ -168,6 +168,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ml_types.html">Types of ML</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overfitting.html">Underfitting &amp; Overfitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="knn.html">k-NN</a></li>
 </ul>
 </li>
 </ul>
@@ -339,10 +340,13 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-of-datasets">Examples of datasets</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#todo">TODO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iris-dataset">Iris dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bikeshare-dataset">Bikeshare dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mnist-dataset">MNIST dataset</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#one-hot-encoding">One-hot encoding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-matrix">Feature matrix</a></li>
 </ul>
             </nav>
         </div>
@@ -427,13 +431,13 @@ document.write(`
 <p><span style="display:none" id="variable_type">W3sicXVlc3Rpb24iOiAiU2VsZWN0IGFsbCBjYXRlZ29yaWNhbCBub21pbmFsIGRhdGEiLCAidHlwZSI6ICJtYW55X2Nob2ljZSIsICJhbnN3ZXJzIjogW3siYW5zd2VyIjogIk1vbnRobHkgbG9hbiBwYXltZW50cyIsICJjb3JyZWN0IjogZmFsc2UsICJmZWVkYmFjayI6ICJUaGlzIGlzIGEgbnVtZXJpY2FsIGNvbnRpbnVvdXMgdmFyaWFibGUifSwgeyJhbnN3ZXIiOiAiQ2l0aWVzIGluIEV1cm9wZSB3aXRoIHBvcHVsYXRpb24gbW9yZSB0aGFuIDFNIiwgImNvcnJlY3QiOiB0cnVlLCAiZmVlZGJhY2siOiAiUXVpdGUgcmlnaHQhIENpdGllcyBhcmUgY2F0ZWdvcmljYWwgdmFyaWFibGVzLCBhbmQgdGhlcmUgaXMgbm8gbmF0dXJhbCBvcmRlcmluZyBvbiB0aGVtIn0sIHsiYW5zd2VyIjogIkNsb3RoaW5nIHNpemVzIChTLCBNLCBMLCBYTCwgZXRjLikiLCAiY29ycmVjdCI6IGZhbHNlLCAiZmVlZGJhY2siOiAiVGhpcyBpcyBhIGNhdGVnb3JpY2FsIG9yZGluYWwgdmFyaWFibGUifSwgeyJhbnN3ZXIiOiAiUGxhbmV0cyBpbiB0aGUgU29sYXIgc3lzdGVtIiwgImNvcnJlY3QiOiB0cnVlLCAiZmVlZGJhY2siOiAiWWVzISBUaGlzIGlzIGEgY2F0ZWdvcmljYWwgbm9taW5hbCB2YXJpYWJsZSJ9LCB7ImFuc3dlciI6ICJOdW1iZXIgb2YgY2FycyBpbiBhIHBhcmtpbmcgbG90IiwgImNvcnJlY3QiOiBmYWxzZSwgImZlZWRiYWNrIjogIlRoaXMgaXMgYSBudW1lcmljYWwgZGlzY3JldGUgdmFyaWFibGUifSwgeyJhbnN3ZXIiOiAiY2hlbWljYWwgZWxlbWVudHMgaW4gdGhlIHBlcmlvZGljIHRhYmxlIiwgImNvcnJlY3QiOiB0cnVlLCAiZmVlZGJhY2siOiAiVGhpcyBpcyBhIHRyaWNreSBvbmU6IGRvZXMgdGhlIG51bWJlciBvZiBhbiBlbGVtZW50IG1ha2UgaXQgYW4gb3JkaW5hbCB2YXJpYWJsZSBvciBub3Q/In1dfV0=</span></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="FQqVjFfMOAkr" data-shufflequestions="False"
+<div class="output text_html"><div id="CuzZLLwOIKpa" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#FQqVjFfMOAkr {
+#CuzZLLwOIKpa {
    --jq-multiple-choice-bg: #6f78ffff;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -604,14 +608,14 @@ document.write(`
     }
 }
 </style></div><script type="application/javascript">var element=document.getElementById("variable_type");
-            var questionsFQqVjFfMOAkr;
+            var questionsCuzZLLwOIKpa;
             try {
-               questionsFQqVjFfMOAkr=JSON.parse(window.atob(element.innerHTML));
+               questionsCuzZLLwOIKpa=JSON.parse(window.atob(element.innerHTML));
             } catch(err) {
                console.log("Fell into catch");
-               questionsFQqVjFfMOAkr = JSON.parse(element.innerHTML);
+               questionsCuzZLLwOIKpa = JSON.parse(element.innerHTML);
             }
-            console.log(questionsFQqVjFfMOAkr);;
+            console.log(questionsCuzZLLwOIKpa);;
     // Make a random ID
 function makeid(length) {
     var result = [];
@@ -1360,8 +1364,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("FQqVjFfMOAkr")) {
-            show_questions(questionsFQqVjFfMOAkr,  FQqVjFfMOAkr); 
+          if(document.getElementById("CuzZLLwOIKpa")) {
+            show_questions(questionsCuzZLLwOIKpa,  CuzZLLwOIKpa); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1370,8 +1374,8 @@ if (typeof version == 'undefined') {
         {
         // console.log(element);
 
-        //console.log("FQqVjFfMOAkr");
-        // console.log(document.getElementById("FQqVjFfMOAkr"));
+        //console.log("CuzZLLwOIKpa");
+        // console.log(document.getElementById("CuzZLLwOIKpa"));
 
         try_show();
         }
@@ -1381,12 +1385,19 @@ if (typeof version == 'undefined') {
 </section>
 <section id="examples-of-datasets">
 <h2>Examples of datasets<a class="headerlink" href="#examples-of-datasets" title="Permalink to this heading">#</a></h2>
-<p>There are several way how you can import some famous datasets in Python. For instance, we can use helpers from <a class="reference external" href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.datasets">sklearn.datasets</a> module.</p>
+<p>There are several way how you can import some famous datasets in Python.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To install Python library <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> (aka <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>), run the command <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">scikit-learn</span></code></p>
+</div>
+<p>For instance, we can use helpers from <a class="reference external" href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.datasets">sklearn.datasets</a> module.</p>
+<section id="iris-dataset">
+<span id="iris"></span><h3>Iris dataset<a class="headerlink" href="#iris-dataset" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
-<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">X</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">iris_data</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">(</span><span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">iris_data</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1451,14 +1462,57 @@ if (typeof version == 'undefined') {
       <td>1.4</td>
       <td>0.2</td>
     </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>145</th>
+      <td>6.7</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.3</td>
+    </tr>
+    <tr>
+      <th>146</th>
+      <td>6.3</td>
+      <td>2.5</td>
+      <td>5.0</td>
+      <td>1.9</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>6.5</td>
+      <td>3.0</td>
+      <td>5.2</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>148</th>
+      <td>6.2</td>
+      <td>3.4</td>
+      <td>5.4</td>
+      <td>2.3</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>5.9</td>
+      <td>3.0</td>
+      <td>5.1</td>
+      <td>1.8</td>
+    </tr>
   </tbody>
 </table>
+<p>150 rows × 4 columns</p>
 </div></div></div>
 </div>
 <p>This is a <strong>tabular</strong> dataset. The targets are encoded by digits <span class="math notranslate nohighlight">\(0\)</span>, <span class="math notranslate nohighlight">\(1\)</span>, <span class="math notranslate nohighlight">\(2\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_data</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1472,18 +1526,242 @@ Name: count, dtype: int64
 </div>
 </div>
 </div>
-<section id="todo">
-<h3>TODO<a class="headerlink" href="#todo" title="Permalink to this heading">#</a></h3>
+<p>What does these values mean?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_data</span><span class="o">.</span><span class="n">target_names</span>  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;setosa&#39;, &#39;versicolor&#39;, &#39;virginica&#39;], dtype=&#39;&lt;U10&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here is how they look like in the wild (figure 1.1 from <span id="id2">[<a class="reference internal" href="../bibliography.html#id3" title="Kevin P. Murphy. Probabilistic Machine Learning: An introduction. MIT Press, 2022. URL: probml.ai.">Murphy, 2022</a>]</span>)</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-center head"><p>setosa</p></th>
+<th class="text-center head"><p>versicolor</p></th>
+<th class="text-center head"><p>virginica</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><img alt="" src="../_images/Figure_1.1_A.png" /></p></td>
+<td class="text-center"><p><img alt="" src="../_images/Figure_1.1_B.png" /></p></td>
+<td class="text-center"><p><img alt="" src="../_images/Figure_1.1_C.png" /></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bikeshare-dataset">
+<h3>Bikeshare dataset<a class="headerlink" href="#bikeshare-dataset" title="Permalink to this heading">#</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To install Python library <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> (aka <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>), run the command <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">scikit-learn</span></code></p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">auto_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../ISLP_datsets/Bikeshare.csv&quot;</span><span class="p">)</span>
+<span class="n">auto_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;Unnamed: 0&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">auto_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>season</th>
+      <th>mnth</th>
+      <th>day</th>
+      <th>hr</th>
+      <th>holiday</th>
+      <th>weekday</th>
+      <th>workingday</th>
+      <th>weathersit</th>
+      <th>temp</th>
+      <th>atemp</th>
+      <th>hum</th>
+      <th>windspeed</th>
+      <th>casual</th>
+      <th>registered</th>
+      <th>bikers</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Jan</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>6</td>
+      <td>0</td>
+      <td>clear</td>
+      <td>0.24</td>
+      <td>0.2879</td>
+      <td>0.81</td>
+      <td>0.0</td>
+      <td>3</td>
+      <td>13</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>Jan</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>6</td>
+      <td>0</td>
+      <td>clear</td>
+      <td>0.22</td>
+      <td>0.2727</td>
+      <td>0.80</td>
+      <td>0.0</td>
+      <td>8</td>
+      <td>32</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>Jan</td>
+      <td>1</td>
+      <td>2</td>
+      <td>0</td>
+      <td>6</td>
+      <td>0</td>
+      <td>clear</td>
+      <td>0.22</td>
+      <td>0.2727</td>
+      <td>0.80</td>
+      <td>0.0</td>
+      <td>5</td>
+      <td>27</td>
+      <td>32</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>Jan</td>
+      <td>1</td>
+      <td>3</td>
+      <td>0</td>
+      <td>6</td>
+      <td>0</td>
+      <td>clear</td>
+      <td>0.24</td>
+      <td>0.2879</td>
+      <td>0.75</td>
+      <td>0.0</td>
+      <td>3</td>
+      <td>10</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>Jan</td>
+      <td>1</td>
+      <td>4</td>
+      <td>0</td>
+      <td>6</td>
+      <td>0</td>
+      <td>clear</td>
+      <td>0.24</td>
+      <td>0.2879</td>
+      <td>0.75</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>Q.</strong> Which features are categorical and which are numeric?</p>
+</section>
+<section id="mnist-dataset">
+<h3>MNIST dataset<a class="headerlink" href="#mnist-dataset" title="Permalink to this heading">#</a></h3>
+<p>A classical dataset of <a class="reference external" href="http://yann.lecun.com/exdb/mnist/">handwritten digits</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_openml</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">fetch_openml</span><span class="p">(</span><span class="s1">&#39;mnist_784&#39;</span><span class="p">,</span> <span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+<span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">Y</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((70000, 784), (70000,))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove-input docutils container">
+</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/07b62dc0b48d223671094b31f6c45dbc8f7cd7e0d6af9e77e9aa243ae04886bc.png" src="../_images/07b62dc0b48d223671094b31f6c45dbc8f7cd7e0d6af9e77e9aa243ae04886bc.png" />
+</div>
+</div>
+<p><strong>Q.</strong> What type of data is MNIST dataset?</p>
+<div class="warning dropdown admonition">
+<p class="admonition-title">TODO</p>
 <ul class="simple">
 <li><p>Give other examples of datasets</p></li>
 <li><p>Investigate the type of data in them (all columns of <code class="docutils literal notranslate"><span class="pre">iris</span></code> dataset are numerical continuous, but this isn’t always the case)</p></li>
-<li><p>Add info about image and text datasets (see also <span id="id2">[<a class="reference internal" href="../bibliography.html#id3" title="Kevin P. Murphy. Probabilistic Machine Learning: An introduction. MIT Press, 2022. URL: probml.ai.">Murphy, 2022</a>]</span>, pp. 19—22)</p></li>
+<li><p>Add info about image and text datasets (see also <span id="id3">[<a class="reference internal" href="../bibliography.html#id3" title="Kevin P. Murphy. Probabilistic Machine Learning: An introduction. MIT Press, 2022. URL: probml.ai.">Murphy, 2022</a>]</span>, pp. 19—22)</p></li>
+<li><p>Write about importing datasets in a separate section in the python/pandas chapter</p></li>
 </ul>
+</div>
 </section>
 </section>
 <section id="one-hot-encoding">
 <h2>One-hot encoding<a class="headerlink" href="#one-hot-encoding" title="Permalink to this heading">#</a></h2>
 <p>Before feeding categorical data into machine learning models, we need to convert them to a numerical scale. The standard way to do it is to use a <strong>one-hot encoding</strong>, also called a <strong>dummy encoding</strong>.</p>
+<p>If a feature belongs to the final set <span class="math notranslate nohighlight">\( \{1, \ldots, K\}\)</span>, it is encoded by a binary vector</p>
+<div class="math notranslate nohighlight">
+\[
+    (\delta_1, \ldots, \delta_K) \in \{0, 1\}^K, \quad \sum\limits_{k=1}^K \delta _k = 1.
+\]</div>
+<p>Thus each categorical variable, which takes <span class="math notranslate nohighlight">\(K\)</span> different values, is converted to <span class="math notranslate nohighlight">\(K\)</span> numeric variables.</p>
+</section>
+<section id="feature-matrix">
+<h2>Feature matrix<a class="headerlink" href="#feature-matrix" title="Permalink to this heading">#</a></h2>
+<p>A tabular numerical dataset can be represented as a <strong>feature matrix</strong> (or <strong>design matrix</strong>) <span class="math notranslate nohighlight">\(\boldsymbol X\)</span> of shape <span class="math notranslate nohighlight">\(N\times D\)</span> where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(N\)</span> — number of samples (rows)</p></li>
+<li><p><span class="math notranslate nohighlight">\(D\)</span> — number of features (columns)</p></li>
+</ul>
+<p>Each sample <span class="math notranslate nohighlight">\(\boldsymbol x_i\)</span> is therefore represented by <span class="math notranslate nohighlight">\(i\)</span>-th row of the feature matrix <span class="math notranslate nohighlight">\(\boldsymbol X\)</span>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>A sample <span class="math notranslate nohighlight">\(\boldsymbol x_i\)</span> is a row vector with <span class="math notranslate nohighlight">\(D\)</span> coordinates. However, in linear algebra a vector is by default a column vector. That’s why in vector-matrix operations a training sample is often denoted as <span class="math notranslate nohighlight">\(\boldsymbol x_i^\top\)</span> to emphasize that it is a row.</p>
+</div>
 <hr class="footnotes docutils" />
 <dl class="footnote brackets">
 <dt class="label" id="real"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
@@ -1569,10 +1847,13 @@ Name: count, dtype: int64
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-of-datasets">Examples of datasets</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#todo">TODO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iris-dataset">Iris dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bikeshare-dataset">Bikeshare dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mnist-dataset">MNIST dataset</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#one-hot-encoding">One-hot encoding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-matrix">Feature matrix</a></li>
 </ul>
   </nav></div>
 
