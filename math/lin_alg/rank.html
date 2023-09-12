@@ -171,11 +171,17 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../intro/knn.html">k-Nearest Neighbors</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../lin_reg/linear_regression.html">Linear regression</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lin_reg/linear_regression.html">Linear regression</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lin_reg/simple.html">Simple linear regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lin_reg/polynomial.html">Polynomial regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lin_reg/multiple.html">Multiple linear regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lin_reg/regularization.html">Regularization</a></li>
+</ul>
+</li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python for ML</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../python/python_basics.html">Python Basics</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../python/python_basics.html">Python Basics</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../python/basics/basic_types.html">Basic Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../python/basics/variables.html">Variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../python/basics/control_flow.html">Control flow</a></li>
@@ -188,7 +194,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Math for ML</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../linear_algebra.html">Linear Algebra</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../linear_algebra.html">Linear Algebra</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="vectors.html">Vectors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="matrices.html">Matrices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="linear_systems.html">Linear systems</a></li>
@@ -196,6 +202,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Rank of a matrix</a></li>
 <li class="toctree-l2"><a class="reference internal" href="determinant.html">Determinants</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eig.html">Eigenvalues and eigenvectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matrix_norms.html">Matrix norms</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../calculus.html">Calculus</a></li>
@@ -467,7 +474,7 @@ document.write(`
 </div>
 </section>
 <section id="pseudo-inverse">
-<h2>Pseudo inverse<a class="headerlink" href="#pseudo-inverse" title="Permalink to this heading">#</a></h2>
+<span id="id1"></span><h2>Pseudo inverse<a class="headerlink" href="#pseudo-inverse" title="Permalink to this heading">#</a></h2>
 <p>The <strong>Moore-Penrose pseudo inverse</strong> of <span class="math notranslate nohighlight">\(\boldsymbol A \in \mathbb R^{m\times n}\)</span> is such a matrix <span class="math notranslate nohighlight">\(\boldsymbol A^\dagger \in \mathbb R^{n\times m}\)</span> that satisfies the following <span class="math notranslate nohighlight">\(4\)</span> properties:</p>
 <ol class="arabic simple">
 <li><p><span class="math notranslate nohighlight">\(\boldsymbol{AA}^\dagger \boldsymbol A = \boldsymbol A\)</span>;</p></li>

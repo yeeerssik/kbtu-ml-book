@@ -171,11 +171,17 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="knn.html">k-Nearest Neighbors</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../lin_reg/linear_regression.html">Linear regression</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lin_reg/linear_regression.html">Linear regression</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lin_reg/simple.html">Simple linear regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lin_reg/polynomial.html">Polynomial regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lin_reg/multiple.html">Multiple linear regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lin_reg/regularization.html">Regularization</a></li>
+</ul>
+</li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python for ML</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../python/python_basics.html">Python Basics</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python/python_basics.html">Python Basics</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../python/basics/basic_types.html">Basic Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python/basics/variables.html">Variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python/basics/control_flow.html">Control flow</a></li>
@@ -188,7 +194,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Math for ML</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../math/linear_algebra.html">Linear Algebra</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../math/linear_algebra.html">Linear Algebra</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/vectors.html">Vectors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/matrices.html">Matrices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/linear_systems.html">Linear systems</a></li>
@@ -196,6 +202,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/rank.html">Rank of a matrix</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/determinant.html">Determinants</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/eig.html">Eigenvalues and eigenvectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/matrix_norms.html">Matrix norms</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../math/calculus.html">Calculus</a></li>
@@ -432,15 +439,15 @@ document.write(`
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/d90ec3310d0e1f45a6ea9d2ea2db1d6ed4a958d08adb60006bb43999377f1875.svg" src="../_images/d90ec3310d0e1f45a6ea9d2ea2db1d6ed4a958d08adb60006bb43999377f1875.svg" /></div>
+<img alt="../_images/e539654584b395fa7cc123a32037a174cca1518e7bfaf4dfd5adf122b4fd37c9.svg" src="../_images/e539654584b395fa7cc123a32037a174cca1518e7bfaf4dfd5adf122b4fd37c9.svg" /></div>
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/23972db5ab87d1bebbebaec4a707e28dc627423e6296558df5ea09c9eb678bc2.svg" src="../_images/23972db5ab87d1bebbebaec4a707e28dc627423e6296558df5ea09c9eb678bc2.svg" /></div>
+<img alt="../_images/d71436fa8df3aa06a08dc931a64f694a56401e9625218240cf3cd535270d44a7.svg" src="../_images/d71436fa8df3aa06a08dc931a64f694a56401e9625218240cf3cd535270d44a7.svg" /></div>
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/fd16f67b1843e78609253e0ac6f4dfdf287dda708f1c09fe0dd22da5d5beb07c.svg" src="../_images/fd16f67b1843e78609253e0ac6f4dfdf287dda708f1c09fe0dd22da5d5beb07c.svg" /></div>
+<img alt="../_images/2fbda795964b0e2cd23ea9b6e9b24f93cb6a9eb4c978f95e6663b0ca90c5b9ee.svg" src="../_images/2fbda795964b0e2cd23ea9b6e9b24f93cb6a9eb4c978f95e6663b0ca90c5b9ee.svg" /></div>
 </div>
 <p>The overfitting is a big problem in ML because an overfitted model makes poor predictions. The first signal of the overfitting: <span class="math notranslate nohighlight">\(\mathcal L_{\mathrm{train}} \ll \mathcal L_{\mathrm{test}}\)</span>.</p>
 </section>
