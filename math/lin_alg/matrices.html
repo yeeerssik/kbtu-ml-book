@@ -176,6 +176,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../lin_reg/polynomial.html">Polynomial regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../lin_reg/multiple.html">Multiple linear regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../lin_reg/regularization.html">Regularization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lin_reg/general.html">General linear model</a></li>
 </ul>
 </li>
 </ul>
@@ -200,8 +201,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="linear_systems.html">Linear systems</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inverse.html">Inverse matrix</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rank.html">Rank of a matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="orthogonality.html">Orthogonality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="projections.html">Orthogonal projections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="determinant.html">Determinants</a></li>
 <li class="toctree-l2"><a class="reference internal" href="eig.html">Eigenvalues and eigenvectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="diagonalize.html">Diagonalization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="matrix_norms.html">Matrix norms</a></li>
 </ul>
 </li>
@@ -573,7 +577,7 @@ document.write(`
 <li><p><strong>Ортогональная матрица</strong>. Квадратная матрица <span class="math notranslate nohighlight">\(\boldsymbol Q = [\boldsymbol q_1, \ldots, \boldsymbol q_n]\)</span> <strong>ортогональная</strong>, если её столбцы образуют ортонормированную систему, т. е. <span class="math notranslate nohighlight">\(\langle \boldsymbol q_i, \boldsymbol q_j\rangle = \delta_{ij}\)</span>, где <span class="math notranslate nohighlight">\(\delta_{ij}\)</span> — <a class="reference external" href="https://ru.wikipedia.org/wiki/%D0%A1%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB_%D0%9A%D1%80%D0%BE%D0%BD%D0%B5%D0%BA%D0%B5%D1%80%D0%B0">символ Кронекера</a>{:target=”_blank”}.</p>
 <p>Любая матрица перестановки является ортогональной. Также ортогональна, к примеру, <strong>матрица поворота</strong> на угол <span class="math notranslate nohighlight">\(\theta\)</span></p>
 <div class="math notranslate nohighlight" id="equation-rotation-matrix">
-<span class="eqno">(20)<a class="headerlink" href="#equation-rotation-matrix" title="Permalink to this equation">#</a></span>\[\begin{split}\boldsymbol Q = \begin{pmatrix}
+<span class="eqno">(22)<a class="headerlink" href="#equation-rotation-matrix" title="Permalink to this equation">#</a></span>\[\begin{split}\boldsymbol Q = \begin{pmatrix}
     \cos \theta &amp; -\sin\theta \\
     \sin \theta &amp; \cos\theta \\
 \end{pmatrix}.\end{split}\]</div>
@@ -1054,8 +1058,8 @@ document.write(`
 <section id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
-<li><p>Prove that the rotation matrix <a class="reference internal" href="#equation-rotation-matrix">(20)</a> is orthogonal.</p></li>
-<li><p>Prove that any <strong>reflection matrix</strong> <span class="math notranslate nohighlight">\(\boldsymbol I - 2\boldsymbol u \boldsymbol u^\top\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol u \in\mathbb R^n\)</span>, is orthogonal.</p></li>
+<li><p>Prove that the rotation matrix <a class="reference internal" href="#equation-rotation-matrix">(22)</a> is orthogonal.</p></li>
+<li><p>Prove that any <strong>reflection matrix</strong> <span class="math notranslate nohighlight">\(\boldsymbol I - 2\boldsymbol u \boldsymbol u^\top\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol u \in\mathbb R^n\)</span>, <span class="math notranslate nohighlight">\(\Vert \boldsymbol u \Vert_2 = 1\)</span>, is orthogonal.</p></li>
 <li><p>Prove that <span class="math notranslate nohighlight">\(\mathrm{tr}(\boldsymbol{AB}) = \mathrm{tr}(\boldsymbol{BA})\)</span>.</p></li>
 <li><p>Let <span class="math notranslate nohighlight">\(\boldsymbol A\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol B\)</span> be two symmetric matrices of the same shape. Is their product is necessarily symmetric?</p></li>
 </ol>

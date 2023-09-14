@@ -176,6 +176,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="polynomial.html">Polynomial regression</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Multiple linear regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="regularization.html">Regularization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GD.html">Gradient descent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="general.html">General linear model</a></li>
 </ul>
 </li>
 </ul>
@@ -200,8 +202,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/linear_systems.html">Linear systems</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/inverse.html">Inverse matrix</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/rank.html">Rank of a matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/orthogonality.html">Orthogonality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/projections.html">Orthogonal projections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/determinant.html">Determinants</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/eig.html">Eigenvalues and eigenvectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/diagonalize.html">Diagonalization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/matrix_norms.html">Matrix norms</a></li>
 </ul>
 </li>
@@ -364,7 +369,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-linear-regression-on-boston-dataset">2-d linear regression on Boston dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-solution-for-best-fit">Analytical solution for best fit</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computational-issues">Computational issues</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">12-d linear regression on Boston dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">12-d linear regression on Boston dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-polynomial-regression">Connection to polynomial regression</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
 </ul>
@@ -1478,15 +1483,15 @@ if (typeof version == 'undefined') {
 </div>
 </section>
 <section id="computational-issues">
-<h2>Computational issues<a class="headerlink" href="#computational-issues" title="Permalink to this heading">#</a></h2>
+<span id="id1"></span><h2>Computational issues<a class="headerlink" href="#computational-issues" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Multicollinearity</strong>. if there are highly correlated or even linearly dependent features in the design matrix <span class="math notranslate nohighlight">\(\boldsymbol X\)</span>, then the matrix <span class="math notranslate nohighlight">\(\boldsymbol X^\top \boldsymbol X\)</span> is nearly singular. One can cope with multicollinearity by feature selection.</p></li>
 <li><p><strong>Curse of dimensionality</strong>. If <span class="math notranslate nohighlight">\(d \gg 1\)</span>, it is too computationally expensive to invert <span class="math notranslate nohighlight">\(\boldsymbol X^\top \boldsymbol X\)</span>. In this case instead analytical solution <a class="reference internal" href="#equation-lin-reg-solution">(18)</a> numerical methods such as gradient descent are used.</p></li>
 <li><p><strong>Ill-conditioning</strong>. In practice the matrix <span class="math notranslate nohighlight">\(\boldsymbol X^\top \boldsymbol X\)</span> has large <a class="reference internal" href="../math/lin_alg/matrix_norms.html#condition-number"><span class="std std-ref">Condition number</span></a>. This implies the numerical instability of the  solution <a class="reference internal" href="#equation-lin-reg-solution">(18)</a>.</p></li>
 </ul>
 </section>
-<section id="id1">
-<h2>12-d linear regression on Boston dataset<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<section id="id2">
+<h2>12-d linear regression on Boston dataset<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <p>Take all <span class="math notranslate nohighlight">\(12\)</span> features and train multiple regression!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1627,7 +1632,7 @@ MSE: 22.429681439489933
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-linear-regression-on-boston-dataset">2-d linear regression on Boston dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-solution-for-best-fit">Analytical solution for best fit</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#computational-issues">Computational issues</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">12-d linear regression on Boston dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">12-d linear regression on Boston dataset</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-polynomial-regression">Connection to polynomial regression</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a></li>
 </ul>

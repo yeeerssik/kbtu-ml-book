@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Linear regression &#8212; ML book</title>
+    <title>General linear model &#8212; ML book</title>
   
   
   
@@ -65,11 +65,11 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lin_reg/linear_regression';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lin_reg/general';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Simple linear regression" href="simple.html" />
-    <link rel="prev" title="k-Nearest Neighbors" href="../intro/knn.html" />
+    <link rel="next" title="Python Basics" href="../python/python_basics.html" />
+    <link rel="prev" title="Regularization" href="regularization.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -171,13 +171,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../intro/knn.html">k-Nearest Neighbors</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Linear regression</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="linear_regression.html">Linear regression</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="simple.html">Simple linear regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="polynomial.html">Polynomial regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="multiple.html">Multiple linear regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="regularization.html">Regularization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="GD.html">Gradient descent</a></li>
-<li class="toctree-l2"><a class="reference internal" href="general.html">General linear model</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">General linear model</a></li>
 </ul>
 </li>
 </ul>
@@ -274,7 +273,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/lin_reg/linear_regression.md" target="_blank"
+      <li><a href="../_sources/lin_reg/general.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -284,7 +283,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -354,7 +353,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Linear regression</h1>
+    <h1>General linear model</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -368,21 +367,45 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="linear-regression">
-<h1>Linear regression<a class="headerlink" href="#linear-regression" title="Permalink to this heading">#</a></h1>
-<figure class="align-center">
-<img alt="https://www.mihaileric.com/static/linear_regression_joke-9400ea8c70e0500f1934f7a22c86bc68-b75a8.png" src="https://www.mihaileric.com/static/linear_regression_joke-9400ea8c70e0500f1934f7a22c86bc68-b75a8.png" />
-</figure>
-<p>Linear regression is a fundamental statistical and machine learning technique used for modeling the relationship between a dependent variable (target) and one or more independent variables (features). If we have <span class="math notranslate nohighlight">\(n\)</span> training samples an <span class="math notranslate nohighlight">\(d\)</span> features, they form a numeric dataset</p>
-<div class="math notranslate nohighlight" id="equation-dataset">
-<span class="eqno">(4)<a class="headerlink" href="#equation-dataset" title="Permalink to this equation">#</a></span>\[\mathcal D = \{(\boldsymbol x_i, y_i)\}_{i=1}^n, \quad \boldsymbol x_i \in \mathbb R^d.\]</div>
-<p>More precisely, the linear regression is called</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="general-linear-model">
+<h1>General linear model<a class="headerlink" href="#general-linear-model" title="Permalink to this heading">#</a></h1>
+<p>The linear regression model <a class="reference internal" href="multiple.html#equation-multiple-lin-reg">(14)</a> is linear on both features <span class="math notranslate nohighlight">\(\boldsymbol x\)</span> and weights <span class="math notranslate nohighlight">\(\boldsymbol w\)</span>, since its predictions are given by the inner product</p>
+<div class="math notranslate nohighlight">
+\[
+    \widehat y = \boldsymbol x^\top \boldsymbol w = \sum\limits_{j=0}^d x_jw_j.
+\]</div>
+<p>Of course, the target variable <span class="math notranslate nohighlight">\(y\)</span> can have nonlinear dependence on the predictors <span class="math notranslate nohighlight">\(\boldsymbol x\)</span>. We can easily sacrifise the linearity on <span class="math notranslate nohighlight">\(\boldsymbol x\)</span> and consider <strong>general linear model</strong></p>
+<div class="math notranslate nohighlight" id="equation-general-linear">
+<span class="eqno">(21)<a class="headerlink" href="#equation-general-linear" title="Permalink to this equation">#</a></span>\[\widehat y = \sum\limits_{j=0}^M \phi_j(\boldsymbol x)w_j.\]</div>
+<p>The functions <span class="math notranslate nohighlight">\(\phi_j(\boldsymbol x)\)</span> are called <strong>basis functions</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As before, the bias is included in <a class="reference internal" href="#equation-general-linear">(21)</a> by putting <span class="math notranslate nohighlight">\(\phi_0(\boldsymbol x) =1\)</span>.</p>
+</div>
+<p>Note that</p>
 <ul class="simple">
-<li><p><strong>simple linear regression</strong> if <span class="math notranslate nohighlight">\(d=1\)</span>;</p></li>
-<li><p><strong>multiple linear regresion</strong> if <span class="math notranslate nohighlight">\(d&gt;1\)</span>;</p></li>
-<li><p><strong>multivariate linear regression</strong> if the labels are vectors: <span class="math notranslate nohighlight">\(\boldsymbol y_i \in \mathbb R^m\)</span>, <span class="math notranslate nohighlight">\(m&gt;1\)</span>.</p></li>
+<li><p>if <span class="math notranslate nohighlight">\(M=d\)</span> and <span class="math notranslate nohighlight">\(\phi_j(\boldsymbol x) = x_j\)</span>, then <a class="reference internal" href="#equation-general-linear">(21)</a> turns into multiple linear regression;</p></li>
+<li><p>if <span class="math notranslate nohighlight">\(d=1\)</span> and <span class="math notranslate nohighlight">\(\phi_j(x) = x^j\)</span> then <a class="reference internal" href="#equation-general-linear">(21)</a> becomes polynomial regression.</p></li>
 </ul>
-<div class="toctree-wrapper compound">
+<p>The popular choices of <span class="math notranslate nohighlight">\(\phi_j(\boldsymbol x)\)</span> are</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\phi_j(x) = \exp\big(-\frac{(x-\mu_j)^2}{2s^2}\big)\)</span> (<strong>Gaussian basis functions</strong>);</p></li>
+<li><p><span class="math notranslate nohighlight">\(\phi_j(x) = \sigma\big(\frac{x-\mu_j}s\big)\)</span> (<strong>sigmoidal basis functions</strong>).</p></li>
+</ul>
+<div class="admonition-sigmoid-function admonition">
+<p class="admonition-title">Sigmoid function</p>
+<div class="math notranslate nohighlight">
+\[
+    \sigma(x) = \frac 1{1 + e^{-x}}
+\]</div>
+</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/6c7d6871829606b6a6e3ea91f44e1f7b949f6d7c1fe3acc3f6663201965cc7fc.svg" src="../_images/6c7d6871829606b6a6e3ea91f44e1f7b949f6d7c1fe3acc3f6663201965cc7fc.svg" /></div>
+</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/06cd8daf5ba6378d7984be7d2a7db9d7f6edeae00d80d36a255ea2cf7422b94d.svg" src="../_images/06cd8daf5ba6378d7984be7d2a7db9d7f6edeae00d80d36a255ea2cf7422b94d.svg" /></div>
 </div>
 </section>
 
@@ -418,20 +441,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../intro/knn.html"
+       href="regularization.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">k-Nearest Neighbors</p>
+        <p class="prev-next-title">Regularization</p>
       </div>
     </a>
     <a class="right-next"
-       href="simple.html"
+       href="../python/python_basics.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Simple linear regression</p>
+        <p class="prev-next-title">Python Basics</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -176,6 +176,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../lin_reg/polynomial.html">Polynomial regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../lin_reg/multiple.html">Multiple linear regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../lin_reg/regularization.html">Regularization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lin_reg/general.html">General linear model</a></li>
 </ul>
 </li>
 </ul>
@@ -478,13 +479,13 @@ document.write(`
 <p>Нередко случается так, что СЛАУ <span class="math notranslate nohighlight">\(\boldsymbol{Ax} = \boldsymbol b\)</span> с прямоугольной матрицей <span class="math notranslate nohighlight">\(\boldsymbol A \in \mathbb R^{m\times n}\)</span> не имеет решения. Так обычно происходит, если <span class="math notranslate nohighlight">\(m &gt; n\)</span>: уравнений слишком много, чтобы каждое из них можно было удовлетворить путём выбора некоторого вектора <span class="math notranslate nohighlight">\(\boldsymbol x \in \mathbb R^n\)</span>. Иногда это всё же возможно (если вектор <span class="math notranslate nohighlight">\(\boldsymbol b\)</span> лежит в линейной оболочке столбцов матрицы <span class="math notranslate nohighlight">\(\boldsymbol A\)</span>), но для случайно выбранной правой части система почти наверное несовместна.</p>
 <p>Однако отсутствие точного решения — не повод отчаиваться; для прикладных целей вполне приемлемым может оказаться приближённое решение <span class="math notranslate nohighlight">\(\widehat{\boldsymbol x}\)</span>, для которого вектор <span class="math notranslate nohighlight">\(\boldsymbol{A}\widehat{\boldsymbol x}\)</span> максимально близок к вектору <span class="math notranslate nohighlight">\(\boldsymbol b\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-lsa">
-<span class="eqno">(24)<a class="headerlink" href="#equation-lsa" title="Permalink to this equation">#</a></span>\[    \widehat{\boldsymbol x} = \arg\min\limits_{\boldsymbol x\in \mathbb R^n}\Vert \boldsymbol{Ax} - \boldsymbol b\Vert. \]</div>
+<span class="eqno">(26)<a class="headerlink" href="#equation-lsa" title="Permalink to this equation">#</a></span>\[    \widehat{\boldsymbol x} = \arg\min\limits_{\boldsymbol x\in \mathbb R^n}\Vert \boldsymbol{Ax} - \boldsymbol b\Vert. \]</div>
 <p>Такой метод «решения» СЛАУ <span class="math notranslate nohighlight">\(\boldsymbol{Ax} = \boldsymbol b\)</span> называется <strong>методом наименьших квадратов</strong> (МНК), поскольку вектор <span class="math notranslate nohighlight">\(\widehat{\boldsymbol x}\)</span> минимизирует величину <span class="math notranslate nohighlight">\(\Vert \boldsymbol{Ax} - \boldsymbol b\Vert^2\)</span>, которая в координатах записывается как сумма тех самых «квадратов»:</p>
 <div class="math notranslate nohighlight">
 \[
     \Vert \boldsymbol{Ax} - \boldsymbol b\Vert^2 = \sum\limits_{i=1}^m \big((\boldsymbol{Ax})_i - b_i\big)^2 \to \min.
 \]</div>
-<p>На самом деле задачу оптимизации <a class="reference internal" href="#equation-lsa">(24)</a> мы уже решили в предыдущем пункте, когда искали проекцию на подпространство <span class="math notranslate nohighlight">\(C(\boldsymbol{A})\)</span>. Любой вектор <span class="math notranslate nohighlight">\(\boldsymbol b\)</span> представляется в виде</p>
+<p>На самом деле задачу оптимизации <a class="reference internal" href="#equation-lsa">(26)</a> мы уже решили в предыдущем пункте, когда искали проекцию на подпространство <span class="math notranslate nohighlight">\(C(\boldsymbol{A})\)</span>. Любой вектор <span class="math notranslate nohighlight">\(\boldsymbol b\)</span> представляется в виде</p>
 <div class="math notranslate nohighlight">
 \[
     \boldsymbol b = \boldsymbol e + \boldsymbol p, \quad \boldsymbol e = \boldsymbol b - \boldsymbol p \perp \boldsymbol p,
@@ -500,7 +501,7 @@ document.write(`
     \Vert \boldsymbol{Ax} - \boldsymbol b \Vert^2 = \Vert \boldsymbol{Ax} - \boldsymbol p + \boldsymbol p - \boldsymbol b \Vert^2 = \Vert \boldsymbol{Ax} - \boldsymbol p \Vert^2 + \Vert \boldsymbol e \Vert^2.
  \]</div>
 <p>Второе слагаемое равно квадрату длины перпендикуляра <span class="math notranslate nohighlight">\(\boldsymbol e = \boldsymbol p - \boldsymbol b\)</span>, и никак не может быть уменьшено за счёт выбора вектора <span class="math notranslate nohighlight">\(\boldsymbol x\)</span>. А вот неотрицательное первое слагаемое можно обнулить, полагая <span class="math notranslate nohighlight">\(\boldsymbol x = \widehat{\boldsymbol x}\)</span>. Если <span class="math notranslate nohighlight">\(\boldsymbol b \in C(\boldsymbol A)\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol e = \boldsymbol 0\)</span>, и второе слагаемое тоже обнуляется; в этом случае система <span class="math notranslate nohighlight">\(\boldsymbol{Ax} = \boldsymbol x\)</span> имеет точное решение.</p>
-<p>Разумеется, решить оптимизационную задачу <a class="reference internal" href="#equation-lsa">(24)</a> можно также с помощью матричного дифференцирования.</p>
+<p>Разумеется, решить оптимизационную задачу <a class="reference internal" href="#equation-lsa">(26)</a> можно также с помощью матричного дифференцирования.</p>
 <div class="dropdown admonition">
 <p class="admonition-title">Аналитический вывод МНК</p>
 <p>Полагая</p>
@@ -525,7 +526,7 @@ document.write(`
 \]</div>
 <p>Критическая точка <span class="math notranslate nohighlight">\(\widehat{\boldsymbol x}\)</span> единственна, поэтому она является точкой глобального минимума ограниченной снизу функции <span class="math notranslate nohighlight">\(\nabla f(\boldsymbol x)\)</span>. Также это можно обосновать положительной определённостью гессиана <span class="math notranslate nohighlight">\(\nabla^2 f = 2\boldsymbol A^\top \boldsymbol A\)</span>.</p>
 </div>
-<p>Отметим, что единственность решения задачи <a class="reference internal" href="#equation-lsa">(24)</a> обеспечивается линейной независимостью столбцов матрицы <span class="math notranslate nohighlight">\(\boldsymbol A\)</span>. В противном случае матрица <span class="math notranslate nohighlight">\(\boldsymbol A^\top \boldsymbol A\)</span> вырождена, и решение СЛАУ <span class="math notranslate nohighlight">\(\boldsymbol A^\top \boldsymbol{Ax} = \boldsymbol A^\top \boldsymbol b\)</span> перестаёт быть единственным.</p>
+<p>Отметим, что единственность решения задачи <a class="reference internal" href="#equation-lsa">(26)</a> обеспечивается линейной независимостью столбцов матрицы <span class="math notranslate nohighlight">\(\boldsymbol A\)</span>. В противном случае матрица <span class="math notranslate nohighlight">\(\boldsymbol A^\top \boldsymbol A\)</span> вырождена, и решение СЛАУ <span class="math notranslate nohighlight">\(\boldsymbol A^\top \boldsymbol{Ax} = \boldsymbol A^\top \boldsymbol b\)</span> перестаёт быть единственным.</p>
 <p>Оценим вычислительную сложность метода наименьших квадратов. Сколько арифметических операций требуется затратить для вычисления <span class="math notranslate nohighlight">\(\widehat{\boldsymbol x} = (\boldsymbol A^\top \boldsymbol A)^{-1}\boldsymbol A^\top \boldsymbol b\)</span>?</p>
 <ul class="simple">
 <li><p>Вычисление <span class="math notranslate nohighlight">\(\boldsymbol c = \boldsymbol A^\top \boldsymbol b\)</span> сводится к умножению матрицы размера <span class="math notranslate nohighlight">\(n\times m\)</span> на вектор <span class="math notranslate nohighlight">\(b\in\mathbb R^m\)</span>, что требует <span class="math notranslate nohighlight">\(O(mn)\)</span> арифметических операций.</p></li>
@@ -545,13 +546,13 @@ O(mn) + O(n^2m ) + O(n^3) + O(n^2) = O(n^2m + n ^3) = O(n^2m).
 <p>На методе наименьших квадратов основана <strong>линейная регрессия</strong> — простейший метод машинного обучения для решения задачи регрессии.</p>
 <p>Цель задачи регрессии — смоделировать зависимость целевой переменной <span class="math notranslate nohighlight">\(y \in \mathbb R\)</span> от признаков объекта <span class="math notranslate nohighlight">\(\boldsymbol x \in \mathbb R^D\)</span> (<span class="math notranslate nohighlight">\(D\)</span> — число признаков). Линейная регрессия строит линейную модель, которая предполагает линейную зависимость <span class="math notranslate nohighlight">\(y\)</span> от <span class="math notranslate nohighlight">\(\boldsymbol x\)</span>. Как мы знаем, всякий линейный функционал из <span class="math notranslate nohighlight">\(\mathbb R^D\)</span> в <span class="math notranslate nohighlight">\(\mathbb R\)</span> может быть записан в виде скалярного произведения</p>
 <div class="math notranslate nohighlight" id="equation-lin-reg-lsa">
-<span class="eqno">(25)<a class="headerlink" href="#equation-lin-reg-lsa" title="Permalink to this equation">#</a></span>\[    y = \boldsymbol w^\top \boldsymbol x = \boldsymbol x^\top \boldsymbol w \]</div>
-<p>для некоторого фиксированного вектора весов <span class="math notranslate nohighlight">\(\boldsymbol w \in \mathbb R^D\)</span>. Правда, в таком случае <span class="math notranslate nohighlight">\(y = 0\)</span> при <span class="math notranslate nohighlight">\(\boldsymbol x = \boldsymbol 0\)</span>, что может не соответствовать нашим данным. Поэтому к линейному функционалу добавляют ещё один параметр — свободный член (bias) <span class="math notranslate nohighlight">\(w_0\)</span>, и тогда линейная модель <a class="reference internal" href="#equation-lin-reg-lsa">(25)</a> приобретает вид</p>
+<span class="eqno">(27)<a class="headerlink" href="#equation-lin-reg-lsa" title="Permalink to this equation">#</a></span>\[    y = \boldsymbol w^\top \boldsymbol x = \boldsymbol x^\top \boldsymbol w \]</div>
+<p>для некоторого фиксированного вектора весов <span class="math notranslate nohighlight">\(\boldsymbol w \in \mathbb R^D\)</span>. Правда, в таком случае <span class="math notranslate nohighlight">\(y = 0\)</span> при <span class="math notranslate nohighlight">\(\boldsymbol x = \boldsymbol 0\)</span>, что может не соответствовать нашим данным. Поэтому к линейному функционалу добавляют ещё один параметр — свободный член (bias) <span class="math notranslate nohighlight">\(w_0\)</span>, и тогда линейная модель <a class="reference internal" href="#equation-lin-reg-lsa">(27)</a> приобретает вид</p>
 <div class="math notranslate nohighlight">
 \[
     y = \boldsymbol x^\top \boldsymbol w  + w_0.
 \]</div>
-<p>Записывать в таком виде линейную регрессию не очень удобно, но свободный член можно учесть в первоначальной записи <a class="reference internal" href="#equation-lin-reg-lsa">(25)</a>, если добавить ещё один (нулевой) признак, всегда равный единице:</p>
+<p>Записывать в таком виде линейную регрессию не очень удобно, но свободный член можно учесть в первоначальной записи <a class="reference internal" href="#equation-lin-reg-lsa">(27)</a>, если добавить ещё один (нулевой) признак, всегда равный единице:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \boldsymbol x = \begin{pmatrix}
@@ -570,7 +571,7 @@ O(mn) + O(n^2m ) + O(n^3) + O(n^2) = O(n^2m + n ^3) = O(n^2m).
     \quad
     y = \boldsymbol x^\top \boldsymbol w.
 \end{split}\]</div>
-<p>Далее будем считать, что этот фиктивный принак уже добавлен, и всякая линейная зависимость между признаками объекта <span class="math notranslate nohighlight">\(\boldsymbol x\)</span> и таргетом <span class="math notranslate nohighlight">\(y\)</span> имеет вид <a class="reference internal" href="#equation-lin-reg-lsa">(25)</a>.</p>
+<p>Далее будем считать, что этот фиктивный принак уже добавлен, и всякая линейная зависимость между признаками объекта <span class="math notranslate nohighlight">\(\boldsymbol x\)</span> и таргетом <span class="math notranslate nohighlight">\(y\)</span> имеет вид <a class="reference internal" href="#equation-lin-reg-lsa">(27)</a>.</p>
 <p>Для решения задачи регрессии (в том числе линейной) нам, разумеется, нужна обучающая выборка — датасет</p>
 <div class="math notranslate nohighlight">
 \[
@@ -592,19 +593,19 @@ O(mn) + O(n^2m ) + O(n^3) + O(n^2) = O(n^2m + n ^3) = O(n^2m).
     y_N
     \end{pmatrix}.
 \end{split}\]</div>
-<p>Такие обозначения позволяют линейную модель <a class="reference internal" href="#equation-lin-reg-lsa">(25)</a> записать единой формулой сразу для всего датасета <span class="math notranslate nohighlight">\(\mathcal D\)</span> как</p>
+<p>Такие обозначения позволяют линейную модель <a class="reference internal" href="#equation-lin-reg-lsa">(27)</a> записать единой формулой сразу для всего датасета <span class="math notranslate nohighlight">\(\mathcal D\)</span> как</p>
 <div class="math notranslate nohighlight">
 \[
     \boldsymbol y = \boldsymbol{Xw}.
 \]</div>
 <p>Задача линейной регрессии состоит в подборе весов <span class="math notranslate nohighlight">\(\boldsymbol w\)</span> таким образом, чтобы <span class="math notranslate nohighlight">\(\boldsymbol{Xw}\)</span> был как можно ближе к вектору <span class="math notranslate nohighlight">\(\boldsymbol y\)</span>. Но что значит «ближе»? В качестве меры близости можно взять, например, евклидову норму (или её квадрат):</p>
 <div class="math notranslate nohighlight" id="equation-lin-reg-opt-lsa">
-<span class="eqno">(26)<a class="headerlink" href="#equation-lin-reg-opt-lsa" title="Permalink to this equation">#</a></span>\[\Vert \boldsymbol y - \boldsymbol{Xw}\Vert_2^2 \to \min\limits_{\boldsymbol w}. \]</div>
+<span class="eqno">(28)<a class="headerlink" href="#equation-lin-reg-opt-lsa" title="Permalink to this equation">#</a></span>\[\Vert \boldsymbol y - \boldsymbol{Xw}\Vert_2^2 \to \min\limits_{\boldsymbol w}. \]</div>
 <p>Ну а это в точности задача, которую мы совсем недавно решали методом наименьших квадратов, поэтому можно сразу выписать ответ:</p>
 <div class="math notranslate nohighlight" id="equation-lin-reg-solution-lsa">
-<span class="eqno">(27)<a class="headerlink" href="#equation-lin-reg-solution-lsa" title="Permalink to this equation">#</a></span>\[    \widehat {\boldsymbol w} = (\boldsymbol X^\top \boldsymbol X)^{-1} \boldsymbol X^\top \boldsymbol y \]</div>
+<span class="eqno">(29)<a class="headerlink" href="#equation-lin-reg-solution-lsa" title="Permalink to this equation">#</a></span>\[    \widehat {\boldsymbol w} = (\boldsymbol X^\top \boldsymbol X)^{-1} \boldsymbol X^\top \boldsymbol y \]</div>
 <p>Чтобы веса линейной регрессии можно было найти по этой формуле, матрица объект-признак <span class="math notranslate nohighlight">\(\boldsymbol X\)</span> должна иметь линейно независимые столбцы. Если это не так, то между признаками в датасете <span class="math notranslate nohighlight">\(\mathcal D\)</span> есть линейная зависимость (её также называют <strong>мультиколлинеарностью</strong>). Мультиколлинеарность ломает линейную регрессию, не позволяя находить её веса методом наименьших квадратов. Если в датасете наблюдается мультиколлинеарность, имеет смысл от неё избавиться, проредив количество признаков.</p>
-<p>Вычислительная сложность нахождения весов линейной регрессии по формуле <a class="reference internal" href="#equation-lin-reg-solution-lsa">(27)</a> составляет <span class="math notranslate nohighlight">\(O(ND^2 + D^3)\)</span>. Таким образом, при большом количестве признаков точное аналитическое вычисление весов — весьма дорогое удовольствие. Вычисления можно ускорить, используя продвинутые алгоритмы перемножения матриц или итерационные методы поиска обратной матрицы. Или же можно вообще не использовать формулу <a class="reference internal" href="#equation-lin-reg-solution-lsa">(27)</a>, а искать приближённое решения задачи оптимизации <a class="reference internal" href="#equation-lin-reg-opt-lsa">(26)</a> методом градиентного спуска, например.</p>
+<p>Вычислительная сложность нахождения весов линейной регрессии по формуле <a class="reference internal" href="#equation-lin-reg-solution-lsa">(29)</a> составляет <span class="math notranslate nohighlight">\(O(ND^2 + D^3)\)</span>. Таким образом, при большом количестве признаков точное аналитическое вычисление весов — весьма дорогое удовольствие. Вычисления можно ускорить, используя продвинутые алгоритмы перемножения матриц или итерационные методы поиска обратной матрицы. Или же можно вообще не использовать формулу <a class="reference internal" href="#equation-lin-reg-solution-lsa">(29)</a>, а искать приближённое решения задачи оптимизации <a class="reference internal" href="#equation-lin-reg-opt-lsa">(28)</a> методом градиентного спуска, например.</p>
 </section>
 <section id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>

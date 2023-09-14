@@ -176,6 +176,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="polynomial.html">Polynomial regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="multiple.html">Multiple linear regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="regularization.html">Regularization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="general.html">General linear model</a></li>
 </ul>
 </li>
 </ul>
@@ -200,8 +201,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/linear_systems.html">Linear systems</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/inverse.html">Inverse matrix</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/rank.html">Rank of a matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/orthogonality.html">Orthogonality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/projections.html">Orthogonal projections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/determinant.html">Determinants</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/eig.html">Eigenvalues and eigenvectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/diagonalize.html">Diagonalization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/matrix_norms.html">Matrix norms</a></li>
 </ul>
 </li>
@@ -449,12 +453,12 @@ document.write(`
 </section>
 <section id="rss-and-r-2-score">
 <h2>RSS and <span class="math notranslate nohighlight">\(R^2\)</span>-score<a class="headerlink" href="#rss-and-r-2-score" title="Permalink to this heading">#</a></h2>
-<p>Putting the optimal weights <span class="math notranslate nohighlight">\(\widehat a\)</span> and <span class="math notranslate nohighlight">\(\widehat b\)</span> into the loss function <a class="reference internal" href="#equation-1-d-mse">(6)</a>, we obtain <strong>residual square error</strong> (RSE). Multiplying by <span class="math notranslate nohighlight">\(n\)</span> we get <strong>residual square sum</strong></p>
+<p>Putting the optimal weights <span class="math notranslate nohighlight">\(\widehat a\)</span> and <span class="math notranslate nohighlight">\(\widehat b\)</span> into the loss function <a class="reference internal" href="#equation-1-d-mse">(6)</a>, we obtain <strong>residual square error</strong> (RSE). Multiplying by <span class="math notranslate nohighlight">\(n\)</span> we get <strong>residual sum of squares</strong></p>
 <div class="math notranslate nohighlight">
 \[
     RSS = \sum\limits_{i=1}^n(y_i - \widehat a x_i - \widehat b)^2.
 \]</div>
-<p>Also, <strong>total square sum</strong> is defined as</p>
+<p>Also, <strong>total sum of squares</strong> is defined as</p>
 <div class="math notranslate nohighlight">
 \[
 TSS = \sum\limits_{i=1}^n(y_i - \overline {\boldsymbol y})^2.
@@ -462,17 +466,17 @@ TSS = \sum\limits_{i=1}^n(y_i - \overline {\boldsymbol y})^2.
 <p>A popular metric called <strong>coefficient of determination</strong> (or <strong><span class="math notranslate nohighlight">\(R^2\)</span>-score</strong>) is defined as</p>
 <div class="math notranslate nohighlight" id="equation-r2-score">
 <span class="eqno">(9)<a class="headerlink" href="#equation-r2-score" title="Permalink to this equation">#</a></span>\[R^2 = 1 - \frac{RSS}{TSS} = 1 - \frac{\sum\limits_{i=1}^n(y_i - \widehat y_i)^2}{\sum\limits_{i=1}^n(y_i - \overline {\boldsymbol y})^2}.\]</div>
-<p>The coefficient of determination shows proportion of variance explained. It is always between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span> (the greater —  the better).</p>
+<p>The coefficient of determination shows proportion of variance explained. <span class="math notranslate nohighlight">\(R^2\)</span>-score does not exceed <span class="math notranslate nohighlight">\(1\)</span> (the greater —  the better).</p>
 <p><span style="display:none" id="R2_dummy">W3sicXVlc3Rpb24iOiAiV2hhdCBpcyB0aGUgJFJeMiQtc2NvcmUgb2YgdGhlIGR1bW15IG1vZGVsICRcXHdpZGVoYXQgeSA9IFxcb3ZlcmxpbmUge1xcYm9sZHN5bWJvbCB5fSQ/IiwgInR5cGUiOiAibnVtZXJpYyIsICJhbnN3ZXJzIjogW3sidHlwZSI6ICJ2YWx1ZSIsICJ2YWx1ZSI6IDAsICJjb3JyZWN0IjogdHJ1ZSwgImZlZWRiYWNrIjogIllvdSBuYWlsZWQgaXQhICRSXjIgPSAxIC0gMSA9IDAkIn0sIHsidHlwZSI6ICJ2YWx1ZSIsICJ2YWx1ZSI6IDEsICJjb3JyZWN0IjogZmFsc2UsICJmZWVkYmFjayI6ICJObywgaXQgc2hvdWxkIGJlIHN1YnRyYWN0ZWQgZnJvbSAkMSQifSwgeyJ0eXBlIjogInJhbmdlIiwgInJhbmdlIjogWy0xMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMCwgMF0sICJmZWVkYmFjayI6ICIkUl4yJC1zY29yZSBtdXN0IGJlIGJldHdlZW4gMCBhbmQgMSJ9LCB7InR5cGUiOiAicmFuZ2UiLCAicmFuZ2UiOiBbMS4wMDAwMDAwMDAxLCAxMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMF0sICJmZWVkYmFjayI6ICIkUl4yJC1zY29yZSBtdXN0IGJlIGJldHdlZW4gMCBhbmQgMSJ9LCB7InR5cGUiOiAiZGVmYXVsdCIsICJmZWVkYmFjayI6ICJUaGlzIHZhbHVlIGxvb2tzIGluY29ycmVjdCJ9XX1d</span></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="woaAPZUmDCQq" data-shufflequestions="False"
+<div class="output text_html"><div id="tVZLoYrTUwIs" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#woaAPZUmDCQq {
+#tVZLoYrTUwIs {
    --jq-multiple-choice-bg: #6f78ffff;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -643,14 +647,14 @@ TSS = \sum\limits_{i=1}^n(y_i - \overline {\boldsymbol y})^2.
     }
 }
 </style></div><script type="application/javascript">var element=document.getElementById("R2_dummy");
-            var questionswoaAPZUmDCQq;
+            var questionstVZLoYrTUwIs;
             try {
-               questionswoaAPZUmDCQq=JSON.parse(window.atob(element.innerHTML));
+               questionstVZLoYrTUwIs=JSON.parse(window.atob(element.innerHTML));
             } catch(err) {
                console.log("Fell into catch");
-               questionswoaAPZUmDCQq = JSON.parse(element.innerHTML);
+               questionstVZLoYrTUwIs = JSON.parse(element.innerHTML);
             }
-            console.log(questionswoaAPZUmDCQq);;
+            console.log(questionstVZLoYrTUwIs);;
     // Make a random ID
 function makeid(length) {
     var result = [];
@@ -1399,8 +1403,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("woaAPZUmDCQq")) {
-            show_questions(questionswoaAPZUmDCQq,  woaAPZUmDCQq); 
+          if(document.getElementById("tVZLoYrTUwIs")) {
+            show_questions(questionstVZLoYrTUwIs,  tVZLoYrTUwIs); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1409,8 +1413,8 @@ if (typeof version == 'undefined') {
         {
         // console.log(element);
 
-        //console.log("woaAPZUmDCQq");
-        // console.log(document.getElementById("woaAPZUmDCQq"));
+        //console.log("tVZLoYrTUwIs");
+        // console.log(document.getElementById("tVZLoYrTUwIs"));
 
         try_show();
         }
@@ -1423,7 +1427,7 @@ if (typeof version == 'undefined') {
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">boston</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../ISLP_datsets/Boston.csv&quot;</span><span class="p">)</span>
+<span class="n">boston</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../ISLP_datsets/Boston.csv&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;Unnamed: 0&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">boston</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1447,7 +1451,6 @@ if (typeof version == 'undefined') {
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Unnamed: 0</th>
       <th>crim</th>
       <th>zn</th>
       <th>indus</th>
@@ -1466,7 +1469,6 @@ if (typeof version == 'undefined') {
   <tbody>
     <tr>
       <th>0</th>
-      <td>1</td>
       <td>0.00632</td>
       <td>18.0</td>
       <td>2.31</td>
@@ -1483,7 +1485,6 @@ if (typeof version == 'undefined') {
     </tr>
     <tr>
       <th>1</th>
-      <td>2</td>
       <td>0.02731</td>
       <td>0.0</td>
       <td>7.07</td>
@@ -1500,7 +1501,6 @@ if (typeof version == 'undefined') {
     </tr>
     <tr>
       <th>2</th>
-      <td>3</td>
       <td>0.02729</td>
       <td>0.0</td>
       <td>7.07</td>
@@ -1517,7 +1517,6 @@ if (typeof version == 'undefined') {
     </tr>
     <tr>
       <th>3</th>
-      <td>4</td>
       <td>0.03237</td>
       <td>0.0</td>
       <td>2.18</td>
@@ -1534,7 +1533,6 @@ if (typeof version == 'undefined') {
     </tr>
     <tr>
       <th>4</th>
-      <td>5</td>
       <td>0.06905</td>
       <td>0.0</td>
       <td>2.18</td>
@@ -1573,6 +1571,8 @@ if (typeof version == 'undefined') {
 </div>
 </div>
 <p>Now plot the data and the regression line:</p>
+<div class="cell tag_remove-input docutils container">
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -1580,26 +1580,32 @@ if (typeof version == 'undefined') {
 <span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;svg&#39;
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
 <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">num</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">a</span><span class="o">*</span><span class="n">xs</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">a</span><span class="o">*</span><span class="n">xs</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$y = \widehat a x + \widehat b$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">xs</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">xs</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span> <span class="p">[</span><span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">()],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$y = \overline y$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;lstat&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;medv&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Simple linear regression vs dummy model&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">ls</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9b58e6ca52ebc6d38a835fa2dbd8314e18f19a2e0d61de8fa2a9ceaa709d5d4d.svg" src="../_images/9b58e6ca52ebc6d38a835fa2dbd8314e18f19a2e0d61de8fa2a9ceaa709d5d4d.svg" /></div>
+<img alt="../_images/56127fe9d5d3daab0d3bad9cb09f7c39ac623c5e67073d02175a9cf7011bb8ce.svg" src="../_images/56127fe9d5d3daab0d3bad9cb09f7c39ac623c5e67073d02175a9cf7011bb8ce.svg" /></div>
 </div>
-<p>MSE given by this line:</p>
+<p>Calculate MSE:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">a</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">mse</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mse_lin_reg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">a</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">mse_dummy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Linear regression MSE:&quot;</span><span class="p">,</span> <span class="n">mse_lin_reg</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dummy model MSE:&quot;</span><span class="p">,</span> <span class="n">mse_dummy</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>38.48296722989415
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Linear regression MSE: 38.48296722989415
+Dummy model MSE: 84.41955615616556
 </pre></div>
 </div>
 </div>
@@ -1607,28 +1613,31 @@ if (typeof version == 'undefined') {
 <p>Coefficient of determination:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="o">-</span> <span class="n">mse</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;R2-score:&quot;</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">mse_lin_reg</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dummy R2-score:&quot;</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">mse_dummy</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5441462975864798
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R2-score: 0.5441462975864798
+Dummy R2-score: 0.0
 </pre></div>
 </div>
 </div>
 </div>
-<p>Of course, this line can be found automatically:</p>
+<p>Of course, the linear regression line can be found automatically:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sb</span>
 
 <span class="n">sb</span><span class="o">.</span><span class="n">regplot</span><span class="p">(</span><span class="n">boston</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;lstat&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;medv&quot;</span><span class="p">,</span>
-           <span class="n">scatter_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">},</span> <span class="n">line_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span><span class="p">});</span>
+           <span class="n">scatter_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">},</span> <span class="n">line_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span><span class="p">},</span> 
+           <span class="p">)</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Boston linear regression&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4e726b1ed998b057a939b646d8b0cb52142cd4c4e1fc5840264221342797e2d0.svg" src="../_images/4e726b1ed998b057a939b646d8b0cb52142cd4c4e1fc5840264221342797e2d0.svg" /></div>
+<img alt="../_images/b66365a94e37ad9663ddfd9eea734e4ab1ed6f405a4e876fe1f7cbb87c37978f.svg" src="../_images/b66365a94e37ad9663ddfd9eea734e4ab1ed6f405a4e876fe1f7cbb87c37978f.svg" /></div>
 </div>
 <p>Linear regression from <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>:</p>
 <div class="cell docutils container">
@@ -1650,6 +1659,20 @@ if (typeof version == 'undefined') {
 slope: -0.9500493537579906
 r-score: 0.5441462975864797
 MSE: 38.48296722989415
+</pre></div>
+</div>
+</div>
+</div>
+<p>Compare this with dummy model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dummy_mse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dummy_mse</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>84.41955615616556
 </pre></div>
 </div>
 </div>
