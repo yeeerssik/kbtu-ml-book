@@ -176,13 +176,20 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../lin_reg/polynomial.html">Polynomial regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../lin_reg/multiple.html">Multiple linear regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../lin_reg/regularization.html">Regularization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lin_reg/GD.html">Gradient descent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../lin_reg/general.html">General linear model</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../linear_classification/classification.html">Linear classification</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../linear_classification/log_reg.html">Logistic regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../linear_classification/multi_log_reg.html">Multinomial logistic regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../linear_classification/gradients.html">Gradient optimization</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python for ML</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../python/python_basics.html">Python Basics</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../python/python_basics.html">Python Basics</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../python/basics/basic_types.html">Basic Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../python/basics/variables.html">Variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../python/basics/control_flow.html">Control flow</a></li>
@@ -192,10 +199,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../python/basics/ISLP_lab.html">ISLP Lab</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/numpy.html">NumPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/pandas.html">Pandas</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Math for ML</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../linear_algebra.html">Linear Algebra</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../linear_algebra.html">Linear Algebra</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="vectors.html">Vectors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="matrices.html">Matrices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="linear_systems.html">Linear systems</a></li>
@@ -209,7 +218,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="matrix_norms.html">Matrix norms</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../calculus.html">Calculus</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../calculus.html">Calculus</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../calculus/1-d.html">1-d calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../calculus/multivariate.html">Multivariate calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../calculus/matrix_diff.html">Matrix calculus</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../probability.html">Probability</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../statistics.html">Statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../optimization.html">Optimization</a></li>
@@ -389,7 +403,7 @@ document.write(`
 <p>Если матрицу <span class="math notranslate nohighlight">\(\boldsymbol A \in\mathbb R^{n\times n}\)</span> можно привести к диагональному виду преобразованием подобия, то она называется  <strong>диагонализируемой</strong>. Диагонализация матрицы эквивалентна наличию базиса из собственных векторов.</p>
 <p><strong>Теорема</strong>. Если у матрицы <span class="math notranslate nohighlight">\(\boldsymbol A \in \mathbb R^{n\times n}\)</span> есть <span class="math notranslate nohighlight">\(n\)</span> линейно независимых собственных векторов <span class="math notranslate nohighlight">\(\boldsymbol x_1, \ldots, \boldsymbol x_n\)</span>, то матрица <span class="math notranslate nohighlight">\(\boldsymbol X = [\boldsymbol x_1 \ldots \boldsymbol x_n]\)</span> <strong>диагонализирует</strong> матрицу <span class="math notranslate nohighlight">\(\boldsymbol A\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-diagonalize">
-<span class="eqno">(34)<a class="headerlink" href="#equation-diagonalize" title="Permalink to this equation">#</a></span>\[    \boldsymbol X^{-1} \boldsymbol A \boldsymbol X =
+<span class="eqno">(39)<a class="headerlink" href="#equation-diagonalize" title="Permalink to this equation">#</a></span>\[    \boldsymbol X^{-1} \boldsymbol A \boldsymbol X =
     \boldsymbol\Lambda = \mathrm{diag} \{\lambda_1, \ldots, \lambda_n\}.\]</div>
 <div class="dropdown admonition">
 <p class="admonition-title">Proof</p>
@@ -418,13 +432,13 @@ document.write(`
 <p class="admonition-title">Proof</p>
 <p>Рассуждение проведём индукцией по <span class="math notranslate nohighlight">\(m\)</span>. При <span class="math notranslate nohighlight">\(m=1\)</span> утверждение, очевидно, верно. Пусть теперь <span class="math notranslate nohighlight">\(m&gt;1\)</span> и</p>
 <div class="math notranslate nohighlight" id="equation-linear-dep">
-<span class="eqno">(35)<a class="headerlink" href="#equation-linear-dep" title="Permalink to this equation">#</a></span>\[    c_1\boldsymbol x_1 + \ldots + c_{m-1} \boldsymbol x_{m-1} + c_m\boldsymbol x_m = \boldsymbol 0. \]</div>
+<span class="eqno">(40)<a class="headerlink" href="#equation-linear-dep" title="Permalink to this equation">#</a></span>\[    c_1\boldsymbol x_1 + \ldots + c_{m-1} \boldsymbol x_{m-1} + c_m\boldsymbol x_m = \boldsymbol 0. \]</div>
 <p>Умножим это равенство на матирцу <span class="math notranslate nohighlight">\(\boldsymbol A\)</span> слева:</p>
 <div class="math notranslate nohighlight">
 \[
     c_1 \lambda_1\boldsymbol x_1 + \ldots + c_{m-1}\lambda_{m-1}\boldsymbol x_{m-1}+ c_m\lambda_m\boldsymbol x_m = \boldsymbol 0.
 \]</div>
-<p>Вычтем отсюда равенство <a class="reference internal" href="#equation-linear-dep">(35)</a>, умноженное на <span class="math notranslate nohighlight">\(\lambda_m\)</span>:</p>
+<p>Вычтем отсюда равенство <a class="reference internal" href="#equation-linear-dep">(40)</a>, умноженное на <span class="math notranslate nohighlight">\(\lambda_m\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
     c_1 (\lambda_1 - \lambda_m)\boldsymbol x_1 + \ldots + c_{m-1}(\lambda_{m-1} - \lambda_m)\boldsymbol x_{m-1} = \boldsymbol 0.
@@ -434,12 +448,12 @@ document.write(`
 \[
     c_k(\lambda_k - \lambda_m) = 0, \quad 1\leqslant k \leqslant m-1.
 \]</div>
-<p>Все собственные значения различны, значит, <span class="math notranslate nohighlight">\(c_k = 0\)</span> при <span class="math notranslate nohighlight">\(k=1, \ldots, m-1\)</span>. Но тогда <a class="reference internal" href="#equation-linear-dep">(35)</a> превращается в <span class="math notranslate nohighlight">\(c_m\boldsymbol x_m = \boldsymbol 0\)</span>, откуда <span class="math notranslate nohighlight">\(c_m = 0\)</span>. Итак, все коэффициенты линейной комбинации <a class="reference internal" href="#equation-linear-dep">(35)</a> обнулились, поэтому система собственных векторов <span class="math notranslate nohighlight">\(\boldsymbol x_1, \ldots,\boldsymbol x_m\)</span> линейно независима.</p>
+<p>Все собственные значения различны, значит, <span class="math notranslate nohighlight">\(c_k = 0\)</span> при <span class="math notranslate nohighlight">\(k=1, \ldots, m-1\)</span>. Но тогда <a class="reference internal" href="#equation-linear-dep">(40)</a> превращается в <span class="math notranslate nohighlight">\(c_m\boldsymbol x_m = \boldsymbol 0\)</span>, откуда <span class="math notranslate nohighlight">\(c_m = 0\)</span>. Итак, все коэффициенты линейной комбинации <a class="reference internal" href="#equation-linear-dep">(40)</a> обнулились, поэтому система собственных векторов <span class="math notranslate nohighlight">\(\boldsymbol x_1, \ldots,\boldsymbol x_m\)</span> линейно независима.</p>
 </div>
 <p>Применяя лемму к матрице <span class="math notranslate nohighlight">\(\boldsymbol A \in \mathbb R^{n\times n}\)</span> с простым спектром, заключаем, что у неё есть <span class="math notranslate nohighlight">\(n\)</span> линейно независимых собственных векторов <span class="math notranslate nohighlight">\(\boldsymbol x_1, \ldots,\boldsymbol x_n\)</span>, которые и образуют собственный базис. Следовательно, матрица <span class="math notranslate nohighlight">\(\boldsymbol A\)</span> диагонализируема.</p>
 <p>Ну а что насчёт диагонализируемости, если спектр не простой? Бывает по-разному. Например, у единичной матрицы спектр отнюдь не простой (все <span class="math notranslate nohighlight">\(\lambda = 1\)</span>), однако, она уже диагональна. А вот у матрицы</p>
 <div class="math notranslate nohighlight" id="equation-non-diag">
-<span class="eqno">(36)<a class="headerlink" href="#equation-non-diag" title="Permalink to this equation">#</a></span>\[\begin{split}\boldsymbol A =
+<span class="eqno">(41)<a class="headerlink" href="#equation-non-diag" title="Permalink to this equation">#</a></span>\[\begin{split}\boldsymbol A =
 \begin{pmatrix}
         1 &amp; 1 \\
         0 &amp; 1 \\
@@ -509,7 +523,7 @@ document.write(`
         -1 &amp; i
     \end{pmatrix}.
 \end{split}\]</div>
-<p>В результате согласно равенству <a class="reference internal" href="#equation-diagonalize">(34)</a> имеем</p>
+<p>В результате согласно равенству <a class="reference internal" href="#equation-diagonalize">(39)</a> имеем</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \frac 12 \begin{pmatrix}
@@ -533,7 +547,7 @@ document.write(`
 <p>Диагонализация матрицы поворота над полем <span class="math notranslate nohighlight">\(\mathbb C\)</span> проведена успешно.</p>
 </div>
 <p>Как видно из предыдущего примера, поле скаляров существенно влияет на принципиальную возможность диагонализации матрицы. По этой причине часто говорят о «диагонализации над полем <span class="math notranslate nohighlight">\(F\)</span>». По умолчанию подразумевается, что <span class="math notranslate nohighlight">\(F = \mathbb R\)</span>, так что просто «диагонализация» — это диагонализация над <span class="math notranslate nohighlight">\(\mathbb R\)</span>.</p>
-<p>Но даже если собственных значений достаточно, возможно другое препятствие: для некоторого собственного значения не хватает линейно независимых собственных векторов. В таком случае собственного базиса также не получится. Простейший пример — матрица <a class="reference internal" href="#equation-non-diag">(36)</a>.</p>
+<p>Но даже если собственных значений достаточно, возможно другое препятствие: для некоторого собственного значения не хватает линейно независимых собственных векторов. В таком случае собственного базиса также не получится. Простейший пример — матрица <a class="reference internal" href="#equation-non-diag">(41)</a>.</p>
 </section>
 <section id="criterion-of-diagonalizability">
 <h2>Criterion of diagonalizability<a class="headerlink" href="#criterion-of-diagonalizability" title="Permalink to this heading">#</a></h2>
@@ -619,16 +633,16 @@ document.write(`
 </div><p>Верна ли спектральная теорема для всех симметричных матриц, не обязательно с простым спектром? Оказывается, да! Один из способов это доказать — воспользоваться <strong>разложением Шура</strong>.</p>
 <p><strong>Теорема</strong> (разложение Шура). Всякая квадратная матрица <span class="math notranslate nohighlight">\(\boldsymbol A\)</span> может быть представлена в виде</p>
 <div class="math notranslate nohighlight" id="equation-schur-decomp">
-<span class="eqno">(37)<a class="headerlink" href="#equation-schur-decomp" title="Permalink to this equation">#</a></span>\[    \boldsymbol A = \boldsymbol{QU}\boldsymbol Q^{-1},\]</div>
+<span class="eqno">(42)<a class="headerlink" href="#equation-schur-decomp" title="Permalink to this equation">#</a></span>\[    \boldsymbol A = \boldsymbol{QU}\boldsymbol Q^{-1},\]</div>
 <p>где матрица <span class="math notranslate nohighlight">\(\boldsymbol Q\)</span> унитарная, а матрица <span class="math notranslate nohighlight">\(\boldsymbol U\)</span> — верхняя треугольная.</p>
-<p>Если все собственные значения матрицы <span class="math notranslate nohighlight">\(\boldsymbol A\)</span> действительные, то все матрицы в разложении <a class="reference internal" href="#equation-schur-decomp">(37)</a> можно выбрать вещественными, и тогда матрица <span class="math notranslate nohighlight">\(\boldsymbol Q\)</span> ортогональная.</p>
-<p>Если <span class="math notranslate nohighlight">\(\boldsymbol A = \boldsymbol A^\top\)</span>, то из раложения <a class="reference internal" href="#equation-schur-decomp">(37)</a> получаем</p>
+<p>Если все собственные значения матрицы <span class="math notranslate nohighlight">\(\boldsymbol A\)</span> действительные, то все матрицы в разложении <a class="reference internal" href="#equation-schur-decomp">(42)</a> можно выбрать вещественными, и тогда матрица <span class="math notranslate nohighlight">\(\boldsymbol Q\)</span> ортогональная.</p>
+<p>Если <span class="math notranslate nohighlight">\(\boldsymbol A = \boldsymbol A^\top\)</span>, то из раложения <a class="reference internal" href="#equation-schur-decomp">(42)</a> получаем</p>
 <div class="math notranslate nohighlight">
 \[
     \boldsymbol U = \boldsymbol Q^\top \boldsymbol{AQ} \Rightarrow
     \boldsymbol U^\top = \boldsymbol{Q}^\top\boldsymbol {AQ} = \boldsymbol U^\top.
 \]</div>
-<p>Таким образом, верхняя треугольная матрица <span class="math notranslate nohighlight">\(\boldsymbol U\)</span> симметрична и, стало быть, диагональна. Значит, разложение <a class="reference internal" href="#equation-schur-decomp">(37)</a> и есть диагонализация симметричной матрицы <span class="math notranslate nohighlight">\(\boldsymbol A\)</span>.</p>
+<p>Таким образом, верхняя треугольная матрица <span class="math notranslate nohighlight">\(\boldsymbol U\)</span> симметрична и, стало быть, диагональна. Значит, разложение <a class="reference internal" href="#equation-schur-decomp">(42)</a> и есть диагонализация симметричной матрицы <span class="math notranslate nohighlight">\(\boldsymbol A\)</span>.</p>
 </section>
 </section>
 

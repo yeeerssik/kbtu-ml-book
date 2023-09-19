@@ -180,10 +180,16 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="general.html">General linear model</a></li>
 </ul>
 </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../linear_classification/classification.html">Linear classification</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../linear_classification/log_reg.html">Logistic regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linear_classification/multi_log_reg.html">Multinomial logistic regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linear_classification/gradients.html">Gradient optimization</a></li>
+</ul>
+</li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python for ML</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../python/python_basics.html">Python Basics</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python/python_basics.html">Python Basics</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../python/basics/basic_types.html">Basic Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python/basics/variables.html">Variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python/basics/control_flow.html">Control flow</a></li>
@@ -193,10 +199,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../python/basics/ISLP_lab.html">ISLP Lab</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../python/numpy.html">NumPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/pandas.html">Pandas</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Math for ML</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../math/linear_algebra.html">Linear Algebra</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../math/linear_algebra.html">Linear Algebra</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/vectors.html">Vectors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/matrices.html">Matrices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/linear_systems.html">Linear systems</a></li>
@@ -210,7 +218,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/matrix_norms.html">Matrix norms</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../math/calculus.html">Calculus</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../math/calculus.html">Calculus</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../math/calculus/1-d.html">1-d calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/calculus/multivariate.html">Multivariate calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/calculus/matrix_diff.html">Matrix calculus</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../math/probability.html">Probability</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../math/statistics.html">Statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../math/optimization.html">Optimization</a></li>
@@ -384,13 +397,13 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="multiple-linear-regression">
-<h1>Multiple linear regression<a class="headerlink" href="#multiple-linear-regression" title="Permalink to this heading">#</a></h1>
+<span id="linear-regression"></span><h1>Multiple linear regression<a class="headerlink" href="#multiple-linear-regression" title="Permalink to this heading">#</a></h1>
 <p>In practice, there usually more than one feature. Suppose that we have <span class="math notranslate nohighlight">\(n\)</span> training samples and <span class="math notranslate nohighlight">\(d\)</span> features. Given a training sample <span class="math notranslate nohighlight">\(\boldsymbol x \in\mathbb R^d\)</span>, we predict the target variable as follows:</p>
 <div class="math notranslate nohighlight" id="equation-multiple-lin-reg">
 <span class="eqno">(14)<a class="headerlink" href="#equation-multiple-lin-reg" title="Permalink to this equation">#</a></span>\[    y = w_0 + w_1 x_1 + \ldots + w_d x_d = w_0 + \sum\limits_{j=1}^d w_j x_j\]</div>
 <p>To fit the linear regression, minimize MSE or, equivalently, RSS:</p>
 <div class="math notranslate nohighlight" id="equation-multiple-lin-reg-rss">
-<span class="eqno">(15)<a class="headerlink" href="#equation-multiple-lin-reg-rss" title="Permalink to this equation">#</a></span>\[    RSS = \sum\limits_{i=1}^n \Big(y_i - w_0 - \sum\limits_{j=1}^k w_k x_k\Big) \to \min\limits_{\boldsymbol w}.\]</div>
+<span class="eqno">(15)<a class="headerlink" href="#equation-multiple-lin-reg-rss" title="Permalink to this equation">#</a></span>\[    RSS = \sum\limits_{i=1}^n \Big(y_i - w_0 - \sum\limits_{j=1}^k w_j x_j\Big)^2 \to \min\limits_{\boldsymbol w}.\]</div>
 <section id="d-linear-regression-on-boston-dataset">
 <h2>2-d linear regression on Boston dataset<a class="headerlink" href="#d-linear-regression-on-boston-dataset" title="Permalink to this heading">#</a></h2>
 <p><a class="reference internal" href="simple.html#boston-simple"><span class="std std-ref">Here</span></a> we trained a simple linear regression with a single feature (<code class="docutils literal notranslate"><span class="pre">lstat</span></code>). Now add one more feature: <code class="docutils literal notranslate"><span class="pre">age</span></code>.</p>
