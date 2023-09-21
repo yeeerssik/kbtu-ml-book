@@ -380,6 +380,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-logistic-regression">Binary logistic regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#breast-cancer-dataset-numeric-optimization">Breast cancer dataset: numeric optimization</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multinomial-logistic-regression">Multinomial logistic regression</a></li>
 </ul>
             </nav>
@@ -421,8 +422,159 @@ document.write(`
 \[
    \nabla \mathcal L(\boldsymbol w) = -\sum\limits_{i=1}^n \big(y_i(1 - \sigma(\boldsymbol x_i^\top \boldsymbol w))\boldsymbol x_i - (1-y_i)\sigma(\boldsymbol x_i^\top \boldsymbol w)\boldsymbol x_i\big) = \sum\limits_{i=1}^n (\sigma(\boldsymbol x_i^\top \boldsymbol w) - y_i)\boldsymbol x_i.
 \]</div>
-<p><strong>Q</strong>. How to write <span class="math notranslate nohighlight">\(\nabla \mathcal L(\boldsymbol w)\)</span> as a product of a matrix and a vector, avoiding the explicit summation?</p>
-<p><strong>Q</strong>. What is hessian <span class="math notranslate nohighlight">\(\nabla^2 L(\boldsymbol w)\)</span>?</p>
+<div class="important admonition">
+<p class="admonition-title">Question</p>
+<p>How to write <span class="math notranslate nohighlight">\(\nabla \mathcal L(\boldsymbol w)\)</span> as a product of a matrix and a vector, avoiding the explicit summation?</p>
+<div class="dropdown admonition hint">
+<p class="admonition-title">Hint</p>
+<p>The shape of <span class="math notranslate nohighlight">\(\nabla \mathcal L(\boldsymbol w)\)</span> is the same as of <span class="math notranslate nohighlight">\(\boldsymbol w\)</span>, i.e., <span class="math notranslate nohighlight">\(d\times 1\)</span>. Now observe that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{pmatrix}
+   \sigma(\boldsymbol x_1^\top \boldsymbol w) - y_1 \\
+   \vdots \\
+   \sigma(\boldsymbol x_n^\top \boldsymbol w) - y_n
+   \end{pmatrix}
+   = \sigma(\boldsymbol X \boldsymbol w )- \boldsymbol y \in \mathbb R^n.
+\end{split}\]</div>
+<p>What should we multiply by this vector to obtain <span class="math notranslate nohighlight">\(\nabla \mathcal L\)</span>?</p>
+</div>
+</div>
+<div class="important admonition">
+<p class="admonition-title">Question</p>
+<p>What is hessian <span class="math notranslate nohighlight">\(\nabla^2 L(\boldsymbol w)\)</span>?</p>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Answer</p>
+<div class="math notranslate nohighlight">
+\[
+\nabla^2 L(\boldsymbol w) = \boldsymbol X^\top \boldsymbol S \boldsymbol X,
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \boldsymbol S = \mathrm{diag}\{\sigma(\boldsymbol X \boldsymbol w )- \boldsymbol y\} = \begin{pmatrix}
+   \sigma(\boldsymbol x_1^{\boldsymbol{\top}} \boldsymbol w) - y_1  &amp; \ldots &amp; 0 \\
+   \vdots &amp; \ddots &amp; \vdots \\
+   0 &amp; \ldots &amp; \sigma(\boldsymbol x_n^{\boldsymbol{\top}} \boldsymbol w) - y_n
+   \end{pmatrix}
+\end{split}\]</div>
+</div>
+</div>
+</section>
+<section id="breast-cancer-dataset-numeric-optimization">
+<h2>Breast cancer dataset: numeric optimization<a class="headerlink" href="#breast-cancer-dataset-numeric-optimization" title="Permalink to this heading">#</a></h2>
+<p>Fetch the dataset:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_breast_cancer</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">load_breast_cancer</span><span class="p">()</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">target</span>
+<span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((569, 30), (569,))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Apply the <a class="reference internal" href="../lin_reg/GD.html#GD">gradient descent</a> algorithm to the logistic regression:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">expit</span>
+
+<span class="k">def</span> <span class="nf">logistic_regression_gd</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">gradient</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">expit</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w</span><span class="p">))</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="n">C</span> <span class="o">*</span> <span class="n">w</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iter</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">gradient</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">tol</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">w</span>
+        <span class="n">w</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">gradient</span>
+        <span class="n">gradient</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="n">C</span> <span class="o">*</span> <span class="n">w</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;max_iter exceeded&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">w</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fit the logistic regresion on the whole dataset:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="n">logistic_regression_gd</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">w</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>max_iter exceeded
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.86155784,  0.36909654, -0.27039382,  0.00539766, -2.32530835,
+       -0.9587808 ,  0.26026285,  0.52697533, -0.75537079,  0.86475575,
+       -1.34719614, -0.15954403,  1.1575809 , -0.04854085, -1.16504009,
+       -0.52102528,  0.51758422, -0.20873651, -0.88355016,  0.84976278,
+       -0.79260095, -0.25660237,  0.24191101, -0.0044245 ,  0.85193983,
+       -0.1621182 ,  0.55494972, -1.21657859, -1.00626935, -0.14993567])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calculate the accuracy score:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="n">accuracy_score</span><span class="p">(</span><span class="n">expit</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5957820738137083
+</pre></div>
+</div>
+</div>
+</div>
+<p>Compare with <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+
+<span class="n">log_reg</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+<span class="n">log_reg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">log_reg</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">log_reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">y</span><span class="p">))</span>
+<span class="n">log_reg</span><span class="o">.</span><span class="n">coef_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9595782073813708
+0.9595782073813708
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 2.18332329,  0.11789056, -0.0696952 , -0.00350176, -0.16519865,
+        -0.4118028 , -0.67385012, -0.36497435, -0.23983217, -0.02406538,
+        -0.02186803,  1.20613335,  0.04838948, -0.0970984 , -0.01870574,
+         0.01626219, -0.03861864, -0.04276028, -0.04322983,  0.00846606,
+         1.29672397, -0.34212421, -0.12576754, -0.02460068, -0.30612789,
+        -1.14244163, -1.62895872, -0.6992171 , -0.72520831, -0.11275416]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">w</span> <span class="o">-</span> <span class="n">log_reg</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.447510500416787
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="multinomial-logistic-regression">
 <h2>Multinomial logistic regression<a class="headerlink" href="#multinomial-logistic-regression" title="Permalink to this heading">#</a></h2>
@@ -430,26 +582,31 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{multline*}
-    \mathcal L(\boldsymbol W) = \sum\limits_{i=1}^n \sum\limits_{k=1}^K  y_{ik} \bigg(\boldsymbol x_i^\top\boldsymbol w_{k} -\log\Big(\sum\limits_{k=1}^K \exp(\boldsymbol x_i^\top\boldsymbol w_{k})\Big)\bigg) = \\
+    \mathcal L(\boldsymbol W) = -\sum\limits_{i=1}^n \sum\limits_{k=1}^K  y_{ik} \bigg(\boldsymbol x_i^\top\boldsymbol w_{k} -\log\Big(\sum\limits_{k=1}^K \exp(\boldsymbol x_i^\top\boldsymbol w_{k})\Big)\bigg) = \\
     =
-    \sum\limits_{i=1}^n \sum\limits_{k=1}^K  y_{ik} \bigg(\sum\limits_{j=1}^d x_{ij} w_{jk} -\log\Big(\sum\limits_{k=1}^K \exp\Big(\sum\limits_{j=1}^d x_{ij} w_{jk}\Big)\Big)\bigg)
+    -\sum\limits_{i=1}^n \sum\limits_{k=1}^K  y_{ik} \bigg(\sum\limits_{j=1}^d x_{ij} w_{jk} -\log\Big(\sum\limits_{k=1}^K \exp\Big(\sum\limits_{j=1}^d x_{ij} w_{jk}\Big)\Big)\bigg)
     \end{multline*}
 \end{split}\]</div>
-<p>Observe that</p>
+<p>One can show that</p>
 <div class="math notranslate nohighlight">
 \[
+    \nabla \mathcal L(\boldsymbol W) = \boldsymbol X^\top (\boldsymbol {\widehat Y} - \boldsymbol Y) = \boldsymbol X^\top ( \sigma(\boldsymbol{XW}) - \boldsymbol Y).
+\]</div>
+<!-- Observe that
+
+$$
     \frac{\partial}{\partial w_{pq}} (x_{ij} w_{jk}) = x_{ij} \delta_{pj} \delta_{qk},
-\]</div>
-<div class="math notranslate nohighlight">
-\[
+$$
+
+$$
 \frac{\partial}{\partial w_{pq}}\bigg(\log\Big(\sum\limits_{k=1}^K \exp\Big(\sum\limits_{j=1}^d x_{ij} w_{jk}\Big)\Big)\bigg) = \frac{\exp\Big(\sum\limits_{j=1}^d x_{ij} w_{jk}\Big)}{\sum\limits_{k=1}^K \exp\Big(\sum\limits_{j=1}^d x_{ij} w_{jk}\Big)} x_{ip} \delta_{qk}
-\]</div>
-<p>Hence,</p>
-<div class="math notranslate nohighlight">
-\[
+$$
+
+Hence, 
+
+$$
     \frac{\partial \mathcal L}{\partial w_{pq}} = \sum\limits_{i=1}^n \sum\limits_{k=1}^K y_{ik}\bigg(\sum\limits_{j=1}^d  \bigg(  x_{ij} \delta_{pj} \delta_{qk} - \frac{\exp\Big(\sum\limits_{j=1}^d x_{ij} w_{jk}\Big)}{\sum\limits_{k=1}^K \exp\Big(\sum\limits_{j=1}^d x_{ij} w_{jk}\Big)} x_{ip} \delta_{qk}\bigg)\bigg)
-\]</div>
-</section>
+$$ --></section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -520,6 +677,7 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-logistic-regression">Binary logistic regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#breast-cancer-dataset-numeric-optimization">Breast cancer dataset: numeric optimization</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multinomial-logistic-regression">Multinomial logistic regression</a></li>
 </ul>
   </nav></div>
