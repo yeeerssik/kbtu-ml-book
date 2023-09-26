@@ -68,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'eval_metrics/regression';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Cross-validation" href="Cross-validation.html" />
+    <link rel="next" title="Cross-validation" href="cross_val.html" />
     <link rel="prev" title="ROC-AUC" href="ROC-AUC.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -190,7 +190,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="classification.html">Classification Metrics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ROC-AUC.html">ROC-AUC</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Regression metrics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Cross-validation.html">Cross-validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cross_val.html">Cross-validation</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../probabilistic_models/Probabilistic.html">Bayesian inference</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -213,6 +213,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../ensembling/Bagging_random_forests.html">Bagging and random forests</a></li>
 </ul>
 </li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../cnn/cnn.html">CNN</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../cnn/architectures.html">Architectures of CNN</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cnn/applications.html">Applications of CNN</a></li>
@@ -241,7 +244,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../gm/gan.html">Ganerative adversarial networks (GAN)</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../rl/basics.html">RL basics</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../rl/basics.html">Reinforcement Learning</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../rl/basic_notions.html">Basic RL notions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rl/multiarmed_bandits.html">Multiarmed bandits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rl/mdp.html">Markov decision process (MDP)</a></li>
@@ -443,6 +446,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-squared-error-mse">Mean Squared Error (MSE)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#root-mean-squared-error-rmse">Root Mean Squared Error (RMSE)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#r-2-score"><span class="math notranslate nohighlight">\(R^2\)</span>-score</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-absolute-error-mae">Mean Absolute Error (MAE)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mape">MAPE</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulated-example">Simulated example</a></li>
@@ -490,6 +494,13 @@ document.write(`
 \]</div>
 <p>It provides a measure of the standard deviation of prediction errors and is in the same units as the target variable. Thus, RMSE is more interpretable than MSE.</p>
 </section>
+<section id="r-2-score">
+<h2><span class="math notranslate nohighlight">\(R^2\)</span>-score<a class="headerlink" href="#r-2-score" title="Permalink to this heading">#</a></h2>
+<p>To overcome some flaws of MSE the <strong>coefficient of determination</strong> (or <strong><span class="math notranslate nohighlight">\(R^2\)</span>-score</strong>) used:</p>
+<div class="math notranslate nohighlight" id="equation-r2-score">
+<span class="eqno">(27)<a class="headerlink" href="#equation-r2-score" title="Permalink to this equation">#</a></span>\[R^2 = 1 - \frac{\sum\limits_{i=1}^n(y_i - \widehat y_i)^2}{\sum\limits_{i=1}^n(y_i - \overline {\boldsymbol y})^2}.\]</div>
+<p>The coefficient of determination shows proportion of variance explained. <span class="math notranslate nohighlight">\(R^2\)</span>-score does not exceed <span class="math notranslate nohighlight">\(1\)</span> (the greater —  the better).</p>
+</section>
 <section id="mean-absolute-error-mae">
 <h2>Mean Absolute Error (MAE)<a class="headerlink" href="#mean-absolute-error-mae" title="Permalink to this heading">#</a></h2>
 <p>MAE calculates the average absolute difference between the predicted values and the actual target values.</p>
@@ -515,8 +526,14 @@ document.write(`
 <p>Mean Absolute Percentage Error (MAPE) metric is commonly used to measure the accuracy of forecasts or predictions, especially in time series forecasting and demand forecasting.</p>
 <div class="math notranslate nohighlight">
 \[
-\mathrm{MAPE} = \frac 1n\sum_{i=1}^{n} \frac{\vert y_i - \hat{y}_i\vert}{\vert y_i \vert}.
+\mathrm{MAPE} = \frac 1n\sum_{i=1}^{n} \frac{\vert y_i - \widehat{y}_i\vert}{\vert y_i \vert}.
 \]</div>
+<p>This value is undefinded if <span class="math notranslate nohighlight">\(y_i = 0\)</span>, that’s why sometimes another version of MAPE is used — <strong>symmetric mean absolute percentage error</strong> (<strong>sMAPE</strong>):</p>
+<div class="math notranslate nohighlight">
+\[
+\mathrm{sMAPE} = \frac 2n\sum_{i=1}^{n} \frac{\vert y_i - \widehat{y}_i\vert}{\vert y_i \vert  + \vert \widehat y_i\vert}.
+\]</div>
+<p><strong>Q</strong>. Does MAPE necessary belongs to interval <span class="math notranslate nohighlight">\([0, 1]\)</span>?</p>
 </section>
 <section id="simulated-example">
 <h2>Simulated example<a class="headerlink" href="#simulated-example" title="Permalink to this heading">#</a></h2>
@@ -540,13 +557,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5e3e6e983a4c21282e21d229a055e2e551017d14da27a48923e6f2cf2f3c11f9.svg" src="../_images/5e3e6e983a4c21282e21d229a055e2e551017d14da27a48923e6f2cf2f3c11f9.svg" /></div>
+<img alt="../_images/758c6a9c6e72ea663cd6ade8a1d43b5f968e07d1a6c9a55616a1caf3bcf1168c.svg" src="../_images/758c6a9c6e72ea663cd6ade8a1d43b5f968e07d1a6c9a55616a1caf3bcf1168c.svg" /></div>
 </div>
 <p>Fit linear regression model and check metrics:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span><span class="p">,</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">mean_absolute_percentage_error</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_absolute_error</span><span class="p">,</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">mean_absolute_percentage_error</span><span class="p">,</span> <span class="n">r2_score</span>
 
 
 <span class="n">lin_reg</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
@@ -555,32 +572,28 @@ document.write(`
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bias:&quot;</span><span class="p">,</span> <span class="n">lin_reg</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Slope:&quot;</span><span class="p">,</span> <span class="n">lin_reg</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
-<span class="c1"># Calculate MAE</span>
 <span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">)</span>
-
-<span class="c1"># Calculate MSE</span>
 <span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">)</span>
-
-<span class="c1"># Calculate RMSE</span>
 <span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mse</span><span class="p">)</span>
-
-<span class="c1"># Calculate MAPE</span>
+<span class="n">R2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">)</span>
 <span class="n">mape</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean Absolute Error (MAE): </span><span class="si">{</span><span class="n">mae</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean Squared Error (MSE): </span><span class="si">{</span><span class="n">mse</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Root Mean Squared Error (RMSE): </span><span class="si">{</span><span class="n">rmse</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;R2-score: </span><span class="si">{</span><span class="n">R2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean absolute percentage error(MAPE): </span><span class="si">{</span><span class="n">mape</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bias: 1.5576941750152349
-Slope: -0.39396167794174874
-Mean Absolute Error (MAE): 0.3880
-Mean Squared Error (MSE): 0.2154
-Root Mean Squared Error (RMSE): 0.4641
-Mean absolute percentage error(MAPE): 0.3803
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bias: 1.9234127560611853
+Slope: -0.6757444736277953
+Mean Absolute Error (MAE): 0.3575
+Mean Squared Error (MSE): 0.2305
+Root Mean Squared Error (RMSE): 0.4801
+R2-score: 0.1417
+Mean absolute percentage error(MAPE): 0.3410
 </pre></div>
 </div>
 </div>
@@ -598,7 +611,7 @@ Mean absolute percentage error(MAPE): 0.3803
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/dcbf8ca7d85568ba9e2c1a541cc61cdc009e64a4995fa5ea50eb86db10fe73dd.svg" src="../_images/dcbf8ca7d85568ba9e2c1a541cc61cdc009e64a4995fa5ea50eb86db10fe73dd.svg" /></div>
+<img alt="../_images/2dcbcc102fd25edb063a0195bbe0e4c446931884a4a1f20e4b11ffc1c6b09b2e.svg" src="../_images/2dcbcc102fd25edb063a0195bbe0e4c446931884a4a1f20e4b11ffc1c6b09b2e.svg" /></div>
 </div>
 <p>Fit linear regression once again:</p>
 <div class="cell docutils container">
@@ -612,8 +625,8 @@ Mean absolute percentage error(MAPE): 0.3803
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bias: 2.131951600757809
-Slope: -1.150037285502505
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bias: 2.450145429328512
+Slope: -1.3358104802284547
 </pre></div>
 </div>
 </div>
@@ -624,20 +637,23 @@ Slope: -1.150037285502505
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">)</span>
 <span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">)</span>
 <span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mse</span><span class="p">)</span>
+<span class="n">R2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">)</span>
 <span class="n">mape</span> <span class="o">=</span> <span class="n">mean_absolute_percentage_error</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean Absolute Error (MAE): </span><span class="si">{</span><span class="n">mae</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean Squared Error (MSE): </span><span class="si">{</span><span class="n">mse</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Root Mean Squared Error (RMSE): </span><span class="si">{</span><span class="n">rmse</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;R2-score: </span><span class="si">{</span><span class="n">R2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean absolute percentage error(MAPE): </span><span class="si">{</span><span class="n">mape</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean Absolute Error (MAE): 0.6460
-Mean Squared Error (MSE): 4.1074
-Root Mean Squared Error (RMSE): 2.0267
-Mean absolute percentage error(MAPE): 0.4614
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean Absolute Error (MAE): 0.6193
+Mean Squared Error (MSE): 4.3018
+Root Mean Squared Error (RMSE): 2.0741
+R2-score: 0.0334
+Mean absolute percentage error(MAPE): 0.4159
 </pre></div>
 </div>
 </div>
@@ -686,7 +702,7 @@ Mean absolute percentage error(MAPE): 0.4614
       </div>
     </a>
     <a class="right-next"
-       href="Cross-validation.html"
+       href="cross_val.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
@@ -714,6 +730,7 @@ Mean absolute percentage error(MAPE): 0.4614
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-squared-error-mse">Mean Squared Error (MSE)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#root-mean-squared-error-rmse">Root Mean Squared Error (RMSE)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#r-2-score"><span class="math notranslate nohighlight">\(R^2\)</span>-score</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-absolute-error-mae">Mean Absolute Error (MAE)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mape">MAPE</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulated-example">Simulated example</a></li>

@@ -187,10 +187,10 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../eval_metrics/Evaluation_metrics.html">Evaluation Metrics</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../eval_metrics/Classification_metrics.html">Classification Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../eval_metrics/classification.html">Classification Metrics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../eval_metrics/ROC-AUC.html">ROC-AUC</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../eval_metrics/Regression_metrics.html">Regression metrics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../eval_metrics/Cross-validation.html">Cross-validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../eval_metrics/regression.html">Regression metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../eval_metrics/cross_val.html">Cross-validation</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../probabilistic_models/Probabilistic.html">Bayesian inference</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -546,13 +546,13 @@ TSS = \sum\limits_{i=1}^n(y_i - \overline {\boldsymbol y})^2.
 <p><span style="display:none" id="R2_dummy">W3sicXVlc3Rpb24iOiAiV2hhdCBpcyB0aGUgJFJeMiQtc2NvcmUgb2YgdGhlIGR1bW15IG1vZGVsICRcXHdpZGVoYXQgeSA9IFxcb3ZlcmxpbmUge1xcYm9sZHN5bWJvbCB5fSQ/IiwgInR5cGUiOiAibnVtZXJpYyIsICJhbnN3ZXJzIjogW3sidHlwZSI6ICJ2YWx1ZSIsICJ2YWx1ZSI6IDAsICJjb3JyZWN0IjogdHJ1ZSwgImZlZWRiYWNrIjogIllvdSBuYWlsZWQgaXQhICRSXjIgPSAxIC0gMSA9IDAkIn0sIHsidHlwZSI6ICJ2YWx1ZSIsICJ2YWx1ZSI6IDEsICJjb3JyZWN0IjogZmFsc2UsICJmZWVkYmFjayI6ICJObywgaXQgc2hvdWxkIGJlIHN1YnRyYWN0ZWQgZnJvbSAkMSQifSwgeyJ0eXBlIjogInJhbmdlIiwgInJhbmdlIjogWy0xMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMCwgMF0sICJmZWVkYmFjayI6ICIkUl4yJC1zY29yZSBtdXN0IGJlIGJldHdlZW4gMCBhbmQgMSJ9LCB7InR5cGUiOiAicmFuZ2UiLCAicmFuZ2UiOiBbMS4wMDAwMDAwMDAxLCAxMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMF0sICJmZWVkYmFjayI6ICIkUl4yJC1zY29yZSBtdXN0IGJlIGJldHdlZW4gMCBhbmQgMSJ9LCB7InR5cGUiOiAiZGVmYXVsdCIsICJmZWVkYmFjayI6ICJUaGlzIHZhbHVlIGxvb2tzIGluY29ycmVjdCJ9XX1d</span></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="adPcVOnnrEfF" data-shufflequestions="False"
+<div class="output text_html"><div id="wuellbrwkXJZ" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#adPcVOnnrEfF {
+#wuellbrwkXJZ {
    --jq-multiple-choice-bg: #6f78ffff;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -723,14 +723,14 @@ TSS = \sum\limits_{i=1}^n(y_i - \overline {\boldsymbol y})^2.
     }
 }
 </style></div><script type="application/javascript">var element=document.getElementById("R2_dummy");
-            var questionsadPcVOnnrEfF;
+            var questionswuellbrwkXJZ;
             try {
-               questionsadPcVOnnrEfF=JSON.parse(window.atob(element.innerHTML));
+               questionswuellbrwkXJZ=JSON.parse(window.atob(element.innerHTML));
             } catch(err) {
                console.log("Fell into catch");
-               questionsadPcVOnnrEfF = JSON.parse(element.innerHTML);
+               questionswuellbrwkXJZ = JSON.parse(element.innerHTML);
             }
-            console.log(questionsadPcVOnnrEfF);;
+            console.log(questionswuellbrwkXJZ);;
     // Make a random ID
 function makeid(length) {
     var result = [];
@@ -1479,8 +1479,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("adPcVOnnrEfF")) {
-            show_questions(questionsadPcVOnnrEfF,  adPcVOnnrEfF); 
+          if(document.getElementById("wuellbrwkXJZ")) {
+            show_questions(questionswuellbrwkXJZ,  wuellbrwkXJZ); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1489,8 +1489,8 @@ if (typeof version == 'undefined') {
         {
         // console.log(element);
 
-        //console.log("adPcVOnnrEfF");
-        // console.log(document.getElementById("adPcVOnnrEfF"));
+        //console.log("wuellbrwkXJZ");
+        // console.log(document.getElementById("wuellbrwkXJZ"));
 
         try_show();
         }
@@ -1667,7 +1667,7 @@ if (typeof version == 'undefined') {
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/88463d09e952f23a3ab698aae5d817ce79fb83cbcf186065de2999bb8663c097.svg" src="../_images/88463d09e952f23a3ab698aae5d817ce79fb83cbcf186065de2999bb8663c097.svg" /></div>
+<img alt="../_images/9c6638f877b3d0afbc34a9dd79467ccdec894105384a62165d3c0f06780dcc4b.svg" src="../_images/9c6638f877b3d0afbc34a9dd79467ccdec894105384a62165d3c0f06780dcc4b.svg" /></div>
 </div>
 <p>Calculate MSE:</p>
 <div class="cell docutils container">
@@ -1713,7 +1713,7 @@ Dummy R2-score: 0.0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5f84ef8c65d7c196c3f4595bbb1601776c77a989853ac501c3bac1999a7fcc89.svg" src="../_images/5f84ef8c65d7c196c3f4595bbb1601776c77a989853ac501c3bac1999a7fcc89.svg" /></div>
+<img alt="../_images/cc535e4506d76e35837597e7d52f10005e044d85ad16ef8da987f64c20c2a2a5.svg" src="../_images/cc535e4506d76e35837597e7d52f10005e044d85ad16ef8da987f64c20c2a2a5.svg" /></div>
 </div>
 <p>Linear regression from <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>:</p>
 <div class="cell docutils container">

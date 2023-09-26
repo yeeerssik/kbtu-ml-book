@@ -187,10 +187,10 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../eval_metrics/Evaluation_metrics.html">Evaluation Metrics</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../eval_metrics/Classification_metrics.html">Classification Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../eval_metrics/classification.html">Classification Metrics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../eval_metrics/ROC-AUC.html">ROC-AUC</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../eval_metrics/Regression_metrics.html">Regression metrics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../eval_metrics/Cross-validation.html">Cross-validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../eval_metrics/regression.html">Regression metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../eval_metrics/cross_val.html">Cross-validation</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../probabilistic_models/Probabilistic.html">Bayesian inference</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -573,14 +573,12 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>max_iter exceeded
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-2.56403029e-01,  1.06035248e+00, -7.77147636e-02,  1.45461284e-03,
-        8.69465673e-01,  9.77882756e-01,  3.46001817e-01,  2.75990183e-01,
-       -1.43860425e+00,  2.72008847e-01,  3.15604568e-01,  1.78809751e+00,
-        3.82970584e-01, -5.77888614e-02, -2.03949834e-01,  1.02346900e+00,
-       -4.90726024e-01, -1.33173981e+00, -3.07952825e-01, -1.15647208e+00,
-       -2.55565448e+00, -7.12724671e-01,  4.47995353e-01,  1.72372868e-03,
-       -5.71807300e-01, -7.23646133e-01,  1.46269345e-01, -8.32317787e-01,
-       -1.94915457e+00,  3.33096019e-01])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1.03896751, -0.70762805,  0.49435934, -0.03066401, -0.18107559,
+       -0.81380574, -0.05514019, -1.9179623 , -1.56010177, -1.43117288,
+       -0.70996101, -1.2258976 ,  0.80511479, -0.00295049,  0.24165501,
+        0.48176744, -1.18928961, -0.39712507, -0.89034632,  0.2556776 ,
+        1.5318076 ,  0.51415198, -0.7692548 ,  0.02145227,  0.31481506,
+       -1.29210324, -0.60558334, -0.20985126,  1.88421256, -0.12461927])
 </pre></div>
 </div>
 </div>
@@ -594,7 +592,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5149384885764499
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7152899824253075
 </pre></div>
 </div>
 </div>
@@ -634,7 +632,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.176234692418053
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.308542072611561
 </pre></div>
 </div>
 </div>
