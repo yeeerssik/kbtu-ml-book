@@ -176,14 +176,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../lin_reg/polynomial.html">Polynomial regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../lin_reg/multiple.html">Multiple linear regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../lin_reg/regularization.html">Regularization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lin_reg/GD.html">Gradient descent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lin_reg/numeric_opt.html">Numeric optimization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../lin_reg/general.html">General linear model</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../linear_classification/classification.html">Linear classification</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../linear_classification/log_reg.html">Logistic regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linear_classification/multi_log_reg.html">Multinomial logistic regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linear_classification/gradients.html">Gradient optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linear_classification/num_opt_log_reg.html">Numeric optimization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linear_classification/svm.html">Support Vector Machines (SVM)</a></li>
 </ul>
 </li>
@@ -197,8 +197,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../probabilistic_models/probabilistic.html">Probabilistic models</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/bayesian_inference.html">Bayesian inference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/linear_regression.html">Probabilistic models for linear regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/logistic_regression.html">Probabilistic models for logistic regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/lin_reg_prob.html">Probabilistic models for linear regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/log_reg_prob.html">Probabilistic models for logistic regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/LDA.html">Linear Discriminant Analysis (QDA)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/QDA.html">Quadratic Discriminant Analysis (QDA)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/naive_bayes.html">Naive Bayes classifier</a></li>
@@ -242,8 +242,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../mlp/activations.html">Activation functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../mlp/backprop.html">Back propagation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../mlp/weight_init.html">Weights initialization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../mlp/regularization.html">Regularization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../mlp/optimization.html">Optimization in DL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mlp/regularization.html">Regularization in MLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mlp/optimization_dl.html">Optimization in DL</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../cnn/cnn.html">CNN</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -261,23 +261,19 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../rnn/gru.html">GRU</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rnn/attention.html">Attention</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rnn/transformers.html">Transformers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../rnn/application.html">Application of RNN</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../gm/generative.html">Generative models</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../gm/types.html">Types of autoencoders</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../gm/encoder_decoder.html">encoder_decoder</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../gm/dimension_reduction.html">Dimension reduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../gm/pca.html">Principal components analysis (PCA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gm/autoencoders.html">Autoencoders</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../gm/vae.html">Variational autoencoders (VAE)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../gm/gan.html">Ganerative adversarial networks (GAN)</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../rl/basics.html">Reinforcement Learning</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../rl/basic_notions.html">Basic RL notions</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../rl/RL.html">Reinforcement Learning</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../rl/basics.html">RL basics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rl/multiarmed_bandits.html">Multiarmed bandits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rl/mdp.html">Markov decision process (MDP)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../rl/q_learning.html">Q learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rl/q_learning.html">Q-learning</a></li>
 </ul>
 </li>
 </ul>
@@ -324,7 +320,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../math/stats/MLE.html">Maximum likelihood estimation (MLE)</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../math/optimization.html">Optimization</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../math/optimization.html">Optimization</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../math/optimization/GD.html">Gradient descent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/optimization/SGD.html">Stochastic gradient descent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/optimization/newton.html">Newton’s method</a></li>
+</ul>
+</li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul class="nav bd-sidenav">
@@ -582,13 +583,13 @@ document.write(`
 <p><span style="display:none" id="binary_loss">W3sicXVlc3Rpb24iOiAiQ2FsY3VsYXRlIHRoZSBtaXNjbGFzc2lmaWNhdGlvbiByYXRlIiwgInR5cGUiOiAibnVtZXJpYyIsICJhbnN3ZXJzIjogW3sidHlwZSI6ICJ2YWx1ZSIsICJ2YWx1ZSI6IDAuNCwgImNvcnJlY3QiOiB0cnVlLCAiZmVlZGJhY2siOiAiUmlnaHQgeW91IGFyZSEgSGVyZSAkTj01JCwgdHdvIGluY29ycmVjdCBwcmVkaWN0aW9ucywgc28gdGhlIGxvc3MgaXMgJFxcZnJhYyAyNSQifSwgeyJ0eXBlIjogImRlZmF1bHQiLCAiZmVlZGJhY2siOiAiTm9wZSJ9XX0sIHsicXVlc3Rpb24iOiAiQ2FsY3VsYXRlIHRoZSBjcm9zcy1lbnRyb3B5IGxvc3MiLCAidHlwZSI6ICJtYW55X2Nob2ljZSIsICJhbnN3ZXJzIjogW3siYW5zd2VyIjogIiQwJCIsICJjb3JyZWN0IjogZmFsc2UsICJmZWVkYmFjayI6ICJUb28gbG93In0sIHsiYW5zd2VyIjogIiRcXGZyYWMgMTUgXFxsb2cgMiQiLCAiY29ycmVjdCI6IGZhbHNlLCAiZmVlZGJhY2siOiAiRG9lc24ndCBsb29rIGNvcnJlY3QifSwgeyJhbnN3ZXIiOiAiJFxcZnJhYyAxNSBcXGxvZyAzJCIsICJjb3JyZWN0IjogZmFsc2UsICJmZWVkYmFjayI6ICJOb3BlIn0sIHsiYW5zd2VyIjogIiQrXFxpbmZ0eSQiLCAiY29ycmVjdCI6IHRydWUsICJmZWVkYmFjayI6ICJPaCwgeWVhaC4uLiJ9XX1d</span></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="UVsTHZxpODIe" data-shufflequestions="False"
+<div class="output text_html"><div id="eOsvurxEHhwl" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#UVsTHZxpODIe {
+#eOsvurxEHhwl {
    --jq-multiple-choice-bg: #6f78ffff;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -759,14 +760,14 @@ document.write(`
     }
 }
 </style></div><script type="application/javascript">var element=document.getElementById("binary_loss");
-            var questionsUVsTHZxpODIe;
+            var questionseOsvurxEHhwl;
             try {
-               questionsUVsTHZxpODIe=JSON.parse(window.atob(element.innerHTML));
+               questionseOsvurxEHhwl=JSON.parse(window.atob(element.innerHTML));
             } catch(err) {
                console.log("Fell into catch");
-               questionsUVsTHZxpODIe = JSON.parse(element.innerHTML);
+               questionseOsvurxEHhwl = JSON.parse(element.innerHTML);
             }
-            console.log(questionsUVsTHZxpODIe);;
+            console.log(questionseOsvurxEHhwl);;
     // Make a random ID
 function makeid(length) {
     var result = [];
@@ -1515,8 +1516,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("UVsTHZxpODIe")) {
-            show_questions(questionsUVsTHZxpODIe,  UVsTHZxpODIe); 
+          if(document.getElementById("eOsvurxEHhwl")) {
+            show_questions(questionseOsvurxEHhwl,  eOsvurxEHhwl); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1525,8 +1526,8 @@ if (typeof version == 'undefined') {
         {
         // console.log(element);
 
-        //console.log("UVsTHZxpODIe");
-        // console.log(document.getElementById("UVsTHZxpODIe"));
+        //console.log("eOsvurxEHhwl");
+        // console.log(document.getElementById("eOsvurxEHhwl"));
 
         try_show();
         }
@@ -1577,13 +1578,13 @@ if (typeof version == 'undefined') {
 <p><span style="display:none" id="cross_entropy_loss">W3sicXVlc3Rpb24iOiAiQ2FsY3VsYXRlIHRoZSBjcm9zcyBlbnRyb3B5IGZyb20gdGhlIHByZXZpb3VzIGV4YW1wbGUiLCAidHlwZSI6ICJudW1lcmljIiwgImFuc3dlcnMiOiBbeyJ0eXBlIjogInZhbHVlIiwgInZhbHVlIjogMC44NzUsICJjb3JyZWN0IjogdHJ1ZSwgImZlZWRiYWNrIjogIkV4YWN0bHkhIn0sIHsidHlwZSI6ICJkZWZhdWx0IiwgImZlZWRiYWNrIjogIkluY29ycmVjdCJ9XX1d</span></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="kPecmtERcVAt" data-shufflequestions="False"
+<div class="output text_html"><div id="LJisIeDkbTUv" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#kPecmtERcVAt {
+#LJisIeDkbTUv {
    --jq-multiple-choice-bg: #6f78ffff;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -1754,14 +1755,14 @@ if (typeof version == 'undefined') {
     }
 }
 </style></div><script type="application/javascript">var element=document.getElementById("cross_entropy_loss");
-            var questionskPecmtERcVAt;
+            var questionsLJisIeDkbTUv;
             try {
-               questionskPecmtERcVAt=JSON.parse(window.atob(element.innerHTML));
+               questionsLJisIeDkbTUv=JSON.parse(window.atob(element.innerHTML));
             } catch(err) {
                console.log("Fell into catch");
-               questionskPecmtERcVAt = JSON.parse(element.innerHTML);
+               questionsLJisIeDkbTUv = JSON.parse(element.innerHTML);
             }
-            console.log(questionskPecmtERcVAt);;
+            console.log(questionsLJisIeDkbTUv);;
     // Make a random ID
 function makeid(length) {
     var result = [];
@@ -2510,8 +2511,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("kPecmtERcVAt")) {
-            show_questions(questionskPecmtERcVAt,  kPecmtERcVAt); 
+          if(document.getElementById("LJisIeDkbTUv")) {
+            show_questions(questionsLJisIeDkbTUv,  LJisIeDkbTUv); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -2520,8 +2521,8 @@ if (typeof version == 'undefined') {
         {
         // console.log(element);
 
-        //console.log("kPecmtERcVAt");
-        // console.log(document.getElementById("kPecmtERcVAt"));
+        //console.log("LJisIeDkbTUv");
+        // console.log(document.getElementById("LJisIeDkbTUv"));
 
         try_show();
         }
@@ -2571,7 +2572,7 @@ if (typeof version == 'undefined') {
 <p>Clusterisation made on <a class="reference internal" href="data.html#iris"><span class="std std-ref">Iris dataset</span></a> (figure 1.8 from <span id="id2">[<a class="reference internal" href="../bibliography.html#id3" title="Kevin P. Murphy. Probabilistic Machine Learning: An introduction. MIT Press, 2022. URL: probml.ai.">Murphy, 2022</a>]</span>):</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/5ce788c6ba5677c9b6b336450a6afc25ddaccd37036f91812cca559a8ed1827f.svg" src="../_images/5ce788c6ba5677c9b6b336450a6afc25ddaccd37036f91812cca559a8ed1827f.svg" /></div>
+<img alt="../_images/b4c7f9e57563955a700c46346524735477c15a1cd95eb56e79313fe1ba16384e.svg" src="../_images/b4c7f9e57563955a700c46346524735477c15a1cd95eb56e79313fe1ba16384e.svg" /></div>
 </div>
 </section>
 <section id="semisupervised-learning">

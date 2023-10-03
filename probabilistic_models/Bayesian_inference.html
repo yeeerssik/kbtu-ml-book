@@ -68,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'probabilistic_models/bayesian_inference';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Probabilistic models for linear regression" href="linear_regression.html" />
+    <link rel="next" title="Probabilistic models for linear regression" href="lin_reg_prob.html" />
     <link rel="prev" title="Probabilistic models" href="probabilistic.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -167,8 +167,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../intro/applications.html">Applications of ML</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro/data.html">Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro/ml_types.html">Types of ML</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../intro/overfitting.html">Underfitting &amp; Overfitting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../intro/knn.html">k-Nearest Neighbors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/model_selection.html">Model selection</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../lin_reg/linear_regression.html">Linear regression</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -176,14 +176,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../lin_reg/polynomial.html">Polynomial regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../lin_reg/multiple.html">Multiple linear regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../lin_reg/regularization.html">Regularization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../lin_reg/GD.html">Gradient descent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lin_reg/numeric_opt.html">Numeric optimization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../lin_reg/general.html">General linear model</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../linear_classification/classification.html">Linear classification</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../linear_classification/log_reg.html">Logistic regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linear_classification/multi_log_reg.html">Multinomial logistic regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linear_classification/gradients.html">Gradient optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linear_classification/num_opt_log_reg.html">Numeric optimization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linear_classification/svm.html">Support Vector Machines (SVM)</a></li>
 </ul>
 </li>
@@ -197,8 +197,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="probabilistic.html">Probabilistic models</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Bayesian inference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="linear_regression.html">Probabilistic models for linear regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="logistic_regression.html">Probabilistic models for logistic regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lin_reg_prob.html">Probabilistic models for linear regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="log_reg_prob.html">Probabilistic models for logistic regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="LDA.html">Linear Discriminant Analysis (QDA)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="QDA.html">Quadratic Discriminant Analysis (QDA)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="naive_bayes.html">Naive Bayes classifier</a></li>
@@ -211,54 +211,75 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../decision_trees/pruning.html">Tree pruning</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ensembling/Ensemble.html">Ensembling</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ensembling/Bias-Variance_decomposition.html">Bias-variance decomposition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ensembling/Boosting_stacking_blending.html">Boosting, stacking and blending</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ensembling/Bagging_random_forests.html">Bagging and random forests</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ensembling/ensemble.html">Ensembling</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ensembling/bias_variance.html">Bias-variance decomposition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ensembling/voting_stacking_blending.html">Voting, stacking and blending</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ensembling/bagging.html">Bagging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ensembling/random_forest.html">Random forests</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gradient_boosting/gradient_boosting.html">Gradient boosting</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gradient_boosting/boosting.html">Boosting and additive modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gradient_boosting/generic_gb.html">Generic gradient boosting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gradient_boosting/adaboost.html">AdaBoost</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gradient_boosting/xgboost.html">XGBoost</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gradient_boosting/catboost.html">CatBoost</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../unsupervised_learning/unsupervised.html">Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/pca.html">Principal components analysis (PCA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/clustering_metrics.html">Clustering metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/k_means.html">K-means</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/hierarchic_clustering.html">Hierarchical Clustering</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../cnn/cnn.html">CNN</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../cnn/architectures.html">Architectures of CNN</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cnn/applications.html">Applications of CNN</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cnn/conv_of_matrices.html">Convolution of matrices and tensors</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../mlp/mlp.html">Multilayer perceptron (MLP)</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../mlp/layers.html">Layers of MLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mlp/forward_backward_pass.html">Forward and backward pass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mlp/activations.html">Activation functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mlp/backprop.html">Back propagation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mlp/weight_init.html">Weights initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mlp/regularization.html">Regularization in MLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mlp/optimization_dl.html">Optimization in DL</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cnn/cnn.html">CNN</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cnn/convolutions_2d.html">Convolution of matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cnn/convolutions_3d.html">Convolutions of tensors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cnn/pooling.html">Pooling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cnn/back_prop.html">Back propagation in CNN</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cnn/augmentation.html">Data augmentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../cnn/regularization.html">Data regularization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cnn/architectures.html">Architectures of CNN</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../rnn/sequential.html">Sequential NNs</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../rnn/sequential.html">Sequential NNs</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../rnn/vanilla_rnn.html">Vanilla RNN</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rnn/lstm.html">LSTM</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rnn/gru.html">GRU</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rnn/attention.html">Attention</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rnn/transformers.html">Transformers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../rnn/application.html">Application of RNN</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../gm/generative.html">Generative models</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../gm/types.html">Types of autoencoders</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../gm/encoder_decoder.html">encoder_decoder</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../gm/dimension_reduction.html">Dimension reduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../gm/pca.html">Principal components analysis (PCA)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gm/generative.html">Generative models</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gm/autoencoders.html">Autoencoders</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../gm/vae.html">Variational autoencoders (VAE)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../gm/gan.html">Ganerative adversarial networks (GAN)</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../rl/basics.html">Reinforcement Learning</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../rl/basic_notions.html">Basic RL notions</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../rl/RL.html">Reinforcement Learning</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../rl/basics.html">RL basics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rl/multiarmed_bandits.html">Multiarmed bandits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rl/mdp.html">Markov decision process (MDP)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../rl/q_learning.html">Q learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rl/q_learning.html">Q-learning</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python for ML</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../python/python_basics.html">Python Basics</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python/python_basics.html">Python Basics</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../python/basics/basic_types.html">Basic Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python/basics/variables.html">Variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python/basics/control_flow.html">Control flow</a></li>
@@ -273,7 +294,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Math for ML</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../math/linear_algebra.html">Linear Algebra</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../math/linear_algebra.html">Linear Algebra</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/vectors.html">Vectors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/matrices.html">Matrices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/linear_systems.html">Linear systems</a></li>
@@ -288,18 +309,23 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/SVD.html">Singular Value Decomposition (SVD)</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../math/calculus.html">Calculus</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../math/calculus.html">Calculus</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../math/calculus/1-d.html">1-d calculus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/calculus/multivariate.html">Multivariate calculus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/calculus/matrix_diff.html">Matrix calculus</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../math/probability.html">Probability</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../math/statistics.html">Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../math/statistics.html">Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../math/stats/MLE.html">Maximum likelihood estimation (MLE)</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../math/optimization.html">Optimization</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../math/optimization.html">Optimization</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../math/optimization/GD.html">Gradient descent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/optimization/SGD.html">Stochastic gradient descent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/optimization/newton.html">Newton’s method</a></li>
+</ul>
+</li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul class="nav bd-sidenav">
@@ -429,7 +455,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -445,6 +473,15 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conjugate-distributions">Conjugate distributions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-rule">Bayes rule</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -456,47 +493,35 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bayesian-inference">
 <h1>Bayesian inference<a class="headerlink" href="#bayesian-inference" title="Permalink to this heading">#</a></h1>
-<p>Bayesian inference is a statistical method for updating and revising probabilities based on new evidence or data. It is named after Thomas Bayes, an 18th-century statistician and theologian who developed the foundational ideas behind this approach.</p>
-<p>At its core, Bayesian inference is a way to quantify uncertainty and make probabilistic predictions or decisions in the presence of incomplete or uncertain information. It revolves around Bayes’ theorem, which describes how to update the probability of a hypothesis (an uncertain statement or proposition) based on new evidence.</p>
-<h6>In machine learning</h6>
-Bayesian inference is a fundamental concept that involves using probability theory to make predictions, update beliefs, and model uncertainty. The basic concept of Bayesian inference in the context of machine learning can be broken down into several key components:
-<ol class="arabic">
-<li><h6>Bayesian Framework:</h6>
-Bayesian inference is built on the Bayesian probability framework, which views probabilities as measures of uncertainty or degrees of belief. Instead of thinking of model parameters or predictions as fixed values, Bayesian methods treat them as random variables with probability distributions. This allows us to express and update our uncertainty about these variables.
-</li>
-<li><h6>Prior Beliefs:</h6> 
- Bayesian inference starts with prior beliefs or prior probabilities. These beliefs represent your initial assumptions or knowledge about the parameters of your model before observing any data. Priors can be chosen to reflect what you believe about the parameters based on domain knowledge or historical data.
-</li>
-<li><h6>Likelihood:</h6>
-The likelihood function quantifies the probability of observing the data given a specific set of model parameters. It represents the likelihood of the observed data under different conditions or parameter settings. In many machine learning models, the likelihood is assumed to follow a particular probability distribution (e.g., Gaussian, Bernoulli) depending on the problem.
-</li>
-<li><h6>Posterior Distribution:</h6>
-The goal of Bayesian inference is to compute the posterior distribution of the model parameters. The posterior is a probability distribution that combines the prior beliefs and the likelihood of the data. It represents your updated beliefs about the parameters after observing the data. Mathematically, the posterior is computed using Bayes' theorem:
-</li>
-</ol>
+<p>Suppose that we fit a model with parameters <span class="math notranslate nohighlight">\(\boldsymbol w\)</span> to the dataset <span class="math notranslate nohighlight">\(\boldsymbol D = (\boldsymbol X, \boldsymbol y)\)</span>. According to the Bayes formula the posterior distribution</p>
 <div class="math notranslate nohighlight">
 \[
- P(\text{parameters} | \text{data}) =  \frac{P(\text{data} | \text{parameters}) \cdot P(\text{parameters})} {P(\text{data})}
+    p(\boldsymbol w \vert \boldsymbol X, \boldsymbol y) \propto p(\boldsymbol y \vert \boldsymbol X, \boldsymbol w) p(\boldsymbol w).
 \]</div>
-<p>Where:</p>
-<ul class="simple">
-<li><p>P(parameters|data) is the posterior distribution;</p></li>
-<li><p>P(data|parameters) is the likelihood;</p></li>
-<li><p>P(parameters) is the prior distribution;</p></li>
-<li><p>P(data) is the marginal likelihood (a normalizing constant).</p></li>
-</ul>
-<ol class="arabic" start="8">
-<li><h6>Posterior Inference:</h6>
-Once you have the posterior distribution, you can perform various inference tasks. For example, you can calculate the mean, median, or mode of the posterior to obtain point estimates of the model parameters. You can also compute credible intervals to quantify uncertainty. Bayesian inference provides a full distribution of possible parameter values, allowing for more comprehensive uncertainty quantification.
-</li>
-<li><h6>Bayesian Decision Making:</h6>
-In machine learning, Bayesian inference can be used not only for parameter estimation but also for decision making. You can make decisions by choosing actions that minimize expected loss with respect to the posterior distribution. This is particularly useful in settings where you need to make decisions under uncertainty.
-</li>
-<li><h6>Sequential Learning and Updating:</h6>
-Bayesian inference naturally supports sequential learning, where you update your beliefs and predictions as new data becomes available. After observing new data, you can use the posterior from the previous step as the prior for the next step, allowing your model to adapt to changing conditions.
-</li>
-</ol>
-<p>In summary, Bayesian inference in machine learning provides a principled framework for modeling uncertainty, updating beliefs, making decisions, and performing various inference tasks. It allows practitioners to incorporate prior knowledge, adapt to new data, and quantify uncertainty in a coherent and probabilistic manner.</p>
+<p>This is also written as</p>
+<div class="math notranslate nohighlight">
+\[
+    \mathrm{Posterior} = \frac{\mathrm{Likelihood}\times \mathrm{Prior}}{\mathrm{Evidence}}
+\]</div>
+<p>We are particularly interested in the posterior distribution because it allows us to make predictions.</p>
+<p><strong>Q</strong>. How to calculate evidence?</p>
+<section id="conjugate-distributions">
+<h2>Conjugate distributions<a class="headerlink" href="#conjugate-distributions" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="bayes-rule">
+<h2>Bayes rule<a class="headerlink" href="#bayes-rule" title="Permalink to this heading">#</a></h2>
+<p>Since</p>
+<div class="math notranslate nohighlight">
+\[
+p(\boldsymbol x , y) = p(\boldsymbol x \vert y) p(y) = p(y \vert \boldsymbol x) p(\boldsymbol x),
+\]</div>
+<p>we have</p>
+<div class="math notranslate nohighlight">
+\[
+    p(y \vert \boldsymbol x) = \frac{p(\boldsymbol x \vert y) p(y)}{p(\boldsymbol x)} = 
+     \frac{p(\boldsymbol x \vert y)p(y)}{\int p(\boldsymbol x \vert y) p(y)\,dy}.
+\]</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -540,7 +565,7 @@ Bayesian inference naturally supports sequential learning, where you update your
       </div>
     </a>
     <a class="right-next"
-       href="linear_regression.html"
+       href="lin_reg_prob.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
@@ -557,6 +582,21 @@ Bayesian inference naturally supports sequential learning, where you update your
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conjugate-distributions">Conjugate distributions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-rule">Bayes rule</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

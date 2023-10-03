@@ -68,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'lin_reg/regularization';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Gradient descent" href="numeric_opt.html" />
+    <link rel="next" title="Numeric optimization" href="numeric_opt.html" />
     <link rel="prev" title="Multiple linear regression" href="multiple.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -176,14 +176,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="polynomial.html">Polynomial regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="multiple.html">Multiple linear regression</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Regularization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="numeric_opt.html">Gradient descent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numeric_opt.html">Numeric optimization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="general.html">General linear model</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../linear_classification/classification.html">Linear classification</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../linear_classification/log_reg.html">Logistic regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linear_classification/multi_log_reg.html">Multinomial logistic regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linear_classification/gradients.html">Gradient optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linear_classification/num_opt_log_reg.html">Numeric optimization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linear_classification/svm.html">Support Vector Machines (SVM)</a></li>
 </ul>
 </li>
@@ -197,8 +197,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../probabilistic_models/probabilistic.html">Probabilistic models</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/bayesian_inference.html">Bayesian inference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/linear_regression.html">Probabilistic models for linear regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/logistic_regression.html">Probabilistic models for logistic regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/lin_reg_prob.html">Probabilistic models for linear regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/log_reg_prob.html">Probabilistic models for logistic regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/LDA.html">Linear Discriminant Analysis (QDA)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/QDA.html">Quadratic Discriminant Analysis (QDA)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/naive_bayes.html">Naive Bayes classifier</a></li>
@@ -242,8 +242,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../mlp/activations.html">Activation functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../mlp/backprop.html">Back propagation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../mlp/weight_init.html">Weights initialization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../mlp/regularization.html">Regularization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../mlp/optimization.html">Optimization in DL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mlp/regularization.html">Regularization in MLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mlp/optimization_dl.html">Optimization in DL</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../cnn/cnn.html">CNN</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -261,23 +261,19 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../rnn/gru.html">GRU</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rnn/attention.html">Attention</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rnn/transformers.html">Transformers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../rnn/application.html">Application of RNN</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../gm/generative.html">Generative models</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../gm/types.html">Types of autoencoders</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../gm/encoder_decoder.html">encoder_decoder</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../gm/dimension_reduction.html">Dimension reduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../gm/pca.html">Principal components analysis (PCA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gm/autoencoders.html">Autoencoders</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../gm/vae.html">Variational autoencoders (VAE)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../gm/gan.html">Ganerative adversarial networks (GAN)</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../rl/basics.html">Reinforcement Learning</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../rl/basic_notions.html">Basic RL notions</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../rl/RL.html">Reinforcement Learning</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../rl/basics.html">RL basics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rl/multiarmed_bandits.html">Multiarmed bandits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rl/mdp.html">Markov decision process (MDP)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../rl/q_learning.html">Q learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rl/q_learning.html">Q-learning</a></li>
 </ul>
 </li>
 </ul>
@@ -324,7 +320,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../math/stats/MLE.html">Maximum likelihood estimation (MLE)</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../math/optimization.html">Optimization</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul class="simple">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../math/optimization.html">Optimization</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../math/optimization/GD.html">Gradient descent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/optimization/SGD.html">Stochastic gradient descent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/optimization/newton.html">Newton’s method</a></li>
 </ul>
 </li>
 </ul>
@@ -498,7 +497,7 @@ document.write(`
 <h1>Regularization<a class="headerlink" href="#regularization" title="Permalink to this heading">#</a></h1>
 <p>If the columns of the feature matrix <span class="math notranslate nohighlight">\(\boldsymbol X\)</span> are highly correlated, the weights of linear regression could be unstable and excessively large. To fight this, a <strong>regularization</strong> term is added to the MSE loss function.</p>
 <section id="ridge-regression">
-<h2>Ridge regression<a class="headerlink" href="#ridge-regression" title="Permalink to this heading">#</a></h2>
+<span id="ridge"></span><h2>Ridge regression<a class="headerlink" href="#ridge-regression" title="Permalink to this heading">#</a></h2>
 <p>To penalize weights that are too large in magnitude, add a multiple of</p>
 <div class="math notranslate nohighlight">
 \[
@@ -510,7 +509,7 @@ document.write(`
     \mathcal L(\boldsymbol w) = \Vert \boldsymbol y - \boldsymbol{Xw}\Vert_2^2 + C\Vert \boldsymbol w \Vert_2^2, \quad C&gt;0.
 \]</div>
 <p>To find the optimal weights, one need to solve the equation <span class="math notranslate nohighlight">\(\nabla_{\boldsymbol w} \mathcal L(\boldsymbol w) = \boldsymbol 0\)</span>.</p>
-<p>Since <span class="math notranslate nohighlight">\(\nabla_{\boldsymbol w}(\Vert \boldsymbol w \Vert_2^2) = 2\boldsymbol w\)</span>, we receive one additional term to <a class="reference internal" href="multiple.html#equation-lin-reg-grad">(17)</a>:</p>
+<p>Since <span class="math notranslate nohighlight">\(\nabla_{\boldsymbol w}(\Vert \boldsymbol w \Vert_2^2) = 2\boldsymbol w\)</span>, we receive one additional term to <a class="reference internal" href="multiple.html#equation-lin-reg-grad">(18)</a>:</p>
 <div class="math notranslate nohighlight">
 \[
     \boldsymbol X^\top \boldsymbol X\boldsymbol w - \boldsymbol X^\top \boldsymbol y + C\boldsymbol w = \boldsymbol 0.
@@ -520,7 +519,7 @@ document.write(`
 \[
     \widehat{\boldsymbol w} = (\boldsymbol X^\top \boldsymbol X + C\boldsymbol I)^{-1} \boldsymbol X^\top \boldsymbol y.
 \]</div>
-<p>Note that this is equal to <a class="reference internal" href="multiple.html#equation-lin-reg-solution">(18)</a> if <span class="math notranslate nohighlight">\(C=0\)</span>. Ridge regression also allows to avoid inverting of a singular matrix.</p>
+<p>Note that this is equal to <a class="reference internal" href="multiple.html#equation-lin-reg-solution">(19)</a> if <span class="math notranslate nohighlight">\(C=0\)</span>. Ridge regression also allows to avoid inverting of a singular matrix.</p>
 <p>Once again take the Boston dataset, and try ridge regression on it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1507,7 +1506,7 @@ if (typeof version == 'undefined') {
 </div>
 </section>
 <section id="lasso-regression">
-<h2>LASSO regression<a class="headerlink" href="#lasso-regression" title="Permalink to this heading">#</a></h2>
+<span id="lasso"></span><h2>LASSO regression<a class="headerlink" href="#lasso-regression" title="Permalink to this heading">#</a></h2>
 <p>The only difference with ridge regression is that <span class="math notranslate nohighlight">\(L^1\)</span>-norm is used for the regularization term:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1520,7 +1519,7 @@ if (typeof version == 'undefined') {
 \]</div>
 <p>and the optimal weights <span class="math notranslate nohighlight">\(\widehat w\)</span> are the solution of the optimization task</p>
 <div class="math notranslate nohighlight" id="equation-lasso-opt">
-<span class="eqno">(20)<a class="headerlink" href="#equation-lasso-opt" title="Permalink to this equation">#</a></span>\[\Vert \boldsymbol y - \boldsymbol{Xw}\Vert_2^2 + C\Vert \boldsymbol w \Vert_1 \to \min\limits_{\boldsymbol w}.\]</div>
+<span class="eqno">(21)<a class="headerlink" href="#equation-lasso-opt" title="Permalink to this equation">#</a></span>\[\Vert \boldsymbol y - \boldsymbol{Xw}\Vert_2^2 + C\Vert \boldsymbol w \Vert_1 \to \min\limits_{\boldsymbol w}.\]</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>LASSO stands for <strong>L</strong>east <strong>A</strong>bsolute <strong>S</strong>hrinkage and <strong>S</strong>election <strong>O</strong>perator</p>
@@ -1535,7 +1534,7 @@ if (typeof version == 'undefined') {
 <li><p>sparse solution</p></li>
 <li><p>feature selection</p></li>
 </ul>
-<p>However, there is no closed-form solution of <a class="reference internal" href="#equation-lasso-opt">(20)</a>.</p>
+<p>However, there is no closed-form solution of <a class="reference internal" href="#equation-lasso-opt">(21)</a>.</p>
 <p><strong>Empirical recipe</strong> to provide better prediction performance:</p>
 <ul class="simple">
 <li><p>first, perform variable selection using LASSO;</p></li>
@@ -1680,7 +1679,7 @@ MSE: 27.033993601067873
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Gradient descent</p>
+        <p class="prev-next-title">Numeric optimization</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

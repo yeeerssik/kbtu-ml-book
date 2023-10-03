@@ -167,8 +167,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../intro/applications.html">Applications of ML</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../intro/data.html">Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../intro/ml_types.html">Types of ML</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../intro/overfitting.html">Underfitting &amp; Overfitting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../intro/knn.html">k-Nearest Neighbors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intro/model_selection.html">Model selection</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../lin_reg/linear_regression.html">Linear regression</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -176,14 +176,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../lin_reg/polynomial.html">Polynomial regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../lin_reg/multiple.html">Multiple linear regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../lin_reg/regularization.html">Regularization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../lin_reg/GD.html">Gradient descent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../lin_reg/numeric_opt.html">Numeric optimization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../lin_reg/general.html">General linear model</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../linear_classification/classification.html">Linear classification</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../linear_classification/log_reg.html">Logistic regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../linear_classification/multi_log_reg.html">Multinomial logistic regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../linear_classification/gradients.html">Gradient optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../linear_classification/num_opt_log_reg.html">Numeric optimization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../linear_classification/svm.html">Support Vector Machines (SVM)</a></li>
 </ul>
 </li>
@@ -197,8 +197,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../probabilistic_models/probabilistic.html">Probabilistic models</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../probabilistic_models/bayesian_inference.html">Bayesian inference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../probabilistic_models/linear_regression.html">Probabilistic models for linear regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../probabilistic_models/logistic_regression.html">Probabilistic models for logistic regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../probabilistic_models/lin_reg_prob.html">Probabilistic models for linear regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../probabilistic_models/log_reg_prob.html">Probabilistic models for logistic regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../probabilistic_models/LDA.html">Linear Discriminant Analysis (QDA)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../probabilistic_models/QDA.html">Quadratic Discriminant Analysis (QDA)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../probabilistic_models/naive_bayes.html">Naive Bayes classifier</a></li>
@@ -211,54 +211,75 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../decision_trees/pruning.html">Tree pruning</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../ensembling/Ensemble.html">Ensembling</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../ensembling/Bias-Variance_decomposition.html">Bias-variance decomposition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../ensembling/Boosting_stacking_blending.html">Boosting, stacking and blending</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../ensembling/Bagging_random_forests.html">Bagging and random forests</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../ensembling/ensemble.html">Ensembling</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../ensembling/bias_variance.html">Bias-variance decomposition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ensembling/voting_stacking_blending.html">Voting, stacking and blending</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ensembling/bagging.html">Bagging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ensembling/random_forest.html">Random forests</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../gradient_boosting/gradient_boosting.html">Gradient boosting</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../gradient_boosting/boosting.html">Boosting and additive modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../gradient_boosting/generic_gb.html">Generic gradient boosting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../gradient_boosting/adaboost.html">AdaBoost</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../gradient_boosting/xgboost.html">XGBoost</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../gradient_boosting/catboost.html">CatBoost</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../unsupervised_learning/unsupervised.html">Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../unsupervised_learning/pca.html">Principal components analysis (PCA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../unsupervised_learning/clustering_metrics.html">Clustering metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../unsupervised_learning/k_means.html">K-means</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../unsupervised_learning/hierarchic_clustering.html">Hierarchical Clustering</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../cnn/cnn.html">CNN</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../cnn/architectures.html">Architectures of CNN</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../cnn/applications.html">Applications of CNN</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../cnn/conv_of_matrices.html">Convolution of matrices and tensors</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../mlp/mlp.html">Multilayer perceptron (MLP)</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../mlp/layers.html">Layers of MLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlp/forward_backward_pass.html">Forward and backward pass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlp/activations.html">Activation functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlp/backprop.html">Back propagation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlp/weight_init.html">Weights initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlp/regularization.html">Regularization in MLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlp/optimization_dl.html">Optimization in DL</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cnn/cnn.html">CNN</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cnn/convolutions_2d.html">Convolution of matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cnn/convolutions_3d.html">Convolutions of tensors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../cnn/pooling.html">Pooling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../cnn/back_prop.html">Back propagation in CNN</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../cnn/augmentation.html">Data augmentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../cnn/regularization.html">Data regularization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cnn/architectures.html">Architectures of CNN</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../rnn/sequential.html">Sequential NNs</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../rnn/sequential.html">Sequential NNs</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../rnn/vanilla_rnn.html">Vanilla RNN</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../rnn/lstm.html">LSTM</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../rnn/gru.html">GRU</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../rnn/attention.html">Attention</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../rnn/transformers.html">Transformers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../rnn/application.html">Application of RNN</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../gm/generative.html">Generative models</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../gm/types.html">Types of autoencoders</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../gm/encoder_decoder.html">encoder_decoder</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../gm/dimension_reduction.html">Dimension reduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../gm/pca.html">Principal components analysis (PCA)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../gm/generative.html">Generative models</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../gm/autoencoders.html">Autoencoders</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../gm/vae.html">Variational autoencoders (VAE)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../gm/gan.html">Ganerative adversarial networks (GAN)</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../rl/basics.html">Reinforcement Learning</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../rl/basic_notions.html">Basic RL notions</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../rl/RL.html">Reinforcement Learning</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../rl/basics.html">RL basics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../rl/multiarmed_bandits.html">Multiarmed bandits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../rl/mdp.html">Markov decision process (MDP)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../rl/q_learning.html">Q learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rl/q_learning.html">Q-learning</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python for ML</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../python/python_basics.html">Python Basics</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../python/python_basics.html">Python Basics</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../python/basics/basic_types.html">Basic Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../python/basics/variables.html">Variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../python/basics/control_flow.html">Control flow</a></li>
@@ -273,7 +294,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Math for ML</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../linear_algebra.html">Linear Algebra</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../linear_algebra.html">Linear Algebra</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="vectors.html">Vectors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="matrices.html">Matrices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="linear_systems.html">Linear systems</a></li>
@@ -288,18 +309,23 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="SVD.html">Singular Value Decomposition (SVD)</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../calculus.html">Calculus</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../calculus.html">Calculus</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../calculus/1-d.html">1-d calculus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../calculus/multivariate.html">Multivariate calculus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../calculus/matrix_diff.html">Matrix calculus</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../probability.html">Probability</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../statistics.html">Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../statistics.html">Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../stats/MLE.html">Maximum likelihood estimation (MLE)</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../optimization.html">Optimization</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../optimization.html">Optimization</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../optimization/GD.html">Gradient descent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../optimization/SGD.html">Stochastic gradient descent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../optimization/newton.html">Newton’s method</a></li>
+</ul>
+</li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul class="nav bd-sidenav">
@@ -563,9 +589,9 @@ document.write(`
 <p>У определителя есть любопытная геометрическая интерпретация в лице <strong>ориентированного объёма</strong>. Обозначим через <span class="math notranslate nohighlight">\(V(\boldsymbol u_1, \ldots, \boldsymbol u_n)\)</span> объём параллелепипеда, построенного на векторах <span class="math notranslate nohighlight">\(\boldsymbol u_1, \ldots, \boldsymbol u_n \in \mathbb R^n\)</span>.
 Если записать эти векторы в виде матрицы по столбцам, то оказывается, что модуль её определителя равен объёму параллелепипеда:</p>
 <div class="math notranslate nohighlight" id="equation-oriented-volume">
-<span class="eqno">(36)<a class="headerlink" href="#equation-oriented-volume" title="Permalink to this equation">#</a></span>\[V(\boldsymbol u_1, \ldots, \boldsymbol u_n) = \big\vert\det([\boldsymbol u_1 \ldots \boldsymbol u_n])\big\vert. \]</div>
+<span class="eqno">(38)<a class="headerlink" href="#equation-oriented-volume" title="Permalink to this equation">#</a></span>\[V(\boldsymbol u_1, \ldots, \boldsymbol u_n) = \big\vert\det([\boldsymbol u_1 \ldots \boldsymbol u_n])\big\vert. \]</div>
 <p>Если же модуль не ставить, то получится ориентированный объём, или объём со знаком: он может быть как положительным, так и отрицательным в зависимости от того, как ориентирован набор векторов <span class="math notranslate nohighlight">\(\boldsymbol u_1, \ldots, \boldsymbol u_n\)</span>.</p>
-<p>Почему же формула <a class="reference internal" href="#equation-oriented-volume">(36)</a> вообще верна? Убедимся, что объём параллелепипеда на векторах удовлетворяет аксиомам определителя.</p>
+<p>Почему же формула <a class="reference internal" href="#equation-oriented-volume">(38)</a> вообще верна? Убедимся, что объём параллелепипеда на векторах удовлетворяет аксиомам определителя.</p>
 <ol class="arabic">
 <li><p>Обмен двух векторов местами, очевидно, не меняет значение объёма.</p></li>
 <li><p>Если какое-то ребро параллелепипеда равно сумме двух других, то и объёмы складываются:</p>
@@ -596,21 +622,21 @@ document.write(`
 \end{split}\]</div>
 <p>определяют по явной формуле</p>
 <div class="math notranslate nohighlight" id="equation-big-formula">
-<span class="eqno">(37)<a class="headerlink" href="#equation-big-formula" title="Permalink to this equation">#</a></span>\[\det \boldsymbol A = \sum\limits_{\sigma \in S_n} (-1)^\sigma a_{1\sigma(1)}\ldots a_{n\sigma(n)}, \]</div>
+<span class="eqno">(39)<a class="headerlink" href="#equation-big-formula" title="Permalink to this equation">#</a></span>\[\det \boldsymbol A = \sum\limits_{\sigma \in S_n} (-1)^\sigma a_{1\sigma(1)}\ldots a_{n\sigma(n)}, \]</div>
 <p>где <span class="math notranslate nohighlight">\(S_n\)</span> — множество <a class="reference external" href="https://ru.wikipedia.org/wiki/%D0%9F%D0%B5%D1%80%D0%B5%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0">перестановок</a> множества <span class="math notranslate nohighlight">\(\{1, 2, \ldots, n\}\)</span>, <span class="math notranslate nohighlight">\((-1)^\sigma = +1\)</span>, если перестановка чётная и <span class="math notranslate nohighlight">\(-1\)</span> в противном случае.</p>
-<p><strong>Упражнение</strong>. Проверьте, что определение детерминанта по формуле <a class="reference internal" href="#equation-big-formula">(37)</a> согласуется с приведёнными выше аксиомами 1-3.</p>
+<p><strong>Упражнение</strong>. Проверьте, что определение детерминанта по формуле <a class="reference internal" href="#equation-big-formula">(39)</a> согласуется с приведёнными выше аксиомами 1-3.</p>
 <div class="dropdown admonition">
 <p class="admonition-title">Proof</p>
-<p>Линейность по строкам вытекает из самого вида формулы  <a class="reference internal" href="#equation-big-formula">(37)</a>, ведь элемент каждой строки входит в каждое слагаемое ровно один раз.</p>
-<p>Если <span class="math notranslate nohighlight">\(\boldsymbol A = \boldsymbol I\)</span>, то единственное ненулевое слагаемое в сумме  <a class="reference internal" href="#equation-big-formula">(37)</a> соответствует тождественной перестановке <span class="math notranslate nohighlight">\(\sigma\)</span>, поэтому вся сумма равна <span class="math notranslate nohighlight">\(1\)</span>.</p>
-<p>Наконец, разберёмся с перестановкой строк. Формула  <a class="reference internal" href="#equation-big-formula">(37)</a> для матрицы, полученной обменом <span class="math notranslate nohighlight">\(i\)</span>-й и <span class="math notranslate nohighlight">\(j\)</span>-й строки матрицы <span class="math notranslate nohighlight">\(\boldsymbol A\)</span>, примет вид</p>
+<p>Линейность по строкам вытекает из самого вида формулы  <a class="reference internal" href="#equation-big-formula">(39)</a>, ведь элемент каждой строки входит в каждое слагаемое ровно один раз.</p>
+<p>Если <span class="math notranslate nohighlight">\(\boldsymbol A = \boldsymbol I\)</span>, то единственное ненулевое слагаемое в сумме  <a class="reference internal" href="#equation-big-formula">(39)</a> соответствует тождественной перестановке <span class="math notranslate nohighlight">\(\sigma\)</span>, поэтому вся сумма равна <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<p>Наконец, разберёмся с перестановкой строк. Формула  <a class="reference internal" href="#equation-big-formula">(39)</a> для матрицы, полученной обменом <span class="math notranslate nohighlight">\(i\)</span>-й и <span class="math notranslate nohighlight">\(j\)</span>-й строки матрицы <span class="math notranslate nohighlight">\(\boldsymbol A\)</span>, примет вид</p>
 <div class="math notranslate nohighlight">
 \[
     \sum\limits_{\sigma \in S_n} (-1)^\sigma a_{1\sigma(1)}\ldots a_{i\sigma(j)} \ldots a_{j\sigma(i)} \ldots a_{n\sigma(n)}.
 \]</div>
-<p>В каждом слагаемом перестановка <span class="math notranslate nohighlight">\(\sigma\)</span> отличается от перестановки в исходной формуле  <a class="reference internal" href="#equation-big-formula">(37)</a> лишь одной транспозицией. Добавление одной транспозиции меняет знак перестановки, поэтому знак каждого слагаемого должен измениться, и, следовательно, меняется знак всего определителя.</p>
+<p>В каждом слагаемом перестановка <span class="math notranslate nohighlight">\(\sigma\)</span> отличается от перестановки в исходной формуле  <a class="reference internal" href="#equation-big-formula">(39)</a> лишь одной транспозицией. Добавление одной транспозиции меняет знак перестановки, поэтому знак каждого слагаемого должен измениться, и, следовательно, меняется знак всего определителя.</p>
 </div>
-<p>Формула  <a class="reference internal" href="#equation-big-formula">(37)</a> содержит <span class="math notranslate nohighlight">\(n!\)</span> слагаемых, что делает её бесполезной для практики при хоть сколько-нибудь больших значениях <span class="math notranslate nohighlight">\(n\)</span>. Однако при малых <span class="math notranslate nohighlight">\(n\)</span> она довольно удобна: имеем</p>
+<p>Формула  <a class="reference internal" href="#equation-big-formula">(39)</a> содержит <span class="math notranslate nohighlight">\(n!\)</span> слагаемых, что делает её бесполезной для практики при хоть сколько-нибудь больших значениях <span class="math notranslate nohighlight">\(n\)</span>. Однако при малых <span class="math notranslate nohighlight">\(n\)</span> она довольно удобна: имеем</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{vmatrix}
@@ -653,7 +679,7 @@ document.write(`
 \end{split}\]</div>
 <p>Получилась сумма произведений элементов первой строки на <strong>дополнительные миноры</strong> — определители подматриц исходной матрицы, полученные вычёркиванием первой строки и столбца, в котором находится умножаемый на минор элемент. Заметим также, что второе слагаемое взято со знаком «минус». Такой способ подсчёта детерминанта называется <strong>разложением по строке</strong>. В общем случае справедливо равенство</p>
 <div class="math notranslate nohighlight" id="equation-cofactor-formula">
-<span class="eqno">(38)<a class="headerlink" href="#equation-cofactor-formula" title="Permalink to this equation">#</a></span>\[\begin{split}    \begin{vmatrix}
+<span class="eqno">(40)<a class="headerlink" href="#equation-cofactor-formula" title="Permalink to this equation">#</a></span>\[\begin{split}    \begin{vmatrix}
         a_{11} &amp; a_{12} &amp; \dots &amp; a_{1n} \\
         a_{21} &amp; a_{22} &amp; \dots &amp; a_{2n} \\
         \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
@@ -661,7 +687,7 @@ document.write(`
     \end{vmatrix} =
     \sum\limits_{j = 1}^n (-1)^{i+j}a_{ij} M_{ij},\end{split}\]</div>
 <p>где <span class="math notranslate nohighlight">\(M_{ij}\)</span> — дополнительный минор, полученный вычёркиванием <span class="math notranslate nohighlight">\(i\)</span>-й строки и <span class="math notranslate nohighlight">\(j\)</span>-го столбца. Аналогичная формула справедлива и для <strong>разложения по столбцу</strong>.</p>
-<p><strong>Упражнение</strong>. Докажите формулу разложения детерминанта по строке, проверив, что для правой части равенства <a class="reference internal" href="#equation-cofactor-formula">(38)</a> выполняются аксиомы 1-3 определителя.</p>
+<p><strong>Упражнение</strong>. Докажите формулу разложения детерминанта по строке, проверив, что для правой части равенства <a class="reference internal" href="#equation-cofactor-formula">(40)</a> выполняются аксиомы 1-3 определителя.</p>
 <div class="dropdown admonition">
 <p class="admonition-title">Proof</p>
 <p>Заметим, то минор <span class="math notranslate nohighlight">\(M_{ij}\)</span> не зависит от <span class="math notranslate nohighlight">\(i\)</span>-й строки матрицы <span class="math notranslate nohighlight">\(\boldsymbol A\)</span> и линеен по всем остальным строкам (это же определитель). Следовательно, выражение <span class="math notranslate nohighlight">\((-1)^{i+j}a_{ij} M_{ij}\)</span> линейно по каждой строке матрицы <span class="math notranslate nohighlight">\(\boldsymbol A\)</span>, равно как и их сумма.</p>
@@ -670,7 +696,7 @@ document.write(`
 \[
     \sum\limits_{j = 1}^n (-1)^{i+j}a_{ij} M_{ij} = \sum\limits_{j = 1}^n (-1)^{i+j}\delta_{ij} M_{ij} = M_{ii} = \det \boldsymbol I_{n-1} = 1.
 \]</div>
-<p>На десерт у нас снова обмен строк. Если <span class="math notranslate nohighlight">\(i\)</span>-я строка не участвует в обмене, то знак каждого слагаемого в правой части <a class="reference internal" href="#equation-cofactor-formula">(38)</a> меняется за счёт изменения знака минора <span class="math notranslate nohighlight">\(M_{ij}\)</span>. Пусть теперь <span class="math notranslate nohighlight">\(i\)</span>-я строка обменялась с <span class="math notranslate nohighlight">\(k\)</span>-й, <span class="math notranslate nohighlight">\(i &lt; k\)</span>. Тогда правая часть <a class="reference internal" href="#equation-cofactor-formula">(38)</a> превращается в</p>
+<p>На десерт у нас снова обмен строк. Если <span class="math notranslate nohighlight">\(i\)</span>-я строка не участвует в обмене, то знак каждого слагаемого в правой части <a class="reference internal" href="#equation-cofactor-formula">(40)</a> меняется за счёт изменения знака минора <span class="math notranslate nohighlight">\(M_{ij}\)</span>. Пусть теперь <span class="math notranslate nohighlight">\(i\)</span>-я строка обменялась с <span class="math notranslate nohighlight">\(k\)</span>-й, <span class="math notranslate nohighlight">\(i &lt; k\)</span>. Тогда правая часть <a class="reference internal" href="#equation-cofactor-formula">(40)</a> превращается в</p>
 <div class="math notranslate nohighlight">
 \[
     \sum\limits_{j=1}^n (-1)^{i+j}a_{kj} \widehat M_{ij},
@@ -717,7 +743,7 @@ document.write(`
 <h2>Cofactors and inverse matrix<a class="headerlink" href="#cofactors-and-inverse-matrix" title="Permalink to this heading">#</a></h2>
 <p>Коэффициент при <span class="math notranslate nohighlight">\(a_{ij}\)</span> в разложении определителя по строке называется <strong>алгебраическим дополнением</strong>: <span class="math notranslate nohighlight">\(C_{ij} = (-1)^{i+j} M_{ij}\)</span>. Таким образом,</p>
 <div class="math notranslate nohighlight" id="equation-cofactor-inverse">
-<span class="eqno">(39)<a class="headerlink" href="#equation-cofactor-inverse" title="Permalink to this equation">#</a></span>\[\det\boldsymbol A = \sum\limits_{j=1}^n a_{ij}C_{ij}. \]</div>
+<span class="eqno">(41)<a class="headerlink" href="#equation-cofactor-inverse" title="Permalink to this equation">#</a></span>\[\det\boldsymbol A = \sum\limits_{j=1}^n a_{ij}C_{ij}. \]</div>
 <p>С помощью матрицы алгебраических дополнений <span class="math notranslate nohighlight">\(\boldsymbol C\)</span> можно явно выписать формулу для обратной матрицы:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -744,7 +770,7 @@ document.write(`
         0 &amp; 0 &amp; \dots &amp; \det \boldsymbol A \\
     \end{pmatrix}.
 \end{split}\end{aligned}\end{align} \]</div>
-<p>Наличие <span class="math notranslate nohighlight">\(\det \boldsymbol A\)</span> везде на главной диагонали следует из формулы <a class="reference internal" href="#equation-cofactor-inverse">(39)</a>.</p>
+<p>Наличие <span class="math notranslate nohighlight">\(\det \boldsymbol A\)</span> везде на главной диагонали следует из формулы <a class="reference internal" href="#equation-cofactor-inverse">(41)</a>.</p>
 <p><strong>Вопрос на подумать</strong>. Почему все остальные внедиагональные элементы равны нулю?</p>
 <div class="dropdown admonition">
 <p class="admonition-title">Answer</p>

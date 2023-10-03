@@ -176,14 +176,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="polynomial.html">Polynomial regression</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Multiple linear regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="regularization.html">Regularization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="numeric_opt.html">Gradient descent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numeric_opt.html">Numeric optimization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="general.html">General linear model</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../linear_classification/classification.html">Linear classification</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../linear_classification/log_reg.html">Logistic regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linear_classification/multi_log_reg.html">Multinomial logistic regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../linear_classification/gradients.html">Gradient optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linear_classification/num_opt_log_reg.html">Numeric optimization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../linear_classification/svm.html">Support Vector Machines (SVM)</a></li>
 </ul>
 </li>
@@ -197,8 +197,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../probabilistic_models/probabilistic.html">Probabilistic models</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/bayesian_inference.html">Bayesian inference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/linear_regression.html">Probabilistic models for linear regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/logistic_regression.html">Probabilistic models for logistic regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/lin_reg_prob.html">Probabilistic models for linear regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/log_reg_prob.html">Probabilistic models for logistic regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/LDA.html">Linear Discriminant Analysis (QDA)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/QDA.html">Quadratic Discriminant Analysis (QDA)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/naive_bayes.html">Naive Bayes classifier</a></li>
@@ -242,8 +242,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../mlp/activations.html">Activation functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../mlp/backprop.html">Back propagation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../mlp/weight_init.html">Weights initialization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../mlp/regularization.html">Regularization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../mlp/optimization.html">Optimization in DL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mlp/regularization.html">Regularization in MLP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mlp/optimization_dl.html">Optimization in DL</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../cnn/cnn.html">CNN</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -261,23 +261,19 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../rnn/gru.html">GRU</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rnn/attention.html">Attention</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rnn/transformers.html">Transformers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../rnn/application.html">Application of RNN</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../gm/generative.html">Generative models</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../gm/types.html">Types of autoencoders</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../gm/encoder_decoder.html">encoder_decoder</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../gm/dimension_reduction.html">Dimension reduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../gm/pca.html">Principal components analysis (PCA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gm/autoencoders.html">Autoencoders</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../gm/vae.html">Variational autoencoders (VAE)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../gm/gan.html">Ganerative adversarial networks (GAN)</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../rl/basics.html">Reinforcement Learning</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../rl/basic_notions.html">Basic RL notions</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../rl/RL.html">Reinforcement Learning</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../rl/basics.html">RL basics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rl/multiarmed_bandits.html">Multiarmed bandits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rl/mdp.html">Markov decision process (MDP)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../rl/q_learning.html">Q learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rl/q_learning.html">Q-learning</a></li>
 </ul>
 </li>
 </ul>
@@ -324,7 +320,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../math/stats/MLE.html">Maximum likelihood estimation (MLE)</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../math/optimization.html">Optimization</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul class="simple">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../math/optimization.html">Optimization</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../math/optimization/GD.html">Gradient descent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/optimization/SGD.html">Stochastic gradient descent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../math/optimization/newton.html">Newton’s method</a></li>
 </ul>
 </li>
 </ul>
@@ -611,10 +610,8 @@ MSE: 37.88167709241267
 <p>where <span class="math notranslate nohighlight">\(\boldsymbol w\)</span> is the vector of weights of the linear regression.</p>
 </div>
 <p>Taking into account this note, write the optimization task <a class="reference internal" href="#equation-multiple-lin-reg-rss">(15)</a> as</p>
-<div class="math notranslate nohighlight">
-\[
-    \mathcal L(\boldsymbol w) = \sum\limits_{i=1}^n(y_i - \boldsymbol x_i^\top \boldsymbol w)^2 \to \min\limits_{\boldsymbol w},
-\]</div>
+<div class="math notranslate nohighlight" id="equation-lin-reg-loss-opt">
+<span class="eqno">(17)<a class="headerlink" href="#equation-lin-reg-loss-opt" title="Permalink to this equation">#</a></span>\[    \mathcal L(\boldsymbol w) = \sum\limits_{i=1}^n(y_i - \boldsymbol x_i^\top \boldsymbol w)^2 \to \min\limits_{\boldsymbol w},\]</div>
 <p>or</p>
 <div class="math notranslate nohighlight">
 \[
@@ -632,10 +629,10 @@ MSE: 37.88167709241267
 </ul>
 <p>That’s why the condition <span class="math notranslate nohighlight">\(\nabla_{\boldsymbol w}\mathcal L(\boldsymbol w)=\boldsymbol 0\)</span> implies that</p>
 <div class="math notranslate nohighlight" id="equation-lin-reg-grad">
-<span class="eqno">(17)<a class="headerlink" href="#equation-lin-reg-grad" title="Permalink to this equation">#</a></span>\[    \boldsymbol X^\top \boldsymbol X\boldsymbol w - \boldsymbol X^\top \boldsymbol y = \boldsymbol 0\]</div>
-<p>If the matrix <span class="math notranslate nohighlight">\(\boldsymbol X\)</span> has full column rank, then the square matrix <span class="math notranslate nohighlight">\(\boldsymbol X^\top \boldsymbol X\)</span> is invertible, and from <a class="reference internal" href="#equation-lin-reg-grad">(17)</a> we obtain that the optimal weights are</p>
+<span class="eqno">(18)<a class="headerlink" href="#equation-lin-reg-grad" title="Permalink to this equation">#</a></span>\[    \boldsymbol X^\top \boldsymbol X\boldsymbol w - \boldsymbol X^\top \boldsymbol y = \boldsymbol 0\]</div>
+<p>If the matrix <span class="math notranslate nohighlight">\(\boldsymbol X\)</span> has full column rank, then the square matrix <span class="math notranslate nohighlight">\(\boldsymbol X^\top \boldsymbol X\)</span> is invertible, and from <a class="reference internal" href="#equation-lin-reg-grad">(18)</a> we obtain that the optimal weights are</p>
 <div class="math notranslate nohighlight" id="equation-lin-reg-solution">
-<span class="eqno">(18)<a class="headerlink" href="#equation-lin-reg-solution" title="Permalink to this equation">#</a></span>\[    \widehat{\boldsymbol w} = (\boldsymbol X^\top \boldsymbol X)^{-1} \boldsymbol X^\top \boldsymbol y.\]</div>
+<span class="eqno">(19)<a class="headerlink" href="#equation-lin-reg-solution" title="Permalink to this equation">#</a></span>\[    \widehat{\boldsymbol w} = (\boldsymbol X^\top \boldsymbol X)^{-1} \boldsymbol X^\top \boldsymbol y.\]</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The matrix <span class="math notranslate nohighlight">\(\boldsymbol X^\dagger = (\boldsymbol X^\top \boldsymbol X)^{-1} \boldsymbol X^\top\)</span> is called <strong>Moore-Penrose</strong> <a class="reference internal" href="../math/lin_alg/rank.html#pseudo-inverse"><span class="std std-ref">pseudo inverse</span></a>.</p>
@@ -1599,8 +1596,8 @@ if (typeof version == 'undefined') {
 <span id="id1"></span><h2>Computational issues<a class="headerlink" href="#computational-issues" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Multicollinearity</strong>. if there are highly correlated or even linearly dependent features in the design matrix <span class="math notranslate nohighlight">\(\boldsymbol X\)</span>, then the matrix <span class="math notranslate nohighlight">\(\boldsymbol X^\top \boldsymbol X\)</span> is nearly singular. One can cope with multicollinearity by feature selection.</p></li>
-<li><p><strong>Curse of dimensionality</strong>. If <span class="math notranslate nohighlight">\(d \gg 1\)</span>, it is too computationally expensive to invert <span class="math notranslate nohighlight">\(\boldsymbol X^\top \boldsymbol X\)</span>. In this case instead analytical solution <a class="reference internal" href="#equation-lin-reg-solution">(18)</a> numerical methods such as gradient descent are used.</p></li>
-<li><p><strong>Ill-conditioning</strong>. In practice the matrix <span class="math notranslate nohighlight">\(\boldsymbol X^\top \boldsymbol X\)</span> has large <a class="reference internal" href="../math/lin_alg/matrix_norms.html#condition-number"><span class="std std-ref">Condition number</span></a>. This implies the numerical instability of the  solution <a class="reference internal" href="#equation-lin-reg-solution">(18)</a>.</p></li>
+<li><p><strong>Curse of dimensionality</strong>. If <span class="math notranslate nohighlight">\(d \gg 1\)</span>, it is too computationally expensive to invert <span class="math notranslate nohighlight">\(\boldsymbol X^\top \boldsymbol X\)</span>. In this case instead analytical solution <a class="reference internal" href="#equation-lin-reg-solution">(19)</a> numerical methods such as gradient descent are used.</p></li>
+<li><p><strong>Ill-conditioning</strong>. In practice the matrix <span class="math notranslate nohighlight">\(\boldsymbol X^\top \boldsymbol X\)</span> has large <a class="reference internal" href="../math/lin_alg/matrix_norms.html#condition-number"><span class="std std-ref">Condition number</span></a>. This implies the numerical instability of the  solution <a class="reference internal" href="#equation-lin-reg-solution">(19)</a>.</p></li>
 </ul>
 </section>
 <section id="id2">
@@ -1660,7 +1657,7 @@ MSE: 22.429681439489933
 <h2>Connection to polynomial regression<a class="headerlink" href="#connection-to-polynomial-regression" title="Permalink to this heading">#</a></h2>
 <p>Note that the polynomial regression <a class="reference internal" href="polynomial.html#equation-poly-reg">(12)</a> is a special case of multiple regression. If the polynomial degree is <span class="math notranslate nohighlight">\(m\)</span>, then <a class="reference internal" href="polynomial.html#equation-poly-reg">(12)</a> can be written in the form <a class="reference internal" href="#equation-multiple-lin-reg-inner">(16)</a> with feature matrix</p>
 <div class="math notranslate nohighlight" id="equation-poly-feature-matrix">
-<span class="eqno">(19)<a class="headerlink" href="#equation-poly-feature-matrix" title="Permalink to this equation">#</a></span>\[\begin{split}    \boldsymbol X = [\boldsymbol 1 \;\boldsymbol x\;\boldsymbol x^2 \; \ldots\;\boldsymbol x^m] = \begin{pmatrix}
+<span class="eqno">(20)<a class="headerlink" href="#equation-poly-feature-matrix" title="Permalink to this equation">#</a></span>\[\begin{split}    \boldsymbol X = [\boldsymbol 1 \;\boldsymbol x\;\boldsymbol x^2 \; \ldots\;\boldsymbol x^m] = \begin{pmatrix}
         1 &amp; x_1 &amp; x_1^2 &amp; \ldots &amp; x_1^m \\
         1 &amp; x_2 &amp; x_2^2 &amp; \ldots &amp; x_2^m \\
         \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
@@ -1670,7 +1667,7 @@ MSE: 22.429681439489933
 <section id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
-<li><p>Prove that matrix <span class="math notranslate nohighlight">\(\boldsymbol X\)</span> from <a class="reference internal" href="#equation-poly-feature-matrix">(19)</a> has full column rank if <span class="math notranslate nohighlight">\(m \leqslant n\)</span> and <span class="math notranslate nohighlight">\(x_i \ne x_j\)</span> when <span class="math notranslate nohighlight">\(i\ne j\)</span>.</p></li>
+<li><p>Prove that matrix <span class="math notranslate nohighlight">\(\boldsymbol X\)</span> from <a class="reference internal" href="#equation-poly-feature-matrix">(20)</a> has full column rank if <span class="math notranslate nohighlight">\(m \leqslant n\)</span> and <span class="math notranslate nohighlight">\(x_i \ne x_j\)</span> when <span class="math notranslate nohighlight">\(i\ne j\)</span>.</p></li>
 </ol>
 <div class="warning admonition">
 <p class="admonition-title">TODO</p>
