@@ -513,7 +513,7 @@ p(y \vert \boldsymbol x,  \boldsymbol w) = \mathrm{Bern}(\sigma(\boldsymbol x^\i
 <h2>MLE<a class="headerlink" href="#mle" title="Permalink to this heading">#</a></h2>
 <section id="binary-case">
 <h3>Binary case<a class="headerlink" href="#binary-case" title="Permalink to this heading">#</a></h3>
-<p>Note that if <span class="math notranslate nohighlight">\(\xi \sim \mathrm{Bern}(q)\)</span> then <span class="math notranslate nohighlight">\(p_{\xi}(t) = q^{\xi} (1-q)^{1-\xi}\)</span>.
+<p>Note that if <span class="math notranslate nohighlight">\(\xi \sim \mathrm{Bern}(q)\)</span> then <span class="math notranslate nohighlight">\(\mathbb P(\xi = t) = q^{t} (1-q)^{1-t}\)</span>.
 Denote <span class="math notranslate nohighlight">\(\widehat y_i = \sigma(\boldsymbol x_i^\intercal \boldsymbol w)\)</span> and write down the negative log-likelihood:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -555,13 +555,13 @@ Denote <span class="math notranslate nohighlight">\(\widehat y_i = \sigma(\bolds
 <p>Then</p>
 <div class="math notranslate nohighlight">
 \[
--\log p(\boldsymbol w \vert \boldsymbol X, \boldsymbol y) = \sum_{i=1}^n \big(y_i\log(\widehat y_i) + (1-y_i) \log(1 - \widehat y_i)\big) +  \frac 1{2\tau^2} \sum\limits_{j=1}^d w_j^2,
+-\log p(\boldsymbol w \vert \boldsymbol X, \boldsymbol y) = -\sum_{i=1}^n \big(y_i\log(\widehat y_i) + (1-y_i) \log(1 - \widehat y_i)\big) +  \frac 1{2\tau^2} \sum\limits_{j=1}^d w_j^2,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\widehat y_i = \sigma(\boldsymbol x_i^\intercal \boldsymbol w)\)</span>. Hence,</p>
 <div class="math notranslate nohighlight">
 \[
 \boldsymbol {\widehat w}_{\mathrm{MAP}} = \arg\min\limits_{\boldsymbol w}
-\bigg(\sum\limits_{i=1}^n \big(y_i\log(\widehat y_i) + (1-y_i) \log(1 - \widehat y_i)\big)+ \frac{1}{2\tau^2} \Vert \boldsymbol w \Vert_2^2\bigg).
+\bigg(-\sum\limits_{i=1}^n \big(y_i\log(\widehat y_i) + (1-y_i) \log(1 - \widehat y_i)\big)+ \frac{1}{2\tau^2} \Vert \boldsymbol w \Vert_2^2\bigg).
 \]</div>
 <p>This is <span class="math notranslate nohighlight">\(L_2\)</span>-regularization of the binary logistic regression. Taking laplacian prior as <a class="reference internal" href="lin_reg_prob.html#laplace-prior"><span class="std std-ref">here</span></a>, we obtain <span class="math notranslate nohighlight">\(L_1\)</span> regularization.</p>
 </section>
