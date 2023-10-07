@@ -315,12 +315,15 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../math/calculus/matrix_diff.html">Matrix calculus</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../math/probability.html">Probability</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../math/statistics.html">Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../math/probability.html">Probability</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../math/proba/entropy.html">Entropy</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../math/statistics.html">Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../math/stats/MLE.html">Maximum likelihood estimation (MLE)</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../math/optimization.html">Optimization</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../math/optimization.html">Optimization</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../math/optimization/GD.html">Gradient descent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/optimization/SGD.html">Stochastic gradient descent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/optimization/newton.html">Newton’s method</a></li>
@@ -610,12 +613,14 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>max_iter exceeded
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1.02855729,  1.55043026,  0.10356354, -0.02083967, -0.84002132,
-        1.14353457,  0.35811972, -1.27122456,  0.31661573, -0.10608691,
-        0.20507717, -0.60703244,  1.21335696, -0.0726882 ,  0.17700374,
-       -1.8866681 ,  1.52025781, -1.54412877, -0.90412928,  0.41925674,
-        0.8671674 , -1.10101339, -0.37778932,  0.01742309, -0.1348493 ,
-        0.22084498, -0.29278112,  0.93516396, -0.4057416 , -1.66624744])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.68467253e+00, -2.41906441e-02,  3.86337603e-01, -7.19779214e-03,
+       -2.10763593e+00, -7.26783193e-01,  4.88616576e-01, -5.44273594e-02,
+       -3.73685614e-01, -7.00113747e-01, -1.02500853e+00, -5.01280864e-01,
+       -1.82991552e-01,  1.64798825e-02,  1.33072701e+00, -1.20586858e+00,
+        2.21328973e-01,  3.25065658e-01,  9.56559477e-02,  2.62529638e-01,
+       -1.51236801e+00,  5.27375291e-02,  1.57217513e-01,  1.02450101e-03,
+       -3.75983155e-01,  8.98358403e-01,  9.29829726e-01,  3.47748665e-01,
+        7.49730988e-01,  2.66719420e-01])
 </pre></div>
 </div>
 </div>
@@ -629,7 +634,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6291739894551845
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5799648506151143
 </pre></div>
 </div>
 </div>
@@ -669,7 +674,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.6682434348209485
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7.129811144240761
 </pre></div>
 </div>
 </div>

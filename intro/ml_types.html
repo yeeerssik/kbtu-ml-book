@@ -315,12 +315,15 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../math/calculus/matrix_diff.html">Matrix calculus</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../math/probability.html">Probability</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../math/statistics.html">Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../math/probability.html">Probability</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../math/proba/entropy.html">Entropy</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../math/statistics.html">Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../math/stats/MLE.html">Maximum likelihood estimation (MLE)</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../math/optimization.html">Optimization</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../math/optimization.html">Optimization</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../math/optimization/GD.html">Gradient descent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/optimization/SGD.html">Stochastic gradient descent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/optimization/newton.html">Newton’s method</a></li>
@@ -583,13 +586,13 @@ document.write(`
 <p><span style="display:none" id="binary_loss">W3sicXVlc3Rpb24iOiAiQ2FsY3VsYXRlIHRoZSBtaXNjbGFzc2lmaWNhdGlvbiByYXRlIiwgInR5cGUiOiAibnVtZXJpYyIsICJhbnN3ZXJzIjogW3sidHlwZSI6ICJ2YWx1ZSIsICJ2YWx1ZSI6IDAuNCwgImNvcnJlY3QiOiB0cnVlLCAiZmVlZGJhY2siOiAiUmlnaHQgeW91IGFyZSEgSGVyZSAkTj01JCwgdHdvIGluY29ycmVjdCBwcmVkaWN0aW9ucywgc28gdGhlIGxvc3MgaXMgJFxcZnJhYyAyNSQifSwgeyJ0eXBlIjogImRlZmF1bHQiLCAiZmVlZGJhY2siOiAiTm9wZSJ9XX0sIHsicXVlc3Rpb24iOiAiQ2FsY3VsYXRlIHRoZSBjcm9zcy1lbnRyb3B5IGxvc3MiLCAidHlwZSI6ICJtYW55X2Nob2ljZSIsICJhbnN3ZXJzIjogW3siYW5zd2VyIjogIiQwJCIsICJjb3JyZWN0IjogZmFsc2UsICJmZWVkYmFjayI6ICJUb28gbG93In0sIHsiYW5zd2VyIjogIiRcXGZyYWMgMTUgXFxsb2cgMiQiLCAiY29ycmVjdCI6IGZhbHNlLCAiZmVlZGJhY2siOiAiRG9lc24ndCBsb29rIGNvcnJlY3QifSwgeyJhbnN3ZXIiOiAiJFxcZnJhYyAxNSBcXGxvZyAzJCIsICJjb3JyZWN0IjogZmFsc2UsICJmZWVkYmFjayI6ICJOb3BlIn0sIHsiYW5zd2VyIjogIiQrXFxpbmZ0eSQiLCAiY29ycmVjdCI6IHRydWUsICJmZWVkYmFjayI6ICJPaCwgeWVhaC4uLiJ9XX1d</span></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="eOsvurxEHhwl" data-shufflequestions="False"
+<div class="output text_html"><div id="vVsDhHkrPIcH" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#eOsvurxEHhwl {
+#vVsDhHkrPIcH {
    --jq-multiple-choice-bg: #6f78ffff;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -760,14 +763,14 @@ document.write(`
     }
 }
 </style></div><script type="application/javascript">var element=document.getElementById("binary_loss");
-            var questionseOsvurxEHhwl;
+            var questionsvVsDhHkrPIcH;
             try {
-               questionseOsvurxEHhwl=JSON.parse(window.atob(element.innerHTML));
+               questionsvVsDhHkrPIcH=JSON.parse(window.atob(element.innerHTML));
             } catch(err) {
                console.log("Fell into catch");
-               questionseOsvurxEHhwl = JSON.parse(element.innerHTML);
+               questionsvVsDhHkrPIcH = JSON.parse(element.innerHTML);
             }
-            console.log(questionseOsvurxEHhwl);;
+            console.log(questionsvVsDhHkrPIcH);;
     // Make a random ID
 function makeid(length) {
     var result = [];
@@ -1516,8 +1519,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("eOsvurxEHhwl")) {
-            show_questions(questionseOsvurxEHhwl,  eOsvurxEHhwl); 
+          if(document.getElementById("vVsDhHkrPIcH")) {
+            show_questions(questionsvVsDhHkrPIcH,  vVsDhHkrPIcH); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -1526,8 +1529,8 @@ if (typeof version == 'undefined') {
         {
         // console.log(element);
 
-        //console.log("eOsvurxEHhwl");
-        // console.log(document.getElementById("eOsvurxEHhwl"));
+        //console.log("vVsDhHkrPIcH");
+        // console.log(document.getElementById("vVsDhHkrPIcH"));
 
         try_show();
         }
@@ -1578,13 +1581,13 @@ if (typeof version == 'undefined') {
 <p><span style="display:none" id="cross_entropy_loss">W3sicXVlc3Rpb24iOiAiQ2FsY3VsYXRlIHRoZSBjcm9zcyBlbnRyb3B5IGZyb20gdGhlIHByZXZpb3VzIGV4YW1wbGUiLCAidHlwZSI6ICJudW1lcmljIiwgImFuc3dlcnMiOiBbeyJ0eXBlIjogInZhbHVlIiwgInZhbHVlIjogMC44NzUsICJjb3JyZWN0IjogdHJ1ZSwgImZlZWRiYWNrIjogIkV4YWN0bHkhIn0sIHsidHlwZSI6ICJkZWZhdWx0IiwgImZlZWRiYWNrIjogIkluY29ycmVjdCJ9XX1d</span></p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="LJisIeDkbTUv" data-shufflequestions="False"
+<div class="output text_html"><div id="ebocLGiMIQpc" data-shufflequestions="False"
                data-shuffleanswers="True"
                data-preserveresponses="false"
                data-numquestions="1000000"
                data-maxwidth="600"
                style="border-radius: 10px; text-align: left"> <style>
-#LJisIeDkbTUv {
+#ebocLGiMIQpc {
    --jq-multiple-choice-bg: #6f78ffff;
    --jq-mc-button-bg: #fafafa;
    --jq-mc-button-border: #e0e0e0e0;
@@ -1755,14 +1758,14 @@ if (typeof version == 'undefined') {
     }
 }
 </style></div><script type="application/javascript">var element=document.getElementById("cross_entropy_loss");
-            var questionsLJisIeDkbTUv;
+            var questionsebocLGiMIQpc;
             try {
-               questionsLJisIeDkbTUv=JSON.parse(window.atob(element.innerHTML));
+               questionsebocLGiMIQpc=JSON.parse(window.atob(element.innerHTML));
             } catch(err) {
                console.log("Fell into catch");
-               questionsLJisIeDkbTUv = JSON.parse(element.innerHTML);
+               questionsebocLGiMIQpc = JSON.parse(element.innerHTML);
             }
-            console.log(questionsLJisIeDkbTUv);;
+            console.log(questionsebocLGiMIQpc);;
     // Make a random ID
 function makeid(length) {
     var result = [];
@@ -2511,8 +2514,8 @@ if (typeof version == 'undefined') {
            Someone more knowledgeable could make this better ;-) */
 
         function try_show() {
-          if(document.getElementById("LJisIeDkbTUv")) {
-            show_questions(questionsLJisIeDkbTUv,  LJisIeDkbTUv); 
+          if(document.getElementById("ebocLGiMIQpc")) {
+            show_questions(questionsebocLGiMIQpc,  ebocLGiMIQpc); 
           } else {
              setTimeout(try_show, 200);
           }
@@ -2521,8 +2524,8 @@ if (typeof version == 'undefined') {
         {
         // console.log(element);
 
-        //console.log("LJisIeDkbTUv");
-        // console.log(document.getElementById("LJisIeDkbTUv"));
+        //console.log("ebocLGiMIQpc");
+        // console.log(document.getElementById("ebocLGiMIQpc"));
 
         try_show();
         }
@@ -2572,7 +2575,7 @@ if (typeof version == 'undefined') {
 <p>Clusterisation made on <a class="reference internal" href="data.html#iris"><span class="std std-ref">Iris dataset</span></a> (figure 1.8 from <span id="id2">[<a class="reference internal" href="../bibliography.html#id3" title="Kevin P. Murphy. Probabilistic Machine Learning: An introduction. MIT Press, 2022. URL: probml.ai.">Murphy, 2022</a>]</span>):</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="../_images/b4c7f9e57563955a700c46346524735477c15a1cd95eb56e79313fe1ba16384e.svg" src="../_images/b4c7f9e57563955a700c46346524735477c15a1cd95eb56e79313fe1ba16384e.svg" /></div>
+<img alt="../_images/7424cfe055c9090a86044019f3459c2a331332acba2a407a5c8d8a0db3440487.svg" src="../_images/7424cfe055c9090a86044019f3459c2a331332acba2a407a5c8d8a0db3440487.svg" /></div>
 </div>
 </section>
 <section id="semisupervised-learning">
