@@ -289,6 +289,11 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/numpy.html">NumPy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/pandas.html">Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/visual.html">Data visualization</a></li>
+
+
+
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Math for ML</span></p>
 <ul class="nav bd-sidenav">
@@ -479,7 +484,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-implementation">Python implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iris-dataset">Iris dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#splitting-conditions">Splitting conditions</a></li>
 </ul>
             </nav>
         </div>
@@ -493,23 +499,77 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="classification-tree">
 <h1>Classification tree<a class="headerlink" href="#classification-tree" title="Permalink to this heading">#</a></h1>
-<p>A classification tree, also known as a decision tree for classification, is a supervised machine learning model used for solving classification problems. Classification problems involve predicting discrete class labels for input data points based on their feature attributes. Classification trees are a popular choice for modeling decision-making processes in which the goal is to classify data points into one of several predefined classes or categories.</p>
-<a class="reference internal image-reference" href="../_images/dtClassification.png"><img alt="../_images/dtClassification.png" src="../_images/dtClassification.png" style="width: 618px;" /></a>
-<h3>Here are the key characteristics and concepts related to classification trees:</h3>
-<ol class="arabic">
-<li><h4>Decision Tree Structure: </h4>
-</li>
-</ol>
-<p>A classification tree is a hierarchical structure consisting of nodes. It starts with a root node and branches into internal nodes, which in turn branch into leaf nodes (also known as terminal nodes).</p>
-<ol class="arabic" start="2">
-<li><h4> Node Splitting: </h4>
-</li>
-</ol>
+<section id="iris-dataset">
+<h2>Iris dataset<a class="headerlink" href="#iris-dataset" title="Permalink to this heading">#</a></h2>
+<p>This is an example from <a class="reference external" href="https://scikit-learn.org/stable/modules/tree.html#classification">sklearn</a>.</p>
+<p>Download and visualize Iris dataset:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;iris&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f15343f4f2c2ee6746a647b63b3026e2c342cd3be6b60b934570a2a9bbba6b1b.png" src="../_images/f15343f4f2c2ee6746a647b63b3026e2c342cd3be6b60b934570a2a9bbba6b1b.png" />
+</div>
+</div>
+<p>Fit decision tree classifier:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">tree</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">()</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plot the tree:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tree</span><span class="o">.</span><span class="n">plot_tree</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">filled</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b03f164af4b19f29759226817699ebf872f3c0755bc10aa7c87d797f5f800b3d.png" src="../_images/b03f164af4b19f29759226817699ebf872f3c0755bc10aa7c87d797f5f800b3d.png" />
+</div>
+</div>
+<p>A prettier tree can be drawn by <code class="docutils literal notranslate"><span class="pre">graphviz</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">graphviz</span>
+
+<span class="n">dot_data</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">export_graphviz</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">out_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+                     <span class="n">feature_names</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>  
+                     <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;setosa&#39;</span><span class="p">,</span> <span class="s1">&#39;versicolor&#39;</span><span class="p">,</span> <span class="s1">&#39;virginica&#39;</span><span class="p">],</span>  
+                     <span class="n">filled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">rounded</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  
+                     <span class="n">special_characters</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  
+<span class="n">graph</span> <span class="o">=</span> <span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">dot_data</span><span class="p">)</span>  
+<span class="n">graph</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4ae2ead9e33ded6d957c5a6a6b93eba9174354f9fac01b46385b33fd12b14a56.svg" src="../_images/4ae2ead9e33ded6d957c5a6a6b93eba9174354f9fac01b46385b33fd12b14a56.svg" /></div>
+</div>
+</section>
+<section id="splitting-conditions">
+<h2>Splitting conditions<a class="headerlink" href="#splitting-conditions" title="Permalink to this heading">#</a></h2>
+<p>Node Splitting:</p>
 <p>At each internal node, the tree algorithm selects a feature and a splitting criterion to divide the data into two or more child nodes. The goal is to create splits that maximize the purity or homogeneity of the class labels within each node.</p>
-<ol class="arabic" start="3">
-<li><h4>Leaf Nodes: </h4>
-</li>
-</ol>
+<p>Leaf Nodes:</p>
 <p>The leaf nodes are the terminal nodes of the tree. Each leaf node contains a predicted class label, representing the majority class of the training samples in that node.</p>
 <ol class="arabic" start="4">
 <li><h4>Predictive Modeling: </h4>
@@ -557,92 +617,6 @@ document.write(`
 </ol>
 <p>They can be prone to overfitting, especially if the tree is allowed to grow deep. Single trees may not generalize well on certain types of data. Ensembling methods can mitigate these limitations.</p>
 <p>Classification trees are widely used in various domains, including healthcare, finance, and natural language processing, for tasks such as spam email detection, disease diagnosis, and sentiment analysis. Proper tuning of hyperparameters and consideration of potential overfitting are essential when working with classification trees.</p>
-<section id="python-implementation">
-<h2>Python implementation<a class="headerlink" href="#python-implementation" title="Permalink to this heading">#</a></h2>
-<p>DecisionTreeClassifier is a class capable of performing multi-class classification on a dataset.</p>
-<p>As with other classifiers, DecisionTreeClassifier takes as input two arrays: an array X, sparse or dense, of shape (n_samples, n_features) holding the training samples, and an array Y of integer values, shape (n_samples,), holding the class labels for the training samples:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">tree</span>
-<span class="n">X</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
-<span class="n">Y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">()</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># After being fitted, the model can then be used to predict the class of samples:</span>
-<span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">([[</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1])
-</pre></div>
-</div>
-</div>
-</div>
-<p>In case that there are multiple classes with the same and highest probability, the classifier will predict the class with the lowest index amongst those classes.</p>
-<p>As an alternative to outputting a specific class, the probability of each class can be predicted, which is the fraction of training samples of the class in a leaf:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">([[</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]])</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0., 1.]])
-</pre></div>
-</div>
-</div>
-</div>
-<p>DecisionTreeClassifier is capable of both binary (where the labels are [-1, 1]) classification and multiclass (where the labels are [0, …, K-1]) classification.</p>
-<p>Using the Iris dataset, we can construct a tree as follows:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">tree</span>
-<span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
-<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">()</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Once trained, you can plot the tree with the plot_tree function:</span>
-<span class="n">tree</span><span class="o">.</span><span class="n">plot_tree</span><span class="p">(</span><span class="n">clf</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[Text(0.5, 0.9166666666666666, &#39;x[3] &lt;= 0.8\ngini = 0.667\nsamples = 150\nvalue = [50, 50, 50]&#39;),
- Text(0.4230769230769231, 0.75, &#39;gini = 0.0\nsamples = 50\nvalue = [50, 0, 0]&#39;),
- Text(0.5769230769230769, 0.75, &#39;x[3] &lt;= 1.75\ngini = 0.5\nsamples = 100\nvalue = [0, 50, 50]&#39;),
- Text(0.3076923076923077, 0.5833333333333334, &#39;x[2] &lt;= 4.95\ngini = 0.168\nsamples = 54\nvalue = [0, 49, 5]&#39;),
- Text(0.15384615384615385, 0.4166666666666667, &#39;x[3] &lt;= 1.65\ngini = 0.041\nsamples = 48\nvalue = [0, 47, 1]&#39;),
- Text(0.07692307692307693, 0.25, &#39;gini = 0.0\nsamples = 47\nvalue = [0, 47, 0]&#39;),
- Text(0.23076923076923078, 0.25, &#39;gini = 0.0\nsamples = 1\nvalue = [0, 0, 1]&#39;),
- Text(0.46153846153846156, 0.4166666666666667, &#39;x[3] &lt;= 1.55\ngini = 0.444\nsamples = 6\nvalue = [0, 2, 4]&#39;),
- Text(0.38461538461538464, 0.25, &#39;gini = 0.0\nsamples = 3\nvalue = [0, 0, 3]&#39;),
- Text(0.5384615384615384, 0.25, &#39;x[2] &lt;= 5.45\ngini = 0.444\nsamples = 3\nvalue = [0, 2, 1]&#39;),
- Text(0.46153846153846156, 0.08333333333333333, &#39;gini = 0.0\nsamples = 2\nvalue = [0, 2, 0]&#39;),
- Text(0.6153846153846154, 0.08333333333333333, &#39;gini = 0.0\nsamples = 1\nvalue = [0, 0, 1]&#39;),
- Text(0.8461538461538461, 0.5833333333333334, &#39;x[2] &lt;= 4.85\ngini = 0.043\nsamples = 46\nvalue = [0, 1, 45]&#39;),
- Text(0.7692307692307693, 0.4166666666666667, &#39;x[0] &lt;= 5.95\ngini = 0.444\nsamples = 3\nvalue = [0, 1, 2]&#39;),
- Text(0.6923076923076923, 0.25, &#39;gini = 0.0\nsamples = 1\nvalue = [0, 1, 0]&#39;),
- Text(0.8461538461538461, 0.25, &#39;gini = 0.0\nsamples = 2\nvalue = [0, 0, 2]&#39;),
- Text(0.9230769230769231, 0.4166666666666667, &#39;gini = 0.0\nsamples = 43\nvalue = [0, 0, 43]&#39;)]
-</pre></div>
-</div>
-<img alt="../_images/2beb81c1132d55d662a45612421437cb957614fc44f56f5d483057006aaeba3d.png" src="../_images/2beb81c1132d55d662a45612421437cb957614fc44f56f5d483057006aaeba3d.png" />
-</div>
-</div>
 </section>
 </section>
 
@@ -713,7 +687,8 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-implementation">Python implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iris-dataset">Iris dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#splitting-conditions">Splitting conditions</a></li>
 </ul>
   </nav></div>
 
