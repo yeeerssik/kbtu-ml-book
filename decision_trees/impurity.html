@@ -291,6 +291,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/numpy.html">NumPy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/pandas.html">Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/visual.html">Data visualization</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Math for ML</span></p>
 <ul class="nav bd-sidenav">
@@ -458,7 +459,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -474,6 +477,21 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#impurity-measure-in-classification-trees">Impurity measure in classification trees</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy">Entropy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gini">Gini</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#information-gain">Information gain</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iris-dataset">Iris dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#impurity-measure-in-regression-trees">Impurity measure in regression trees</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -486,43 +504,141 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="impurity-and-information-criterions">
 <h1>Impurity and information criterions<a class="headerlink" href="#impurity-and-information-criterions" title="Permalink to this heading">#</a></h1>
 <p>Information criteria are statistical measures used to evaluate and compare different models, including decision trees, based on their ability to fit the data while penalizing for model complexity. Information criteria are often used during the process of splitting nodes in decision trees to determine the best feature and split point. Two common information criteria used in this context are the Gini impurity and entropy.</p>
-<ol class="arabic">
-<li><h4>Gini Impurity:</h4>
-</li>
-</ol>
-<ul class="simple">
-<li><p>Definition:
-Gini impurity is a measure of impurity or disorder in a set of data points. For a given node in a decision tree, the Gini impurity measures the probability of misclassifying a randomly chosen data point from that node.
-<br></p></li>
-<li><p>Mathematical Formulation:
-For a binary classification problem with two classes (0 and 1), the Gini impurity for a node is calculated as follows: <span class="math notranslate nohighlight">\(Gini(p) = 1 - (p_0^2 + p_1^2)\)</span> where
-<span class="math notranslate nohighlight">\(p_0\)</span>  is the proportion of data points belonging to class 0, and <span class="math notranslate nohighlight">\(p_1\)</span> is the proportion belonging to class 1.
-<br></p></li>
-<li><p>Splitting Criterion:
-When splitting a node in a decision tree, the Gini impurity is used to evaluate the impurity of potential child nodes created by different feature and split point choices. The split that results in the lowest Gini impurity is chosen.</p></li>
-</ul>
-<ol class="arabic" start="2">
-<li><h4>Entropy:</h4>
-</li>
-</ol>
-<ul class="simple">
-<li><p>Definition: Entropy measures the level of disorder or uncertainty in a set of data points. In the context of decision trees, entropy quantifies the uncertainty in class labels at a node.
-<br></p></li>
-<li><p>Mathematical Formulation: For a binary classification problem, the entropy for a node is calculated as follows: <span class="math notranslate nohighlight">\(Entropy(p) = -p_0 \log_2(p_0) - p_1 \log_2(p_1) \)</span> where <span class="math notranslate nohighlight">\(p_0\)</span> and <span class="math notranslate nohighlight">\(p_1\)</span> are the proportions of data points in class 0 and class 1, respectively.
-<br></p></li>
-<li><p>Splitting Criterion: Similar to Gini impurity, entropy is used as a criterion for selecting the best split during node splitting in a decision tree. The split that results in the lowest entropy is chosen.</p></li>
-</ul>
-<ol class="arabic" start="3">
-<li><h4>Decision Tree Splitting:</h4>
-</li>
-</ol>
-<ul class="simple">
-<li><p>When building a decision tree, the goal is to find the feature and split point (threshold) that maximizes the reduction in impurity or entropy.</p></li>
-<li><p>The information gain or reduction in impurity (measured by the initial impurity minus the impurity of child nodes) is used to determine the best split.</p></li>
-<li><p>The feature and split point that result in the greatest information gain are chosen as the splitting criteria for the current node.</p></li>
-<li><p>This process is applied recursively for each internal node, leading to the construction of a binary tree.</p></li>
-</ul>
-<p>In summary, information criteria such as Gini impurity and entropy play a crucial role in the splitting process of decision trees. They help evaluate the quality of splits and guide the tree construction by selecting the feature and split point that result in the most significant reduction in impurity or entropy, ultimately leading to a more interpretable and generalizable model.</p>
+<section id="impurity-measure-in-classification-trees">
+<h2>Impurity measure in classification trees<a class="headerlink" href="#impurity-measure-in-classification-trees" title="Permalink to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(\mathcal Y = \{1, \ldots, K\}\)</span>. Estimate probability of class <span class="math notranslate nohighlight">\(k\)</span> at some node <span class="math notranslate nohighlight">\(V\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[
+p_k = \frac 1n\sum\limits_{(\boldsymbol x_i, y_i)\in V} \mathbb I[y_i = k].
+\]</div>
+<p>The main two impurity measures for classification are <strong>entropy</strong> and <strong>Gini</strong>.</p>
+<section id="entropy">
+<h3>Entropy<a class="headerlink" href="#entropy" title="Permalink to this heading">#</a></h3>
+<p>The entropy of the distribution <span class="math notranslate nohighlight">\((p_k)\)</span> is</p>
+<div class="math notranslate nohighlight" id="equation-entropy">
+<span class="eqno">(30)<a class="headerlink" href="#equation-entropy" title="Permalink to this equation">#</a></span>\[\mathbb H[p] = -\sum\limits_k p_k \log p_k.\]</div>
+<p>For binary logarithm entropy is measured in <strong>bits</strong>, for natural — in <strong>nats</strong>.</p>
+<p><strong>Q</strong>. What is the entropy of the uniform distribution, i.e., <span class="math notranslate nohighlight">\(p_k = \frac 1K\)</span>, <span class="math notranslate nohighlight">\(k=1,\ldots, K\)</span>?</p>
+</section>
+<section id="gini">
+<h3>Gini<a class="headerlink" href="#gini" title="Permalink to this heading">#</a></h3>
+<p>Note that <span class="math notranslate nohighlight">\(-\ln(1-t) \sim t\)</span> as <span class="math notranslate nohighlight">\(t \to 0\)</span>. After replacing <span class="math notranslate nohighlight">\(-\log p_k\)</span> by <span class="math notranslate nohighlight">\(1-p_k\)</span> in <a class="reference internal" href="#equation-entropy">(30)</a>, the entropy turns into <strong>Gini</strong> impurity measure</p>
+<div class="math notranslate nohighlight">
+\[
+    \mathbb G[p] = \sum\limits_k p_k(1-p_k).
+\]</div>
+<p><strong>Q</strong>. What is the Gini measure of the uniform distribution <span class="math notranslate nohighlight">\(p_k = \frac 1K\)</span>, <span class="math notranslate nohighlight">\(k=1,\ldots, K\)</span>?</p>
+<p>The Gini measure can be written also as</p>
+<div class="math notranslate nohighlight">
+\[
+    \mathbb G[p] = \sum\limits_k p_k - \sum\limits_k p_k^2 = 1 -  \sum\limits_k p_k^2.
+\]</div>
+<p>From here it is clear that <span class="math notranslate nohighlight">\(\mathbb G[p] &lt; 1\)</span> for any distribution <span class="math notranslate nohighlight">\(p\)</span>.</p>
+<p>If <span class="math notranslate nohighlight">\(K=2\)</span>, then probabilites are equal to <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(1-p\)</span> for some <span class="math notranslate nohighlight">\(p \in [0, 1]\)</span>. For this particular case the comparison of entropy and Gini measures is shown on the next picture.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="../_images/789b8a18ea666c6ca1e1d6e3555a42a4c10b57eba4d66b818f918bec2943cf3a.svg" src="../_images/789b8a18ea666c6ca1e1d6e3555a42a4c10b57eba4d66b818f918bec2943cf3a.svg" /></div>
+</div>
+</section>
+<section id="information-gain">
+<h3>Information gain<a class="headerlink" href="#information-gain" title="Permalink to this heading">#</a></h3>
+<p>Suppose that in the node <span class="math notranslate nohighlight">\(V\)</span> the distribution of classes is <span class="math notranslate nohighlight">\(p\)</span>, and after the split the distributions in the child nodes <span class="math notranslate nohighlight">\(V^l\)</span> and <span class="math notranslate nohighlight">\(V^r\)</span> are <span class="math notranslate nohighlight">\(p^l\)</span> and <span class="math notranslate nohighlight">\(p^r\)</span> respectively. Than the <strong>information gain</strong> of the split <span class="math notranslate nohighlight">\(V \to (V^l, V^r)\)</span>  is</p>
+<div class="math notranslate nohighlight">
+\[
+    \mathbb H[p] - \frac{\vert V^l\vert}{\vert V\vert}\mathbb H[p^l]- \frac{\vert V^r\vert}{\vert V\vert}\mathbb H[p^r]
+\]</div>
+<p>(also could use Gini measure). The greater information gain is, the more uncertainty was removed by the split.</p>
+<p><strong>Q</strong>. Suppose that <span class="math notranslate nohighlight">\(p^l = p^r = p\)</span>. What is the information gain of such split?</p>
+</section>
+<section id="iris-dataset">
+<h3>Iris dataset<a class="headerlink" href="#iris-dataset" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span><span class="p">,</span> <span class="n">export_graphviz</span>
+
+<span class="n">iris</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;iris&quot;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">clf_ent</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;entropy&#39;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">clf_ent</span> <span class="o">=</span> <span class="n">clf_ent</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Entropy accuracy:&quot;</span><span class="p">,</span> <span class="n">clf_ent</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+
+<span class="n">clf_gini</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;gini&#39;</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">clf_gini</span> <span class="o">=</span> <span class="n">clf_gini</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Gini accuracy:&quot;</span><span class="p">,</span> <span class="n">clf_gini</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Entropy accuracy: 0.96
+Gini accuracy: 0.96
+</pre></div>
+</div>
+</div>
+</div>
+<p>Entropy decision tree:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">graphviz</span>
+<span class="n">dot_data</span> <span class="o">=</span> <span class="n">export_graphviz</span><span class="p">(</span><span class="n">clf_ent</span><span class="p">,</span> <span class="n">out_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                     <span class="n">feature_names</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                     <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;setosa&#39;</span><span class="p">,</span> <span class="s1">&#39;versicolor&#39;</span><span class="p">,</span> <span class="s1">&#39;virginica&#39;</span><span class="p">],</span>  
+                     <span class="n">filled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">rounded</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  
+                     <span class="n">special_characters</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  
+<span class="n">graph</span> <span class="o">=</span> <span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">dot_data</span><span class="p">)</span>  
+<span class="n">graph</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ee78a7e834b3d46d0622fb0a59b85750d9d5b7681ef2e727d3b97f6f9a97ab7c.svg" src="../_images/ee78a7e834b3d46d0622fb0a59b85750d9d5b7681ef2e727d3b97f6f9a97ab7c.svg" /></div>
+</div>
+<p>Gini decision tree:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">graphviz</span>
+<span class="n">dot_data</span> <span class="o">=</span> <span class="n">export_graphviz</span><span class="p">(</span><span class="n">clf_gini</span><span class="p">,</span> <span class="n">out_file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+                     <span class="n">feature_names</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>  
+                     <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;setosa&#39;</span><span class="p">,</span> <span class="s1">&#39;versicolor&#39;</span><span class="p">,</span> <span class="s1">&#39;virginica&#39;</span><span class="p">],</span>  
+                     <span class="n">filled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">rounded</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  
+                     <span class="n">special_characters</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  
+<span class="n">graph</span> <span class="o">=</span> <span class="n">graphviz</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">dot_data</span><span class="p">)</span>  
+<span class="n">graph</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/6d9e99c87ae639de8e8484aa5c4d97819c3683a1c8d46e155562ae465be1b267.svg" src="../_images/6d9e99c87ae639de8e8484aa5c4d97819c3683a1c8d46e155562ae465be1b267.svg" /></div>
+</div>
+</section>
+</section>
+<section id="impurity-measure-in-regression-trees">
+<h2>Impurity measure in regression trees<a class="headerlink" href="#impurity-measure-in-regression-trees" title="Permalink to this heading">#</a></h2>
+<p>If we choose MSE as the loss function, the impurity measure of the leaf <span class="math notranslate nohighlight">\(V\)</span> if given by</p>
+<div class="math notranslate nohighlight">
+\[
+    H(V)=\frac 1{\vert V\vert} \sum\limits_{(\boldsymbol x_i, y_i)\in V} (y_i - c)^2, \quad c = \frac 1{\vert V\vert} \sum\limits_{(\boldsymbol x_i, y_i)\in V} y_i.
+\]</div>
+<p>After splitting into <span class="math notranslate nohighlight">\(V^l\)</span> and <span class="math notranslate nohighlight">\(V^r\)</span> we obtain</p>
+<div class="math notranslate nohighlight">
+\[
+    H(V)= \frac {1}{\vert V\vert} \sum\limits_{(\boldsymbol x_i, y_i)\in V^l} (y_i - c^l)^2 + \frac {1}{\vert V\vert} \sum\limits_{(\boldsymbol x_i, y_i)\in V^r} (y_i - c^r)^2
+    =\frac {\vert V^l\vert}{\vert V\vert}H(V^l) + \frac {\vert V^r\vert}{\vert V\vert}H(V^r),
+\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[
+c^l = \frac 1{\vert V^l\vert} \sum\limits_{(\boldsymbol x_i, y_i)\in V^l} y_i,\quad
+c^r = \frac 1{\vert V^r\vert} \sum\limits_{(\boldsymbol x_i, y_i)\in V^r} y_i.
+\]</div>
+<p>The best split maximizes information gain</p>
+<div class="math notranslate nohighlight">
+\[
+    H(V) - \frac {\vert V^l\vert}{\vert V\vert}H(V^l) - \frac {\vert V^r\vert}{\vert V\vert}H(V^r).
+\]</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -583,6 +699,27 @@ When splitting a node in a decision tree, the Gini impurity is used to evaluate 
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#impurity-measure-in-classification-trees">Impurity measure in classification trees</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy">Entropy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gini">Gini</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#information-gain">Information gain</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iris-dataset">Iris dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#impurity-measure-in-regression-trees">Impurity measure in regression trees</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
