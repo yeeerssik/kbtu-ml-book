@@ -63,6 +63,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ensembling/bias_variance';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -289,6 +291,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/numpy.html">NumPy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/pandas.html">Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/visual.html">Data visualization</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Math for ML</span></p>
 <ul class="nav bd-sidenav">
@@ -456,7 +459,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -472,6 +477,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#biasvariance-decomposition-for-mse">Bias—variance decomposition for MSE</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -483,6 +496,13 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bias-variance-decomposition">
 <h1>Bias-variance decomposition<a class="headerlink" href="#bias-variance-decomposition" title="Permalink to this heading">#</a></h1>
+<p>Resources:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://academy.yandex.ru/handbook/ml/article/beta-bias-variance-decomposition">ML Handbook</a></p></li>
+<li><p><span id="id1">[<a class="reference internal" href="../bibliography.html#id2" title="T. Hastie, R. Tibshirani, and J.H. Friedman. The Elements of Statistical Learning: Data Mining, Inference, and Prediction. Springer series in statistics. Springer, 2009. ISBN 9780387848846. URL: https://books.google.kz/books?id=eBSgoAEACAAJ.">Hastie <em>et al.</em>, 2009</a>]</span> (pp. 219-228)</p></li>
+</ul>
+<div class="important dropdown admonition">
+<p class="admonition-title">ChatGPT stuff</p>
 <p>Bias-variance decomposition is a concept that is closely related to ensembling methods in machine learning. Ensembling methods, such as bagging and boosting, are designed to address the bias-variance trade-off and can help reduce both bias and variance in predictive models. Here’s how bias-variance decomposition and ensembling are connected:</p>
 <ol class="arabic">
 <li><h3>Bias-Variance Trade-Off:</h3>
@@ -540,6 +560,28 @@ document.write(`
 <li><p>Techniques like feature bagging (random feature selection) in Random Forests and adaptive boosting in boosting methods promote diversity among base models.</p></li>
 </ul>
 <p>In summary, ensembling methods like bagging and boosting are powerful tools for addressing the bias-variance trade-off in machine learning. By combining multiple base models with varying bias and variance characteristics, ensembles can reduce both sources of error and improve overall predictive performance on a wide range of tasks. Properly designed and tuned ensemble models can achieve better generalization while mitigating the overfitting problem associated with high-variance models.</p>
+</div>
+<section id="biasvariance-decomposition-for-mse">
+<h2>Bias—variance decomposition for MSE<a class="headerlink" href="#biasvariance-decomposition-for-mse" title="Permalink to this heading">#</a></h2>
+<p>Consider a regression model</p>
+<div class="math notranslate nohighlight">
+\[
+y = f(\boldsymbol x) + \varepsilon, \quad \mathbb E \varepsilon = 0,\quad \mathbb V \varepsilon = \sigma^2
+\]</div>
+<p>(cp. with <a class="reference internal" href="../probabilistic_models/lin_reg_prob.html#prob-lin-reg"><span class="std std-ref">probabilistic model for linear regression</span></a>).</p>
+<p>To estimate the error for prediction, calculate expectation of MSE:</p>
+<div class="math notranslate nohighlight">
+\[
+    \mathbb E\big[(y(\boldsymbol x) - \widehat y(\boldsymbol x))^2 \big] = \mathbb E\big[(f(\boldsymbol x) + \varepsilon - \widehat y)^2 \big] = \mathbb E\big[(f(\boldsymbol x) - \widehat y)^2 \big] + \sigma^2.
+\]</div>
+<p>Note that the prediction <span class="math notranslate nohighlight">\(\widehat y\)</span> is a random variable depending on the training dataset. Thus,</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbb E\big[(f(\boldsymbol x) - \widehat y)^2 \big]=
+\mathbb E\big[(f(\boldsymbol x) - \mathbb E\widehat y + \mathbb E\widehat y - \widehat y)^2 \big] = \mathbb E\big(\underbrace{f(\boldsymbol x) - \mathbb E\widehat y}_{\mathrm{bias}}\big)^2 + \underbrace{\mathbb E\big[(\mathbb E\widehat y - \widehat y)^2\big]}_{\mathrm{variance}}.
+\]</div>
+<p>The bias-variance decomposition:</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -600,6 +642,20 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#biasvariance-decomposition-for-mse">Bias—variance decomposition for MSE</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

@@ -289,6 +289,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/numpy.html">NumPy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/pandas.html">Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/visual.html">Data visualization</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Math for ML</span></p>
 <ul class="nav bd-sidenav">
@@ -479,9 +480,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-implementation">Python implementation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagging-bootstrap-aggregating">Bagging (Bootstrap Aggregating)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Random Forests</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#california-housing">California housing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagging">Bagging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest">Random forest</a></li>
 </ul>
 </li>
 </ul>
@@ -497,6 +498,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="random-forests">
 <h1>Random forests<a class="headerlink" href="#random-forests" title="Permalink to this heading">#</a></h1>
+<div class="important dropdown admonition">
+<p class="admonition-title">ChatGPT stuff</p>
 <p>Bagging (Bootstrap Aggregating) and Random Forests are ensemble learning techniques that improve the predictive performance and robustness of decision tree models. Both methods leverage the power of combining multiple decision trees to reduce overfitting and improve generalization. However, they differ in some key aspects. Let’s explore Bagging and Random Forests in more detail:</p>
 <ol class="arabic">
 <li><h3>Bagging (Bootstrap Aggregating):</h3>
@@ -556,13 +559,15 @@ document.write(`
 </ul>
 <br>
 <ul>
-<li><h6>Out-of-Bag (OOB) Error:</h6> Random Forests have a built-in mechanism for estimating the generalization error without the need for a separate validation set. The OOB error is calculated based on the samples not included in the bootstrap sample for each tree.</li>
+<li><h6>Out-of-Bag (OOB) Error:</h6> Random Forests have a built-in mechanism for estimating the generalization error without the need for a separate validation set. The OOB error is calculated based on the samples not included in the bootstrap sample for each tree.
+</li>
 </ul>
+</div>
 <p>In summary, both Bagging and Random Forests are ensemble methods that reduce overfitting and improve predictive performance by combining multiple decision trees. However, Random Forests go a step further by introducing feature selection randomness during tree construction, making them more robust and less prone to overfitting. As a result, Random Forests are often preferred when working with decision tree-based ensembles for a wide range of tasks.</p>
-<section id="python-implementation">
-<h2>Python implementation<a class="headerlink" href="#python-implementation" title="Permalink to this heading">#</a></h2>
-<section id="bagging-bootstrap-aggregating">
-<h3>Bagging (Bootstrap Aggregating)<a class="headerlink" href="#bagging-bootstrap-aggregating" title="Permalink to this heading">#</a></h3>
+<section id="california-housing">
+<h2>California housing<a class="headerlink" href="#california-housing" title="Permalink to this heading">#</a></h2>
+<section id="bagging">
+<h3>Bagging<a class="headerlink" href="#bagging" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_california_housing</span>
@@ -615,8 +620,8 @@ document.write(`
 </ul>
 <p>You can modify this code to work with your own dataset and adjust hyperparameters as needed. Bagging can also be applied to classification tasks using BaggingClassifier in scikit-learn.</p>
 </section>
-<section id="id1">
-<h3>Random Forests<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<section id="random-forest">
+<h3>Random forest<a class="headerlink" href="#random-forest" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_california_housing</span>
@@ -738,9 +743,9 @@ R-squared (R2) Score: 0.81
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-implementation">Python implementation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagging-bootstrap-aggregating">Bagging (Bootstrap Aggregating)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Random Forests</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#california-housing">California housing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagging">Bagging</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest">Random forest</a></li>
 </ul>
 </li>
 </ul>
