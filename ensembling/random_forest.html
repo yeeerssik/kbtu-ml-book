@@ -480,7 +480,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#california-housing">California housing</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boston-dataset">Boston dataset</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagging">Bagging</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest">Random forest</a></li>
 </ul>
@@ -501,9 +501,8 @@ document.write(`
 <div class="important dropdown admonition">
 <p class="admonition-title">ChatGPT stuff</p>
 <p>Bagging (Bootstrap Aggregating) and Random Forests are ensemble learning techniques that improve the predictive performance and robustness of decision tree models. Both methods leverage the power of combining multiple decision trees to reduce overfitting and improve generalization. However, they differ in some key aspects. Let’s explore Bagging and Random Forests in more detail:</p>
-<ol class="arabic">
-<li><h3>Bagging (Bootstrap Aggregating):</h3>
-</li>
+<ol class="arabic simple">
+<li><p>Bagging (Bootstrap Aggregating)</p></li>
 </ol>
 <ul>
 <li><h6>Basic Idea:</h6> Bagging is an ensemble technique that involves training multiple decision trees independently on different bootstrap samples (randomly sampled subsets with replacement) from the training data and then aggregating their predictions.
@@ -529,9 +528,8 @@ document.write(`
 <li><h6>Randomness:</h6> While bagging introduces randomness through bootstrap sampling, it does not introduce additional randomness when growing individual trees. Each tree is trained using the same set of features as the original dataset.
 </li>
 </ul>
-<ol class="arabic" start="2">
-<li><h3>Random Forests:</h3>
-</li>
+<ol class="arabic simple" start="2">
+<li><p>Random Forests</p></li>
 </ol>
 <ul>
 <li><h6>Basic Idea:</h6> Random Forests is an extension of Bagging that introduces additional randomness during the construction of individual decision trees. It combines the concept of bagging with feature selection randomness.
@@ -564,8 +562,40 @@ document.write(`
 </ul>
 </div>
 <p>In summary, both Bagging and Random Forests are ensemble methods that reduce overfitting and improve predictive performance by combining multiple decision trees. However, Random Forests go a step further by introducing feature selection randomness during tree construction, making them more robust and less prone to overfitting. As a result, Random Forests are often preferred when working with decision tree-based ensembles for a wide range of tasks.</p>
-<section id="california-housing">
-<h2>California housing<a class="headerlink" href="#california-housing" title="Permalink to this heading">#</a></h2>
+<section id="boston-dataset">
+<h2>Boston dataset<a class="headerlink" href="#boston-dataset" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">boston</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../ISLP_datasets/Boston.csv&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;Unnamed: 0&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">boston</span><span class="p">[</span><span class="s1">&#39;medv&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">boston</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;medv&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Train a random forest model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
+
+<span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">()</span>
+<span class="n">rf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Train score:&quot;</span><span class="p">,</span> <span class="n">rf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Train score:&quot;</span><span class="p">,</span> <span class="n">rf</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Train score: 0.979648273933909
+Train score: 0.9083838700510591
+</pre></div>
+</div>
+</div>
+</div>
 <section id="bagging">
 <h3>Bagging<a class="headerlink" href="#bagging" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -743,7 +773,7 @@ R-squared (R2) Score: 0.81
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#california-housing">California housing</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boston-dataset">Boston dataset</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagging">Bagging</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest">Random forest</a></li>
 </ul>

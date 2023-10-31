@@ -63,6 +63,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'math/lin_alg/SVD';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -289,6 +291,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../python/numpy.html">NumPy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../python/pandas.html">Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/visual.html">Data visualization</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Math for ML</span></p>
 <ul class="current nav bd-sidenav">
@@ -456,7 +459,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -472,6 +477,17 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#svd-in-numpy">SVD in NumPy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduced-form-of-svd">Reduced form of SVD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#truncated-svd">Truncated SVD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-compression">Image compression</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -483,6 +499,242 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="singular-value-decomposition-svd">
 <h1>Singular Value Decomposition (SVD)<a class="headerlink" href="#singular-value-decomposition-svd" title="Permalink to this heading">#</a></h1>
+<p>Any rectangular matrix <span class="math notranslate nohighlight">\(\boldsymbol A \in \mathbb R^{m\times n}\)</span> has a <strong>singular value decomposition</strong> <span class="math notranslate nohighlight">\(\boldsymbol A = \boldsymbol U \boldsymbol \Sigma \boldsymbol V^\intercal\)</span> where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol U = [\boldsymbol u_1 \ldots \boldsymbol u_m] \in\mathbb R^{m\times m}\)</span> is an orthogonal matrix;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol \Sigma = \begin{pmatrix}
+      \boldsymbol \Lambda &amp;  \boldsymbol 0 \\
+       \boldsymbol 0 &amp;  \boldsymbol 0
+  \end{pmatrix} \in \mathbb R^{m\times n}\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol \Lambda = \mathrm{diag}\{\sigma_1, \ldots, \sigma_r\}\)</span>, <span class="math notranslate nohighlight">\(r \leqslant \min\{m, n\}\)</span>, <span class="math notranslate nohighlight">\(\sigma_1 \geqslant \sigma_2 \geqslant \ldots \geqslant \sigma_r &gt; 0\)</span>;</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol V = [\boldsymbol v_1 \ldots \boldsymbol v_n] \in\mathbb R^{n\times n}\)</span> is an orthogonal matrix.</p></li>
+</ul>
+<p>The numbers <span class="math notranslate nohighlight">\(\sigma_1, \ldots, \sigma_r\)</span> are called the <strong>singular values</strong> of <span class="math notranslate nohighlight">\(\boldsymbol A\)</span>.</p>
+<p><strong>Q</strong>. What is the shape of all blocks of the matrix <span class="math notranslate nohighlight">\(\boldsymbol \Sigma\)</span>?</p>
+<p><strong>Q</strong>. Calculate <span class="math notranslate nohighlight">\(\Vert \boldsymbol A \Vert_F\)</span> in terms of its singular values.</p>
+<section id="svd-in-numpy">
+<h2>SVD in NumPy<a class="headerlink" href="#svd-in-numpy" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">A</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 1, 2],
+       [3, 4, 5]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>To find SVD, use <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.svd.html">np.linalg.svd</a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;U:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Singular values:&quot;</span><span class="p">,</span> <span class="n">S</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;V:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>U:
+[[-0.27472113 -0.96152395]
+ [-0.96152395  0.27472113]]
+Singular values: [7.34846923 1.        ]
+V:
+[[-0.39254051 -0.56077215 -0.7290038 ]
+ [ 0.82416338  0.13736056 -0.54944226]
+ [ 0.40824829 -0.81649658  0.40824829]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Check the decomposition:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">S</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">))))</span>
+<span class="n">U</span> <span class="o">@</span> <span class="n">Sigma</span> <span class="o">@</span> <span class="n">V</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[9.6365988e-16, 1.0000000e+00, 2.0000000e+00],
+       [3.0000000e+00, 4.0000000e+00, 5.0000000e+00]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Check that <span class="math notranslate nohighlight">\(\Vert A \Vert_F = \Vert S\Vert_2\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">S</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(7.416198487095663, 7.416198487095663)
+</pre></div>
+</div>
+</div>
+</div>
+<p>If <span class="math notranslate nohighlight">\(\boldsymbol A\)</span> is a positive semidefinite square matrix (<span class="math notranslate nohighlight">\(m=n\)</span>) then according to the <strong>spectral theorem</strong></p>
+<div class="math notranslate nohighlight">
+\[
+    \boldsymbol A = \boldsymbol Q \boldsymbol \Lambda \boldsymbol Q^\intercal
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol Q\)</span> is orthogonal, <span class="math notranslate nohighlight">\(\boldsymbol \Lambda\)</span> is diagonal with nonnegative elements on the main diagonal. Hence, the spectral decomposition is a special case of SVD.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+<span class="n">A</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[3, 2, 1],
+       [2, 3, 2],
+       [1, 2, 3]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Spectral decomposition can also be calculated by <code class="docutils literal notranslate"><span class="pre">np.linalg.svd</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">V</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([[-5.41774320e-01,  7.07106781e-01,  4.54401349e-01],
+        [-6.42620551e-01,  3.88578059e-16, -7.66184591e-01],
+        [-5.41774320e-01, -7.07106781e-01,  4.54401349e-01]]),
+ array([6.37228132, 2.        , 0.62771868]),
+ array([[-5.41774320e-01, -6.42620551e-01, -5.41774320e-01],
+        [ 7.07106781e-01,  5.55111512e-17, -7.07106781e-01],
+        [ 4.54401349e-01, -7.66184591e-01,  4.54401349e-01]]))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here <span class="math notranslate nohighlight">\(\boldsymbol U = \boldsymbol V^\intercal\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">U</span> <span class="o">-</span> <span class="n">V</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.563843312570936e-16
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="reduced-form-of-svd">
+<h2>Reduced form of SVD<a class="headerlink" href="#reduced-form-of-svd" title="Permalink to this heading">#</a></h2>
+<p>SVD can be equivalently written in reduced form <span class="math notranslate nohighlight">\(\boldsymbol{A} = \boldsymbol U_r \Lambda \boldsymbol V_r^\intercal\)</span> where</p>
+<div class="math notranslate nohighlight">
+\[
+    \boldsymbol{U}_r = [\boldsymbol u_1 \ldots \boldsymbol u_r],\quad
+    \boldsymbol{V}_r = [\boldsymbol v_1 \ldots \boldsymbol v_r].
+\]</div>
+<p>Hence, <span class="math notranslate nohighlight">\(\boldsymbol{AV}_r = \boldsymbol U_r \Lambda\)</span>, or</p>
+<div class="math notranslate nohighlight">
+\[
+    [\boldsymbol {Av}_1 \ldots \boldsymbol {Av}_r] = [\sigma_1 \boldsymbol {u}_1 \ldots \sigma_r \boldsymbol {u}_r].
+\]</div>
+<p>Consequently, <span class="math notranslate nohighlight">\(\boldsymbol {Av}_i = \sigma_i \boldsymbol u_i\)</span>, <span class="math notranslate nohighlight">\(i=1,\ldots, r\)</span>. Also,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+    \boldsymbol{A} = [\sigma_1 \boldsymbol {u}_1 \ldots \sigma_r \boldsymbol {u}_r] \begin{pmatrix}
+    \boldsymbol v_1^\intercal \\
+    \vdots \\
+    \boldsymbol v_r^\intercal
+    \end{pmatrix} = \sum\limits_{i=1}^r \sigma_i \boldsymbol u_i\boldsymbol v_i^\intercal.
+\end{split}\]</div>
+<p><strong>Q</strong>. Find SVD of <span class="math notranslate nohighlight">\(\boldsymbol A = \boldsymbol{uv}^\intercal\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol u \in \mathbb R^m\)</span>, <span class="math notranslate nohighlight">\(\boldsymbol v \in \mathbb R^n\)</span>.</p>
+<p><strong>Q</strong>. Find <span class="math notranslate nohighlight">\(\boldsymbol {Av}_j\)</span> and  <span class="math notranslate nohighlight">\(\boldsymbol A^\intercal \boldsymbol u_j\)</span>, <span class="math notranslate nohighlight">\(j=1,\ldots, p\)</span>.</p>
+<div class="important admonition">
+<p class="admonition-title">Exercise</p>
+<p>Prove that <span class="math notranslate nohighlight">\(\boldsymbol u_i\)</span> are eigenvectors of <span class="math notranslate nohighlight">\(\boldsymbol {AA}^\intercal\)</span>, whereas
+<span class="math notranslate nohighlight">\(\boldsymbol v_i\)</span> are eigenvectors of <span class="math notranslate nohighlight">\(\boldsymbol A^\intercal \boldsymbol A\)</span>. What about eigenvalues?</p>
+</div>
+</section>
+<section id="truncated-svd">
+<h2>Truncated SVD<a class="headerlink" href="#truncated-svd" title="Permalink to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(\boldsymbol A = \boldsymbol U \boldsymbol \Sigma \boldsymbol V^\intercal\)</span> be SVD of <span class="math notranslate nohighlight">\(\boldsymbol A\)</span>. <strong>Truncated SVD</strong> is</p>
+<div class="math notranslate nohighlight">
+\[
+\widehat{\boldsymbol A}_K = \boldsymbol U_K \boldsymbol \Sigma_K \boldsymbol V_K^\intercal,\quad
+\Sigma_K = \mathrm{diag}\{\sigma_1, \ldots, \sigma_K\},\quad 1 \leqslant K \leqslant r.
+\]</div>
+<p>Note that <span class="math notranslate nohighlight">\(\widehat{\boldsymbol A}_K\)</span> has rank <span class="math notranslate nohighlight">\(K\)</span> and <span class="math notranslate nohighlight">\(\widehat{\boldsymbol A}_K = \boldsymbol A\)</span> if <span class="math notranslate nohighlight">\(K=r\)</span>. It turns out that <span class="math notranslate nohighlight">\(\widehat{\boldsymbol A}_K\)</span> is the best approximation of <span class="math notranslate nohighlight">\(\boldsymbol A\)</span> among all matrices of rank <span class="math notranslate nohighlight">\(K\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+    \min\limits_{\boldsymbol B} \Vert \boldsymbol A - \boldsymbol B\Vert_F^2 = \Vert \boldsymbol A - \widehat{\boldsymbol A}_K\Vert_F^2 = \sum\limits_{i=K+1}^r \sigma_i^2.
+\]</div>
+<p><strong>Q</strong>. Why the last equality is true?</p>
+</section>
+<section id="image-compression">
+<h2>Image compression<a class="headerlink" href="#image-compression" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+
+<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;svg&#39;
+
+<span class="k">def</span> <span class="nf">rgb2gray</span><span class="p">(</span><span class="n">rgb</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">rgb</span><span class="p">[</span><span class="o">...</span><span class="p">,:</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.2989</span><span class="p">,</span> <span class="mf">0.5870</span><span class="p">,</span> <span class="mf">0.1140</span><span class="p">])</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://github.com/probml/probml-data/blob/main/data/clown.png?raw=true&#39;</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/422ee9e5b89185f5f1bd0b9e2dda31191a27b7536b9cf246b23c1b2d7e577ef7.svg" src="../../_images/422ee9e5b89185f5f1bd0b9e2dda31191a27b7536b9cf246b23c1b2d7e577ef7.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+<span class="n">rk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_rank</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape:&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rank:&quot;</span><span class="p">,</span> <span class="n">rk</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape: (200, 320)
+Rank: 200
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">rk</span><span class="p">]:</span>
+    <span class="n">x_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">U</span><span class="p">[:,</span> <span class="p">:</span><span class="n">r</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">sigma</span><span class="p">[:</span><span class="n">r</span><span class="p">])),</span> <span class="n">V</span><span class="p">[:</span><span class="n">r</span><span class="p">,</span> <span class="p">:])</span>  
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">x_hat</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f27b1b5db53fb0270cef3e6841e14146817ce37452d3a0810b9ddd0f27e751bd.svg" src="../../_images/f27b1b5db53fb0270cef3e6841e14146817ce37452d3a0810b9ddd0f27e751bd.svg" /></div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -543,6 +795,23 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#svd-in-numpy">SVD in NumPy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduced-form-of-svd">Reduced form of SVD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#truncated-svd">Truncated SVD</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-compression">Image compression</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
