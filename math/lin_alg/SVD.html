@@ -331,6 +331,20 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">HW</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../not_mnist_student.html">Task description</a></li>
+
+
+
+
+
+
+
+
+
+
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../notation.html">Notation</a></li>
@@ -684,6 +698,7 @@ V:
 </section>
 <section id="image-compression">
 <h2>Image compression<a class="headerlink" href="#image-compression" title="Permalink to this heading">#</a></h2>
+<p>Based on <span id="id1">[<a class="reference internal" href="../../bibliography.html#id3" title="Kevin P. Murphy. Probabilistic Machine Learning: An introduction. MIT Press, 2022. URL: probml.ai.">Murphy, 2022</a>]</span>, section 7.5.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -704,7 +719,7 @@ V:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/422ee9e5b89185f5f1bd0b9e2dda31191a27b7536b9cf246b23c1b2d7e577ef7.svg" src="../../_images/422ee9e5b89185f5f1bd0b9e2dda31191a27b7536b9cf246b23c1b2d7e577ef7.svg" /></div>
+<img alt="../../_images/f823fac59eade7670bb614044798345cbd427bf34bdfbec470015f218a6a70c4.svg" src="../../_images/f823fac59eade7670bb614044798345cbd427bf34bdfbec470015f218a6a70c4.svg" /></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -724,15 +739,63 @@ Rank: 200
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">rk</span><span class="p">]:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compress_img</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+    <span class="n">U</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">x_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">U</span><span class="p">[:,</span> <span class="p">:</span><span class="n">r</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">sigma</span><span class="p">[:</span><span class="n">r</span><span class="p">])),</span> <span class="n">V</span><span class="p">[:</span><span class="n">r</span><span class="p">,</span> <span class="p">:])</span>  
     <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">x_hat</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+</div>
+<p>1-rank approximation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compress_img</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 <div class="cell_output docutils container">
-<img alt="../../_images/f27b1b5db53fb0270cef3e6841e14146817ce37452d3a0810b9ddd0f27e751bd.svg" src="../../_images/f27b1b5db53fb0270cef3e6841e14146817ce37452d3a0810b9ddd0f27e751bd.svg" /></div>
+<img alt="../../_images/8ce721f70abfa99b777f0412303283466574b4ba974138806a45eeac46abc352.svg" src="../../_images/8ce721f70abfa99b777f0412303283466574b4ba974138806a45eeac46abc352.svg" /></div>
+</div>
+<p><span class="math notranslate nohighlight">\(2\)</span>-rank approximaion:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compress_img</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/be0da665dac97eaecb68b50793822b0cc7e1a41231b01e8c687ef0e9174a2151.svg" src="../../_images/be0da665dac97eaecb68b50793822b0cc7e1a41231b01e8c687ef0e9174a2151.svg" /></div>
+</div>
+<p><span class="math notranslate nohighlight">\(5\)</span>-rank approximation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compress_img</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/5bfafbb931dcdc1140c0d6bcc86684bf328b00f5671dd54371368447b60027ed.svg" src="../../_images/5bfafbb931dcdc1140c0d6bcc86684bf328b00f5671dd54371368447b60027ed.svg" /></div>
+</div>
+<p><span class="math notranslate nohighlight">\(10\)</span>-rank approximation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compress_img</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e6f448bda6ef8757783e12d3be2ac04c41d43e26f652ff0f247948abd49d169d.svg" src="../../_images/e6f448bda6ef8757783e12d3be2ac04c41d43e26f652ff0f247948abd49d169d.svg" /></div>
+</div>
+<p><span class="math notranslate nohighlight">\(20\)</span>-rank approximation is quite admittable:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">compress_img</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/2c39864875f134a7df1bcdd31c535eae7892d462f20fb9800dd23591d2a25855.svg" src="../../_images/2c39864875f134a7df1bcdd31c535eae7892d462f20fb9800dd23591d2a25855.svg" /></div>
 </div>
 </section>
 </section>

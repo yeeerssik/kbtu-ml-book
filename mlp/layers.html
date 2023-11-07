@@ -63,6 +63,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'mlp/layers';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -329,6 +331,20 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">HW</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../not_mnist_student.html">Task description</a></li>
+
+
+
+
+
+
+
+
+
+
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../notation.html">Notation</a></li>
@@ -480,7 +496,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dense-layer">Dense layer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters-of-mlp">Parameters of MLP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dense-layer">Dense layer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-layer-in-pytorch">Linear layer in PyTorch</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#activation-layer">Activation layer</a></li>
 </ul>
             </nav>
@@ -495,8 +515,105 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="layers-of-mlp">
 <h1>Layers of MLP<a class="headerlink" href="#layers-of-mlp" title="Permalink to this heading">#</a></h1>
+<p>From mathematical point of view MLP is a smooth function <span class="math notranslate nohighlight">\(F\)</span> which is constructed as a composition of some other functions</p>
+<div class="math notranslate nohighlight">
+\[
+F(\boldsymbol x) = (f_{L} \circ f_{L-1} \circ\ldots \circ f_2 \circ f_1)(\boldsymbol x),\quad
+\boldsymbol x \in \mathbb R^{n_0}
+\]</div>
+<p>Each function</p>
+<div class="math notranslate nohighlight">
+\[
+    f_\ell \colon \mathbb R^{n_{\ell - 1}} \to \mathbb R^{n_\ell}
+\]</div>
+<p>is called a <strong>layer</strong>; it converts representation of <span class="math notranslate nohighlight">\((\ell-1)\)</span>-th layer</p>
+<div class="math notranslate nohighlight">
+\[
+    \boldsymbol x_{\ell -1} \in \mathbb R^{n_{\ell - 1}} 
+\]</div>
+<p>to the representation of <span class="math notranslate nohighlight">\(\ell\)</span>-th layer</p>
+<div class="math notranslate nohighlight">
+\[
+   \boldsymbol x_{\ell} \in \mathbb R^{n_{\ell}}.
+\]</div>
+<p>Thus, the <strong>input layer</strong> <span class="math notranslate nohighlight">\(\boldsymbol x_0 \in \mathbb R^{n_0}\)</span> is converted to the <strong>output layer</strong> <span class="math notranslate nohighlight">\(\boldsymbol x_L \in \mathbb R^{n_L}\)</span>. All other layers <span class="math notranslate nohighlight">\(\boldsymbol x_\ell\)</span>, <span class="math notranslate nohighlight">\(1\leqslant \ell &lt; L\)</span>, are called <strong>hidden layers</strong>.</p>
+<figure class="align-center">
+<img alt="https://www.researchgate.net/publication/354817375/figure/fig2/AS:1071622807097344&#64;1632506195651/Multi-layer-perceptron-MLP-NN-basic-Architecture.jpg" src="https://www.researchgate.net/publication/354817375/figure/fig2/AS:1071622807097344&#64;1632506195651/Multi-layer-perceptron-MLP-NN-basic-Architecture.jpg" />
+</figure>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The terminology about layers is a bit ambiguous. Both functions <span class="math notranslate nohighlight">\(f_\ell\)</span> and their outputs <span class="math notranslate nohighlight">\(\boldsymbol x_\ell = f(\boldsymbol x_{\ell - 1})\)</span> are called <span class="math notranslate nohighlight">\(\ell\)</span>-th layer in different sources.</p>
+</div>
+<section id="parameters-of-mlp">
+<h2>Parameters of MLP<a class="headerlink" href="#parameters-of-mlp" title="Permalink to this heading">#</a></h2>
+<p>However, one important element is missing in this description of MLP: parameters! Each layer <span class="math notranslate nohighlight">\(f_\ell\)</span> has a vector of parameters <span class="math notranslate nohighlight">\(\boldsymbol \theta_\ell\in\mathbb R^{m_\ell}\)</span> (sometimes empty). Hence, a layer should be defined as</p>
+<div class="math notranslate nohighlight">
+\[
+    f_\ell \colon \mathbb R^{n_{\ell - 1}} \times \mathbb R^{m_\ell} \to \mathbb R^{n_\ell}.
+\]</div>
+<p>The representation <span class="math notranslate nohighlight">\(\boldsymbol x_\ell\)</span> is calculated from <span class="math notranslate nohighlight">\(\boldsymbol x_{\ell -1}\)</span> by the formula</p>
+<div class="math notranslate nohighlight">
+\[
+\boldsymbol x_\ell = f_\ell(\boldsymbol x_{\ell - 1},\boldsymbol \theta_\ell)
+\]</div>
+<p>with some fixed <span class="math notranslate nohighlight">\(\boldsymbol \theta_\ell\in\mathbb R^{m_\ell}\)</span>. The whole MLP <span class="math notranslate nohighlight">\(F\)</span> depends on parameters of all layers:</p>
+<div class="math notranslate nohighlight">
+\[
+    F(\boldsymbol x, \boldsymbol \theta), \quad \boldsymbol \theta = (\boldsymbol \theta_1, \ldots, \boldsymbol \theta_L).
+\]</div>
+<p>All these parameters are trained simultaneously by the <a class="reference internal" href="backprop.html#backprop"><span class="std std-ref">backpropagation method</span></a>.</p>
+</section>
 <section id="dense-layer">
 <h2>Dense layer<a class="headerlink" href="#dense-layer" title="Permalink to this heading">#</a></h2>
+<p>Edges between two consequetive layers denote <strong>linear</strong> (or <strong>dense</strong>) layer:</p>
+<div class="math notranslate nohighlight">
+\[
+    \boldsymbol x_\ell = f(\boldsymbol x_{\ell - 1}; \boldsymbol W, \boldsymbol b) = \boldsymbol {Wx}_{\ell - 1} + \boldsymbol b.
+\]</div>
+<p>The matrix <span class="math notranslate nohighlight">\(\boldsymbol W \in \mathbb R^{n_{\ell - 1}\times n_\ell}\)</span> and vector <span class="math notranslate nohighlight">\(\boldsymbol b \in \mathbb R^{n_\ell}\)</span> (bias) are parameters of the linear layer which defines the linear transformation from <span class="math notranslate nohighlight">\(\boldsymbol x_{\ell - 1}\)</span> to <span class="math notranslate nohighlight">\(\boldsymbol x_{\ell}\)</span>.</p>
+<p><strong>Q</strong>. How many numeric parameters does such linear layer have?</p>
+<div class="important admonition">
+<p class="admonition-title">Exercise</p>
+<p>Suppose that we apply one more dense layer:</p>
+<div class="math notranslate nohighlight">
+\[
+    \boldsymbol x_{\ell + 1} = \boldsymbol {W'x}_{\ell} + \boldsymbol{b'}
+\]</div>
+<p>Express <span class="math notranslate nohighlight">\(\boldsymbol x_{\ell + 1}\)</span> as a function of <span class="math notranslate nohighlight">\(\boldsymbol x_{\ell - 1}\)</span>.</p>
+</div>
+<section id="linear-layer-in-pytorch">
+<h3>Linear layer in PyTorch<a class="headerlink" href="#linear-layer-in-pytorch" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([-0.0762,  0.6222, -1.1178,  0.9935,  2.0089])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">linear_layer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">linear_layer</span><span class="o">.</span><span class="n">bias</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Parameter containing:
+tensor([-0.4328,  0.1590, -0.0809,  0.3756, -0.3382,  0.4353],
+       requires_grad=True)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="activation-layer">
 <h2>Activation layer<a class="headerlink" href="#activation-layer" title="Permalink to this heading">#</a></h2>
@@ -570,7 +687,11 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dense-layer">Dense layer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters-of-mlp">Parameters of MLP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dense-layer">Dense layer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-layer-in-pytorch">Linear layer in PyTorch</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#activation-layer">Activation layer</a></li>
 </ul>
   </nav></div>
