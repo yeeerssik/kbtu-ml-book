@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>HW notMNIST &#8212; ML book</title>
+    <title>Task description &#8212; ML book</title>
   
   
   
@@ -333,7 +333,17 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">HW</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">HW notMNIST</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Task description</a></li>
+
+
+
+
+
+
+
+
+
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul class="nav bd-sidenav">
@@ -476,7 +486,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>HW notMNIST</h1>
+    <h1>Task description</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -486,22 +496,23 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-description">Task description</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-notes">Important notes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#submission">Submission</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Task description</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#important-notes">Important notes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submission">Submission</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-notmnist-dataset">Load <code class="docutils literal notranslate"><span class="pre">notmnist</span></code> dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-some-data">Visualize some data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression">Logistic regression</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#knn">kNN</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes">Naive Bayes</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree">Decision tree</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest">Random Forest</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mlp">MLP</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cnn">CNN</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-results">Plot results</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-notmnist-dataset">Load <code class="docutils literal notranslate"><span class="pre">notmnist</span></code> dataset</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-some-data">Visualize some data</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression">Logistic regression</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#knn">kNN</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes">Naive Bayes</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree">Decision tree</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest">Random Forest</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mlp">MLP</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#cnn">CNN</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-results">Plot results</a></li>
 </ul>
+
             </nav>
         </div>
     </div>
@@ -512,9 +523,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="hw-notmnist">
-<h1>HW notMNIST<a class="headerlink" href="#hw-notmnist" title="Permalink to this heading">#</a></h1>
-<div class="cell docutils container">
+  <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -523,7 +532,7 @@ document.write(`
 <span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">imread</span>
 <span class="kn">from</span> <span class="nn">skimage.transform</span> <span class="kn">import</span> <span class="n">resize</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">confusion_matrix</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span><span class="p">,</span> <span class="n">cross_val_score</span>
 <span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
 <span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;svg&#39;
 
@@ -569,11 +578,11 @@ document.write(`
 </div>
 </div>
 <section id="task-description">
-<h2>Task description<a class="headerlink" href="#task-description" title="Permalink to this heading">#</a></h2>
+<h1>Task description<a class="headerlink" href="#task-description" title="Permalink to this heading">#</a></h1>
 <p>In this notebook you are suggested to train several models of machine learning on the notMNIST dataset. To get full points per each model it must beat the <strong>baseline</strong> on test dataset. Models to test:</p>
 <ul class="simple">
 <li><p>logistic regression, 86% (<strong>1 point</strong>)</p></li>
-<li><p>k-nearest neigbors, 91% (<strong>1 point</strong>)</p></li>
+<li><p>k-nearest neigbors, 88% (<strong>1 point</strong>)</p></li>
 <li><p>naive Bayes classifier, 80% (<strong>1 point</strong>)</p></li>
 <li><p>decision tree, 82% (<strong>1 point</strong>)</p></li>
 <li><p>random forest, 91% (<strong>1 point</strong>)</p></li>
@@ -583,13 +592,13 @@ document.write(`
 </ul>
 <p><strong>Bonus</strong>! Each percent above baseline will bring you <strong>0.1 points</strong>.</p>
 <section id="important-notes">
-<h3>Important notes<a class="headerlink" href="#important-notes" title="Permalink to this heading">#</a></h3>
+<h2>Important notes<a class="headerlink" href="#important-notes" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>The total time of execution of all cells must not exceed <span class="math notranslate nohighlight">\(10\)</span> minutes</p></li>
 <li><p>Broken code in a section automatically implies <span class="math notranslate nohighlight">\(0\)</span> points for this section</p></li>
 <li><p>Do not erase any existing cells</p></li>
 <li><p>Use magic cell %%time to measure the time of execution of heavy-computation cells</p></li>
-<li><p>For each model use the following structure:</p>
+<li><p>For each model use the followind structure:</p>
 <ol class="arabic simple">
 <li><p>Import and build model</p></li>
 <li><p>Fit model on train dataset</p></li>
@@ -602,19 +611,20 @@ document.write(`
 </ul>
 </section>
 <section id="submission">
-<h3>Submission<a class="headerlink" href="#submission" title="Permalink to this heading">#</a></h3>
+<h2>Submission<a class="headerlink" href="#submission" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Name your submission in the format <code class="docutils literal notranslate"><span class="pre">DAY_NAME_SURNAME.ipynb</span></code></p></li>
-<li><p>Send this jupyter file to <code class="docutils literal notranslate"><span class="pre">ml.kbtu.2023&#64;ya.ru</span></code> (<strong>will be specified later</strong>) providing topic <code class="docutils literal notranslate"><span class="pre">DAY_NAME_SURNAME_notMNIST</span></code></p></li>
+<li><p>Send this jupyter file to <code class="docutils literal notranslate"><span class="pre">???.gmail.com</span></code> (<strong>will be specified later</strong>) providing topic <code class="docutils literal notranslate"><span class="pre">DAY_NAME_SURNAME_notMNIST</span></code></p></li>
 <li><p><strong>Deadline:</strong> 19.11.2023 23:59 (GMT+6)</p></li>
 </ul>
 </section>
 </section>
 <section id="load-notmnist-dataset">
-<h2>Load <code class="docutils literal notranslate"><span class="pre">notmnist</span></code> dataset<a class="headerlink" href="#load-notmnist-dataset" title="Permalink to this heading">#</a></h2>
+<h1>Load <code class="docutils literal notranslate"><span class="pre">notmnist</span></code> dataset<a class="headerlink" href="#load-notmnist-dataset" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">load_notmnist</span><span class="p">(</span><span class="n">letters</span><span class="o">=</span><span class="s1">&#39;ABCDEFGHIJ&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">load_notmnist</span><span class="p">(</span><span class="n">letters</span><span class="o">=</span><span class="s1">&#39;ABCDEFGHIJ&#39;</span><span class="p">)</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">784</span><span class="p">]),</span> <span class="n">X_test</span><span class="o">.</span><span class="n">reshape</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">784</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -630,6 +640,8 @@ document.write(`
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Done
+CPU times: user 11.2 s, sys: 3.85 s, total: 15 s
+Wall time: 20.5 s
 </pre></div>
 </div>
 </div>
@@ -663,7 +675,7 @@ document.write(`
 </div>
 </section>
 <section id="visualize-some-data">
-<h2>Visualize some data<a class="headerlink" href="#visualize-some-data" title="Permalink to this heading">#</a></h2>
+<h1>Visualize some data<a class="headerlink" href="#visualize-some-data" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_letters</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">):</span>
@@ -694,11 +706,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5d2f9509f4fc38800dedd94d4b56dcd419b8abcd0dfd80d046cbb3174688f3dd.svg" src="_images/5d2f9509f4fc38800dedd94d4b56dcd419b8abcd0dfd80d046cbb3174688f3dd.svg" /></div>
+<img alt="_images/eccce237582ab5daccd99bdb676ee16e6d5ada2396156254413bbc74c992332f.svg" src="_images/eccce237582ab5daccd99bdb676ee16e6d5ada2396156254413bbc74c992332f.svg" /></div>
 </div>
 </section>
 <section id="logistic-regression">
-<h2>Logistic regression<a class="headerlink" href="#logistic-regression" title="Permalink to this heading">#</a></h2>
+<h1>Logistic regression<a class="headerlink" href="#logistic-regression" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
@@ -708,26 +720,25 @@ document.write(`
 </div>
 </section>
 <section id="knn">
-<h2>kNN<a class="headerlink" href="#knn" title="Permalink to this heading">#</a></h2>
+<h1>kNN<a class="headerlink" href="#knn" title="Permalink to this heading">#</a></h1>
 </section>
 <section id="naive-bayes">
-<h2>Naive Bayes<a class="headerlink" href="#naive-bayes" title="Permalink to this heading">#</a></h2>
+<h1>Naive Bayes<a class="headerlink" href="#naive-bayes" title="Permalink to this heading">#</a></h1>
 </section>
 <section id="decision-tree">
-<h2>Decision tree<a class="headerlink" href="#decision-tree" title="Permalink to this heading">#</a></h2>
+<h1>Decision tree<a class="headerlink" href="#decision-tree" title="Permalink to this heading">#</a></h1>
 </section>
 <section id="random-forest">
-<h2>Random Forest<a class="headerlink" href="#random-forest" title="Permalink to this heading">#</a></h2>
+<h1>Random Forest<a class="headerlink" href="#random-forest" title="Permalink to this heading">#</a></h1>
 </section>
 <section id="mlp">
-<h2>MLP<a class="headerlink" href="#mlp" title="Permalink to this heading">#</a></h2>
+<h1>MLP<a class="headerlink" href="#mlp" title="Permalink to this heading">#</a></h1>
 </section>
 <section id="cnn">
-<h2>CNN<a class="headerlink" href="#cnn" title="Permalink to this heading">#</a></h2>
+<h1>CNN<a class="headerlink" href="#cnn" title="Permalink to this heading">#</a></h1>
 </section>
 <section id="plot-results">
-<h2>Plot results<a class="headerlink" href="#plot-results" title="Permalink to this heading">#</a></h2>
-</section>
+<h1>Plot results<a class="headerlink" href="#plot-results" title="Permalink to this heading">#</a></h1>
 </section>
 
     <script type="text/x-thebe-config">
@@ -797,22 +808,23 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-description">Task description</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-notes">Important notes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#submission">Submission</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Task description</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#important-notes">Important notes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submission">Submission</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-notmnist-dataset">Load <code class="docutils literal notranslate"><span class="pre">notmnist</span></code> dataset</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-some-data">Visualize some data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression">Logistic regression</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#knn">kNN</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes">Naive Bayes</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree">Decision tree</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest">Random Forest</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mlp">MLP</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cnn">CNN</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-results">Plot results</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-notmnist-dataset">Load <code class="docutils literal notranslate"><span class="pre">notmnist</span></code> dataset</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualize-some-data">Visualize some data</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression">Logistic regression</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#knn">kNN</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes">Naive Bayes</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#decision-tree">Decision tree</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#random-forest">Random Forest</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mlp">MLP</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#cnn">CNN</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-results">Plot results</a></li>
 </ul>
+
   </nav></div>
 
 </div></div>
