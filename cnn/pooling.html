@@ -63,6 +63,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'cnn/pooling';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -500,14 +502,49 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="pooling">
 <h1>Pooling<a class="headerlink" href="#pooling" title="Permalink to this heading">#</a></h1>
+<p>Pooling layers are commonly used in Convolutional Neural Networks (CNNs) for several reasons.</p>
+<ol class="arabic">
+<li><p><strong>Downsampling and Dimensionality Reduction</strong></p>
+<p>Pooling layers help reduce the spatial dimensions (width and height) of the input volume. By downsampling the feature maps, pooling layers decrease the computational load in the subsequent layers of the network.</p>
+</li>
+<li><p><strong>Translation Invariance</strong></p>
+<p>Pooling layers provide a certain degree of translation invariance, making the network less sensitive to the exact position of features in the input. This is particularly useful in tasks like image classification, where the location of an object within an image may vary.</p>
+</li>
+<li><p><strong>Local Feature Extraction</strong></p>
+<p>Pooling focuses on local features and helps retain the most essential information from a region. By selecting the maximum or average value from a pool of neighboring pixels, pooling layers capture the dominant features in a local region.</p>
+</li>
+</ol>
+<p>The pooling operation has the same parameters as convolution:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">kernel_size</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">padding</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stride</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dilation</span></code></p></li>
+</ul>
+<p>Unlike for convolution, the stride of a poolin kernel is usually equal to the kernel size (default value).</p>
 <section id="max-pooling">
 <h2>Max pooling<a class="headerlink" href="#max-pooling" title="Permalink to this heading">#</a></h2>
+<p>Max pooling operation returns the maximum value of each window.</p>
+<figure class="align-center">
+<img alt="https://miro.medium.com/v2/resize:fit:1400/1*WvHC5bKyrHa7Wm3ca-pXtg.gif" src="https://miro.medium.com/v2/resize:fit:1400/1*WvHC5bKyrHa7Wm3ca-pXtg.gif" />
+</figure>
+<div class="important admonition">
+<p class="admonition-title">Exercise</p>
+<p>What will the output of the max pooling layer in the previous example if stride is <span class="math notranslate nohighlight">\(1\)</span>?</p>
+</div>
 </section>
 <section id="average-pooling">
 <h2>Average pooling<a class="headerlink" href="#average-pooling" title="Permalink to this heading">#</a></h2>
+<p>A very similar operation to max pooling, calculates mean instead of maximum.</p>
+<figure class="align-center">
+<img alt="https://www.researchgate.net/publication/349921480/figure/fig2/AS:999677281460235&#64;1615353045589/Max-pooling-and-average-pooling.png" src="https://www.researchgate.net/publication/349921480/figure/fig2/AS:999677281460235&#64;1615353045589/Max-pooling-and-average-pooling.png" />
+</figure>
 </section>
 <section id="global-average-pooling">
 <h2>Global average pooling<a class="headerlink" href="#global-average-pooling" title="Permalink to this heading">#</a></h2>
+<figure class="align-center">
+<img alt="https://www.guidetomlandai.com/assets/img/machine_learning/global_average_pooling.png" src="https://www.guidetomlandai.com/assets/img/machine_learning/global_average_pooling.png" />
+</figure>
 </section>
 </section>
 
