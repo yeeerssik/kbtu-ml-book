@@ -536,7 +536,7 @@ document.write(`
 </div>
 <div class="important admonition">
 <p class="admonition-title">Question</p>
-<p>How many nonzero summands are there in <a class="reference internal" href="#equation-1-d-conv">(31)</a> for these finite sequences?</p>
+<p>How many nonzero elements are there in <a class="reference internal" href="#equation-1-d-conv">(31)</a> for these finite sequences?</p>
 </div>
 <p>In practice there are several reasonable strategies how to caclulate convolutions.</p>
 <ul>
@@ -639,7 +639,7 @@ Correlation, flip second: [ 4 13 22 15]
 <img alt="https://miro.medium.com/v2/resize:fit:1358/1*Fw-ehcNBR9byHtho-Rxbtw.gif" src="https://miro.medium.com/v2/resize:fit:1358/1*Fw-ehcNBR9byHtho-Rxbtw.gif" />
 </figure>
 <p>Two-dimensinonal convolutions are similar to convolutions of sequences.
-For two matrices <span class="math notranslate nohighlight">\(\boldsymbol A\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol B\)</span> their convolution is defined a</p>
+For two matrices <span class="math notranslate nohighlight">\(\boldsymbol A\)</span> and <span class="math notranslate nohighlight">\(\boldsymbol B\)</span> their <strong>convolution</strong> is defined a</p>
 <div class="math notranslate nohighlight">
 \[
     (\boldsymbol A * \boldsymbol B)_{k\ell} = \sum\limits_i \sum \limits_j A_{ij} B_{k-i, \ell-j}.
@@ -754,9 +754,13 @@ Valid:
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>The outputs of <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.convolve2d.html"><code class="docutils literal notranslate"><span class="pre">scipy.signal.convolve2d</span></code></a> and <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.nn.Conv2d.html"><code class="docutils literal notranslate"><span class="pre">torch.nn.conv2d</span></code></a>look different. What is the reason of it?</p>
-<div class="admonition-answer admonition">
+<div class="tip dropdown admonition">
 <p class="admonition-title">Answer</p>
-<p>Pytorch calculates not convolution but <strong>cross correlation</strong>.</p>
+<p>Pytorch calculates not convolution but <strong>cross correlation</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+    (\boldsymbol A \circledast \boldsymbol B)_{k\ell} = \sum\limits_i \sum \limits_j A_{ij} B_{k+i, \ell+j}.
+\]</div>
 </div>
 </div>
 <section id="image-convolution">
@@ -782,7 +786,7 @@ Valid:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/84c6196195bed506e87e5163d808971da012655301134916e1b17b46fe3b654e.svg" src="../_images/84c6196195bed506e87e5163d808971da012655301134916e1b17b46fe3b654e.svg" /></div>
+<img alt="../_images/80dd103d9edbfa32d3725f3be70fb5f808b1856501df2a9866e8d091ed572b5d.svg" src="../_images/80dd103d9edbfa32d3725f3be70fb5f808b1856501df2a9866e8d091ed572b5d.svg" /></div>
 </div>
 <p>The shape is <span class="math notranslate nohighlight">\(H\times W = 200\times 320\)</span>:</p>
 <div class="cell docutils container">
@@ -819,7 +823,7 @@ averages the values of each pixel with its neigbours, so the image becomes blurr
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/03ad2aeb8bf868e19e7176d508cd915c7513216aba602d57e3d4e2f767faa3db.svg" src="../_images/03ad2aeb8bf868e19e7176d508cd915c7513216aba602d57e3d4e2f767faa3db.svg" /></div>
+<img alt="../_images/055ade2472773f6265cf3b1b293dd87871fc15e311708bb6ab91262840c47aa9.svg" src="../_images/055ade2472773f6265cf3b1b293dd87871fc15e311708bb6ab91262840c47aa9.svg" /></div>
 </div>
 <p><span class="math notranslate nohighlight">\(n = 8\)</span>:</p>
 <div class="cell docutils container">
@@ -829,7 +833,7 @@ averages the values of each pixel with its neigbours, so the image becomes blurr
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fa984cdb397c92833f7ef8bb8cd6fa4b739bbbc47638274acdca034895a6ffbe.svg" src="../_images/fa984cdb397c92833f7ef8bb8cd6fa4b739bbbc47638274acdca034895a6ffbe.svg" /></div>
+<img alt="../_images/0ab867def61928b7a79ed320d9a5c3646e87afb854c4cec061f9284dd416841d.svg" src="../_images/0ab867def61928b7a79ed320d9a5c3646e87afb854c4cec061f9284dd416841d.svg" /></div>
 </div>
 <p>Now what if we convolve the image with kernel</p>
 <div class="math notranslate nohighlight">
@@ -857,7 +861,7 @@ averages the values of each pixel with its neigbours, so the image becomes blurr
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/58657af136a35c5640057222638eef0c9d9d6b43ef2ca52969533306cc33333c.svg" src="../_images/58657af136a35c5640057222638eef0c9d9d6b43ef2ca52969533306cc33333c.svg" /></div>
+<img alt="../_images/18a45e9b2ab9e5084539543caa193a3b171fa6f10dae9a055cca1995cf74418d.svg" src="../_images/18a45e9b2ab9e5084539543caa193a3b171fa6f10dae9a055cca1995cf74418d.svg" /></div>
 </details>
 </div>
 </section>

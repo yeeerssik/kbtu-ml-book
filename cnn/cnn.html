@@ -63,6 +63,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'cnn/cnn';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -461,7 +463,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -477,6 +481,15 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cnn-vs-mlp">CNN vs MLP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages-of-convolutions">Advantages of convolutions</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -488,6 +501,43 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="cnn">
 <h1>CNN<a class="headerlink" href="#cnn" title="Permalink to this heading">#</a></h1>
+<figure class="align-center">
+<img alt="https://miro.medium.com/v2/resize:fit:1400/0*IOvC3mgxzKBO502e.png" src="https://miro.medium.com/v2/resize:fit:1400/0*IOvC3mgxzKBO502e.png" />
+</figure>
+<p>One of the pioneering deep convolution neural networks (CNN) <a class="reference external" href="https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf">AlexNet</a> won the <a class="reference external" href="https://www.image-net.org/challenges/LSVRC/2012/index.php">ImageNet Large Scale Visual Recognition Challenge</a> (ILSVRC) in 2012. This event is now accepted as a key point of beginning of the deep learning era.</p>
+<section id="cnn-vs-mlp">
+<h2>CNN vs MLP<a class="headerlink" href="#cnn-vs-mlp" title="Permalink to this heading">#</a></h2>
+<p>In CNN new kind of layers are introduced such as <strong>convolution</strong> and <strong>pooling</strong>. Why are they important for image processing?</p>
+<p>An image in ImageNet collection usually has shape <span class="math notranslate nohighlight">\(224\times 224\)</span>, and it has three channels: red, green and blue. Hence, such image can be considered as a vector of size <span class="math notranslate nohighlight">\(224\times 224 \times 3 = 150528\)</span>.</p>
+<div class="important admonition">
+<p class="admonition-title">Question</p>
+<p>Suppose that we are applying a linear layer to this vector, and the output has the same shape. How many parameters does such dense layer have?</p>
+<div class="tip dropdown admonition">
+<p class="admonition-title">Answer</p>
+<p>The matrix of weights will conatain</p>
+<div class="math notranslate nohighlight">
+\[
+224^2\times 224^2 \times 3^2 &gt; 22 \text{ billion elements.}
+\]</div>
+</div>
+</div>
+<p>So, the number of parameters becomes too big. An MLP with so many parameters will train for a quite long time, and it could be easily overfitted. On the other hand, a convolution layer has much less parameters. For example, it the kernel size is <span class="math notranslate nohighlight">\(11\)</span>, number of input and output channels is <span class="math notranslate nohighlight">\(3\)</span>, then there are</p>
+<div class="math notranslate nohighlight">
+\[
+    11 \times 11 \times 3 \times 3 = 33^2 = 1089
+\]</div>
+<p>weights in the convolution layer.</p>
+</section>
+<section id="advantages-of-convolutions">
+<h2>Advantages of convolutions<a class="headerlink" href="#advantages-of-convolutions" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Local Connectivity</strong>. Convolutional layers have local connectivity, meaning each neuron is connected to a small local region of the input, enabling them to focus on local features and patterns.</p></li>
+<li><p><strong>Parameter Sharing</strong>. Convolutional layers use parameter sharing, where the same set of weights (filter) is applied to different parts of the input. This reduces the number of parameters, making the network more efficient and less prone to overfitting.</p></li>
+<li><p><strong>Translation Invariance</strong>. Convolutional layers inherently exhibit translation invariance, meaning they can recognize patterns regardless of their exact position in the input. This is particularly valuable for tasks like image recognition.</p></li>
+<li><p><strong>Parameter Efficiency</strong>. Convolutional layers are parameter-efficient compared to fully connected layers, especially when dealing with high-dimensional input data like images. This efficiency is crucial for training deep networks.</p></li>
+<li><p><strong>Efficient GPU Implementation</strong>. Convolutional operations can be highly parallelized, making them well-suited for efficient GPU implementation. This parallelization enhances the speed of both training and inference.</p></li>
+</ol>
+</section>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -550,6 +600,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cnn-vs-mlp">CNN vs MLP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages-of-convolutions">Advantages of convolutions</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
