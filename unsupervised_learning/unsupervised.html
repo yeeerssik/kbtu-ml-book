@@ -63,6 +63,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'unsupervised_learning/unsupervised';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -226,6 +228,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Unsupervised Learning</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="pca.html">Principal components analysis (PCA)</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="clustering_metrics.html">Clustering metrics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="k_means.html">K-means</a></li>
 <li class="toctree-l2"><a class="reference internal" href="hierarchic_clustering.html">Hierarchical Clustering</a></li>
@@ -488,6 +491,15 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="unsupervised-learning">
 <h1>Unsupervised Learning<a class="headerlink" href="#unsupervised-learning" title="Permalink to this heading">#</a></h1>
+<p><strong>Unsupervised learning</strong> refers to a class of machine learning problems where the model is tasked with finding patterns or relationships in data without explicit guidance or labeled examples. Unlike in supervised learning problems, there are no targets <span class="math notranslate nohighlight">\(y_i\)</span>, and datasets consist of just feature vectors: <span class="math notranslate nohighlight">\(\mathcal D = \{\boldsymbol x_i\}_{i=1}^n\)</span>.</p>
+<p>Here are some common types of problems associated with unsupervised learning:</p>
+<ol class="arabic simple">
+<li><p><strong>Dimensionality Reduction</strong>: reducing the number of features or variables in a dataset while preserving essential information.</p></li>
+<li><p><strong>Clustering</strong>: grouping similar data points together without prior knowledge of class labels.</p></li>
+<li><p><strong>Anomaly Detection</strong>: identifying rare or unusual instances in a dataset that deviate from the norm.</p></li>
+<li><p><strong>Association Rule Learning</strong>: discovering interesting relationships or associations between variables in a dataset.</p></li>
+<li><p><strong>Topic Modeling</strong>: identifying topics or themes present in a collection of documents.</p></li>
+</ol>
 <div class="toctree-wrapper compound">
 </div>
 </section>

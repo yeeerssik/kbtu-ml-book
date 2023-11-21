@@ -786,7 +786,7 @@ Valid:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/80dd103d9edbfa32d3725f3be70fb5f808b1856501df2a9866e8d091ed572b5d.svg" src="../_images/80dd103d9edbfa32d3725f3be70fb5f808b1856501df2a9866e8d091ed572b5d.svg" /></div>
+<img alt="../_images/b18ed1c81672caa0621650710ec2ec67f7e84320931ccce3a74ee6055f7b42c4.svg" src="../_images/b18ed1c81672caa0621650710ec2ec67f7e84320931ccce3a74ee6055f7b42c4.svg" /></div>
 </div>
 <p>The shape is <span class="math notranslate nohighlight">\(H\times W = 200\times 320\)</span>:</p>
 <div class="cell docutils container">
@@ -801,7 +801,7 @@ Valid:
 </div>
 </div>
 </div>
-<p>Convolving with kernel <span class="math notranslate nohighlight">\(K = \frac 1{n^2} \boldsymbol I_n\)</span>
+<p>Convolving with kernel <span class="math notranslate nohighlight">\(K = \frac 1{n^2} \boldsymbol 1_{n\times n}\)</span>
 averages the values of each pixel with its neigbours, so the image becomes blurred:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -823,7 +823,7 @@ averages the values of each pixel with its neigbours, so the image becomes blurr
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/055ade2472773f6265cf3b1b293dd87871fc15e311708bb6ab91262840c47aa9.svg" src="../_images/055ade2472773f6265cf3b1b293dd87871fc15e311708bb6ab91262840c47aa9.svg" /></div>
+<img alt="../_images/384c17ba60b79af648c9f5c707e48d6d6201eee7b01729f4f3cda82bc40772a5.svg" src="../_images/384c17ba60b79af648c9f5c707e48d6d6201eee7b01729f4f3cda82bc40772a5.svg" /></div>
 </div>
 <p><span class="math notranslate nohighlight">\(n = 8\)</span>:</p>
 <div class="cell docutils container">
@@ -833,7 +833,7 @@ averages the values of each pixel with its neigbours, so the image becomes blurr
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0ab867def61928b7a79ed320d9a5c3646e87afb854c4cec061f9284dd416841d.svg" src="../_images/0ab867def61928b7a79ed320d9a5c3646e87afb854c4cec061f9284dd416841d.svg" /></div>
+<img alt="../_images/0809a9e806029496d94bc12d66bf15d80a4a6929d274dfe7802a8d9712a527af.svg" src="../_images/0809a9e806029496d94bc12d66bf15d80a4a6929d274dfe7802a8d9712a527af.svg" /></div>
 </div>
 <p>Now what if we convolve the image with kernel</p>
 <div class="math notranslate nohighlight">
@@ -861,7 +861,7 @@ averages the values of each pixel with its neigbours, so the image becomes blurr
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/18a45e9b2ab9e5084539543caa193a3b171fa6f10dae9a055cca1995cf74418d.svg" src="../_images/18a45e9b2ab9e5084539543caa193a3b171fa6f10dae9a055cca1995cf74418d.svg" /></div>
+<img alt="../_images/4492ed12036d6218b7d9568e08d7120930a05deb116ce55d65604172312150bf.svg" src="../_images/4492ed12036d6218b7d9568e08d7120930a05deb116ce55d65604172312150bf.svg" /></div>
 </details>
 </div>
 </section>
@@ -932,7 +932,7 @@ averages the values of each pixel with its neigbours, so the image becomes blurr
         1 &amp; -1
     \end{pmatrix}.
 \end{split}\]</div>
-<p>with stride <span class="math notranslate nohighlight">\(2\)</span> in mode <code class="docutils literal notranslate"><span class="pre">same</span></code>.</p>
+<p>with dilation <span class="math notranslate nohighlight">\(2\)</span> in mode <code class="docutils literal notranslate"><span class="pre">same</span></code>.</p>
 </div>
 <p>Check with pyTorch:</p>
 <div class="cell docutils container">
