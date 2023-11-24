@@ -228,6 +228,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../unsupervised_learning/unsupervised.html">Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/pca.html">Principal components analysis (PCA)</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/clustering_metrics.html">Clustering metrics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/k_means.html">K-means</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/hierarchic_clustering.html">Hierarchical Clustering</a></li>
@@ -599,7 +600,7 @@ document.write(`
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">gradient</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">tol</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">w</span>
         <span class="n">w</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">gradient</span>
-        <span class="n">gradient</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="n">C</span> <span class="o">*</span> <span class="n">w</span>
+        <span class="n">gradient</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">expit</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w</span><span class="p">))</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="n">C</span> <span class="o">*</span> <span class="n">w</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;max_iter exceeded&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">w</span>
 </pre></div>
@@ -609,23 +610,23 @@ document.write(`
 <p>Fit the logistic regresion on the whole dataset:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="n">logistic_regression_gd</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">time</span> w = logistic_regression_gd(X, y, learning_rate=2e-7, max_iter=10**6)
 <span class="n">w</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>max_iter exceeded
+CPU times: user 1min 1s, sys: 5.71 s, total: 1min 7s
+Wall time: 38.8 s
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1.35294997e+00, -5.01617609e-01, -7.93916757e-02, -4.85618626e-03,
-        9.77450507e-02,  7.81893991e-01,  4.26760299e-02, -5.59528202e-01,
-        1.35442559e-01, -1.81722172e-01, -2.73676622e-02, -1.06755594e+00,
-        6.06413021e-01, -5.56891358e-04, -4.50932273e-01,  3.76255558e-01,
-       -7.02271475e-01,  9.98290371e-01, -1.16426349e+00,  4.17475424e-01,
-        2.09397122e+00,  2.85858600e-01, -3.80811903e-01,  3.52927029e-04,
-        8.02296649e-01,  1.33672747e+00,  1.42083083e-01, -3.43596318e-01,
-       -7.94504175e-02, -3.83716327e-01])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0.57680528,  0.31827141,  0.96140927, -0.00938289, -0.3725516 ,
+       -0.10009336, -0.99553101, -0.90042416,  0.00939798, -0.34021022,
+       -0.31461213,  1.02622568,  0.4434015 , -0.23061099,  0.18462833,
+        0.25459065,  0.32643117,  0.8636164 , -0.17861502,  0.69933769,
+        2.41929262, -0.67026647, -0.6566355 , -0.05357974, -0.03154651,
+       -0.59030328,  0.0134214 , -1.22878176,  0.58696301, -0.95426177])
 </pre></div>
 </div>
 </div>
@@ -639,7 +640,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.680140597539543
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9525483304042179
 </pre></div>
 </div>
 </div>
@@ -679,7 +680,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.9257943403502935
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.6953597608304958
 </pre></div>
 </div>
 </div>

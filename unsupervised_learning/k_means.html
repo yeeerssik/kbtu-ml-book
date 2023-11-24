@@ -512,15 +512,12 @@ document.write(`
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_openml</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 
 <span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;svg&#39;
 
 <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">fetch_openml</span><span class="p">(</span><span class="s1">&#39;mnist_784&#39;</span><span class="p">,</span> <span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">values</span> <span class="o">/</span> <span class="mi">255</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
-
-<span class="n">X_train</span><span class="p">,</span> <span class="n">X_vis</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_vis</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -529,13 +526,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">MiniBatchKMeans</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kmeans_mini</span> <span class="o">=</span> <span class="n">MiniBatchKMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+<span class="n">kmeans_mini</span> <span class="o">=</span> <span class="n">MiniBatchKMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
 <span class="o">%</span><span class="k">time</span> kmeans_mini.fit(X)
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Intertia:&quot;</span><span class="p">,</span> <span class="n">kmeans_mini</span><span class="o">.</span><span class="n">inertia_</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Class labels:&quot;</span><span class="p">,</span> <span class="n">kmeans_mini</span><span class="o">.</span><span class="n">labels_</span><span class="p">)</span>
@@ -543,10 +534,19 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.63 s, sys: 421 ms, total: 2.05 s
-Wall time: 1.88 s
-Intertia: 2776531.4416562114
-Class labels: [7 5 3 ... 9 9 4]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.71 s, sys: 379 ms, total: 2.09 s
+Wall time: 1.33 s
+Intertia: 2767195.854223475
+Class labels: [8 4 1 ... 9 9 0]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calculate silhouette score:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">silhouette_score</span>
+<span class="o">%</span><span class="k">time</span> silhouette_score(X, kmeans_mini.labels_, metric=&#39;euclidean&#39;)
 </pre></div>
 </div>
 </div>
@@ -565,7 +565,7 @@ Class labels: [7 5 3 ... 9 9 4]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/724e67c1d289cbe9c4433d620a35e2a986a6e6bb205c19ed15320db4885a8775.svg" src="../_images/724e67c1d289cbe9c4433d620a35e2a986a6e6bb205c19ed15320db4885a8775.svg" /></div>
+<img alt="../_images/fd480fd893937dbfdfaab228d27d3c023de5d79e4607bb17826cb9f57132f3d2.svg" src="../_images/fd480fd893937dbfdfaab228d27d3c023de5d79e4607bb17826cb9f57132f3d2.svg" /></div>
 </div>
 <p>Can you guess who is who here?</p>
 <p>Now take the true K-means.</p>
@@ -580,10 +580,28 @@ Class labels: [7 5 3 ... 9 9 4]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 40.9 s, sys: 865 ms, total: 41.8 s
-Wall time: 22.6 s
-Intertia: 2753056.9809400616
-Class labels: [1 2 6 ... 4 5 0]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 17.4 s, sys: 578 ms, total: 18 s
+Wall time: 10.4 s
+Intertia: 2744522.4342046715
+Class labels: [3 6 5 ... 7 3 0]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Silhouette score of K-means:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">silhouette_score</span>
+<span class="o">%</span><span class="k">time</span> silhouette_score(X, kmeans.labels_, metric=&#39;euclidean&#39;)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4min 54s, sys: 22.9 s, total: 5min 17s
+Wall time: 3min 21s
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.05599485888756957
 </pre></div>
 </div>
 </div>
@@ -602,7 +620,7 @@ Class labels: [1 2 6 ... 4 5 0]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5cc9df8334e440d9cd299229041571a8d257e40fd9ceb40f1e68be512c3ea9aa.svg" src="../_images/5cc9df8334e440d9cd299229041571a8d257e40fd9ceb40f1e68be512c3ea9aa.svg" /></div>
+<img alt="../_images/e4914ef53c18d393a7df86493e10507ee7de3c038a877b83e3066a34d449cca7.svg" src="../_images/e4914ef53c18d393a7df86493e10507ee7de3c038a877b83e3066a34d449cca7.svg" /></div>
 </div>
 </section>
 </section>
