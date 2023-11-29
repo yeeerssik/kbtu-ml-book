@@ -228,6 +228,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../unsupervised_learning/unsupervised.html">Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/pca.html">Principal components analysis (PCA)</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/clustering_metrics.html">Clustering metrics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/k_means.html">K-means</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/hierarchic_clustering.html">Hierarchical Clustering</a></li>
@@ -271,8 +272,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../rl/RL.html">Reinforcement Learning</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../rl/basics.html">RL basics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../rl/multiarmed_bandits.html">Multiarmed bandits</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../rl/mdp.html">Markov decision process (MDP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rl/multiarmed_bandits.html">Multi-armed bandits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rl/mdp.html">Markov Decision Process (MDP)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rl/q_learning.html">Q-learning</a></li>
 </ul>
 </li>
@@ -509,7 +510,7 @@ document.write(`
 <p>Consider a regression problem with dataset <span class="math notranslate nohighlight">\(\mathcal D = \{(\boldsymbol x_i, y_i)\}_{i=1}^n\)</span>, <span class="math notranslate nohighlight">\(y_i\in\mathbb R\)</span>. The probabilistic model for the linear regression model assumes that</p>
 <div class="math notranslate nohighlight">
 \[
-    y_i = \boldsymbol x_i^\top \boldsymbol w + \varepsilon_i,
+    y_i = \boldsymbol x_i^{\mathsf T} \boldsymbol w + \varepsilon_i,
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> is some random noise.</p>
 <section id="gaussian-model">
@@ -517,7 +518,7 @@ document.write(`
 <p>In this setting the random noise is gaussian: <span class="math notranslate nohighlight">\(\varepsilon_i \sim \mathcal N (0, \sigma^2)\)</span>. Hence,</p>
 <div class="math notranslate nohighlight">
 \[
-    p(y_i \vert \boldsymbol x_i, \boldsymbol w) = \mathcal N(\boldsymbol x_i^\top \boldsymbol w, \sigma^2) = \frac 1{\sqrt{2\pi} \sigma} \exp\Big(-\frac{(\boldsymbol x_i^\top \boldsymbol w - y_i)^2}{2\sigma^2}\Big).
+    p(y_i \vert \boldsymbol x_i, \boldsymbol w) = \mathcal N(\boldsymbol x_i^{\mathsf T} \boldsymbol w, \sigma^2) = \frac 1{\sqrt{2\pi} \sigma} \exp\Big(-\frac{(\boldsymbol x_i^{\mathsf T} \boldsymbol w - y_i)^2}{2\sigma^2}\Big).
 \]</div>
 <p><strong>Q</strong>. What is <span class="math notranslate nohighlight">\(\mathbb E y_i\)</span>? <span class="math notranslate nohighlight">\(\mathbb V y_i\)</span>?</p>
 <p>A picture from <a class="reference external" href="https://academy.yandex.ru/handbook/ml/article/beta-pervoe-znakomstvo-s-veroyatnostnymi-modelyami#sluchajnost-kak-istochnik-nesovershenstva-modeli">ML Handbook</a>:</p>
@@ -528,13 +529,13 @@ document.write(`
 <p>The likelihood of the dataset <span class="math notranslate nohighlight">\(\mathcal D\)</span> is</p>
 <div class="math notranslate nohighlight">
 \[
-    p(\boldsymbol y \vert \boldsymbol X, \boldsymbol w) = \prod_{i=1}^n \mathcal N(\boldsymbol x_i^\top \boldsymbol w, \sigma^2) = \frac 1{(\sqrt{2\pi}\sigma)^n}\exp\Big(-\sum\limits_{i=1}^n \frac{(\boldsymbol x_i^\top \boldsymbol w - y_i)^2}{2\sigma^2}\Big).
+    p(\boldsymbol y \vert \boldsymbol X, \boldsymbol w) = \prod_{i=1}^n \mathcal N(\boldsymbol x_i^{\mathsf T} \boldsymbol w, \sigma^2) = \frac 1{(\sqrt{2\pi}\sigma)^n}\exp\Big(-\sum\limits_{i=1}^n \frac{(\boldsymbol x_i^{\mathsf T} \boldsymbol w - y_i)^2}{2\sigma^2}\Big).
 \]</div>
 <p>Hence, the negative log-likelihood is</p>
 <div class="math notranslate nohighlight">
 \[
     \mathrm{NLL}(\boldsymbol w) = -\log p(\boldsymbol y \vert \boldsymbol X, \boldsymbol w)=
-    \frac 1{2\sigma^2} \sum\limits_{i=1}^n (\boldsymbol x_i^\top \boldsymbol w - y_i)^2 + \frac n2\log(2\pi\sigma)^2.
+    \frac 1{2\sigma^2} \sum\limits_{i=1}^n (\boldsymbol x_i^{\mathsf T} \boldsymbol w - y_i)^2 + \frac n2\log(2\pi\sigma)^2.
 \]</div>
 <p><strong>Q.</strong> How does this NLL relates to the loss function <a class="reference internal" href="../lin_reg/multiple.html#equation-lin-reg-loss-opt">(17)</a> of the linear regression model?</p>
 <p>Thus, the optimal weights <a class="reference internal" href="../lin_reg/multiple.html#equation-lin-reg-solution">(19)</a> of the linear regression with MSE loss coincide with MLE:</p>
@@ -549,27 +550,27 @@ document.write(`
 <p>Now suppose that our loss function is MAE. Then</p>
 <div class="math notranslate nohighlight">
 \[  
-    \boldsymbol{\widehat w} = \arg\min\limits_{\boldsymbol w} \sum\limits_{i=1}^n \vert \boldsymbol x_i^\top \boldsymbol w - y_i\vert = \arg\max\limits_{\boldsymbol w} \Big(-\sum\limits_{i=1}^n \vert \boldsymbol x_i^\top \boldsymbol w - y_i\vert\Big)
+    \boldsymbol{\widehat w} = \arg\min\limits_{\boldsymbol w} \sum\limits_{i=1}^n \vert \boldsymbol x_i^{\mathsf T} \boldsymbol w - y_i\vert = \arg\max\limits_{\boldsymbol w} \Big(-\sum\limits_{i=1}^n \vert \boldsymbol x_i^{\mathsf T} \boldsymbol w - y_i\vert\Big)
 \]</div>
 <p>Which probabilistic model will give</p>
 <div class="math notranslate nohighlight">
 \[
-    \mathrm{NLL}(\boldsymbol w) = -\frac 1b\sum\limits_{i=1}^n \vert \boldsymbol x_i^\top \boldsymbol w - y_i\vert?
+    \mathrm{NLL}(\boldsymbol w) = \frac 1b\sum\limits_{i=1}^n \vert \boldsymbol x_i^{\mathsf T} \boldsymbol w - y_i\vert + \mathrm{const}?
 \]</div>
 <p>Well, then likelihood should be</p>
 <div class="math notranslate nohighlight">
 \[
-    p(\boldsymbol y \vert \boldsymbol X, \boldsymbol w) = \exp\Big(-\frac 1b\sum\limits_{i=1}^n \vert\boldsymbol x_i^\top \boldsymbol w - y_i\vert\Big) = \prod\limits_{i=1}^n \exp\Big(-\frac{\vert\boldsymbol x_i^\top \boldsymbol w - y_i\vert} b\Big).
+    p(\boldsymbol y \vert \boldsymbol X, \boldsymbol w) \propto \exp\Big(-\frac 1b\sum\limits_{i=1}^n \vert\boldsymbol x_i^{\mathsf T} \boldsymbol w - y_i\vert\Big) = \prod\limits_{i=1}^n \exp\Big(-\frac{\vert\boldsymbol x_i^{\mathsf T} \boldsymbol w - y_i\vert} b\Big).
 \]</div>
 <p>Hence,</p>
 <div class="math notranslate nohighlight">
 \[
-    p(y_i \vert \boldsymbol x_i, \boldsymbol w) = \exp\Big(-\frac{\vert\boldsymbol x_i^\top \boldsymbol w - y_i\vert}b\Big),
+    p(y_i \vert \boldsymbol x_i, \boldsymbol w) \propto \exp\Big(-\frac{\vert\boldsymbol x_i^{\mathsf T} \boldsymbol w - y_i\vert}b\Big),
 \]</div>
 <p>and</p>
 <div class="math notranslate nohighlight">
 \[
-    y_i  \sim \mathrm{Laplace}(\boldsymbol x_i^\top \boldsymbol w, b).
+    y_i  \sim \mathrm{Laplace}(\boldsymbol x_i^{\mathsf T} \boldsymbol w, b).
 \]</div>
 </section>
 <section id="bayesian-linear-regression">
@@ -609,7 +610,7 @@ Find posterior <span class="math notranslate nohighlight">\(p(a \vert \boldsymbo
 <div class="math notranslate nohighlight">
 \[
     -\log p( \boldsymbol y \vert  \boldsymbol X, \boldsymbol w) - \log p(\boldsymbol w)
-    = \frac 1{2\sigma^2} \sum\limits_{i=1}^n (y_i -\boldsymbol x_i^\intercal \boldsymbol w)^2 + \frac 1{2\tau^2} \sum\limits_{j=1}^d w_j^2.
+    = \frac 1{2\sigma^2} \sum\limits_{i=1}^n (y_i -\boldsymbol x_i^\intercal \boldsymbol w)^2 + \frac 1{2\tau^2} \sum\limits_{j=1}^d w_j^2 + \mathrm{const}.
 \]</div>
 <p>Hence,</p>
 <div class="math notranslate nohighlight">
@@ -641,7 +642,7 @@ Find posterior <span class="math notranslate nohighlight">\(p(a \vert \boldsymbo
 <span class="math notranslate nohighlight">\(\mathcal N(\boldsymbol{Xw}, \sigma^2 \boldsymbol I)\)</span>. Then</p>
 <div class="math notranslate nohighlight">
 \[
--\log p(\boldsymbol w \vert \boldsymbol X, \boldsymbol y) = \frac 1{2\sigma^2} \sum\limits_{i=1}^n (y_i -\boldsymbol x_i^\intercal \boldsymbol w)^2 +  \lambda\sum\limits_{j=1}^d \vert w_j\vert.
+-\log p(\boldsymbol w \vert \boldsymbol X, \boldsymbol y) = \frac 1{2\sigma^2} \sum\limits_{i=1}^n (y_i -\boldsymbol x_i^{\mathsf{T}} \boldsymbol w)^2 +  \lambda\sum\limits_{j=1}^d \vert w_j\vert + \mathrm{const}.
 \]</div>
 <p>Hence, maximum a posteriori estimation is</p>
 <div class="math notranslate nohighlight">

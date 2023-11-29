@@ -228,6 +228,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../unsupervised_learning/unsupervised.html">Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/pca.html">Principal components analysis (PCA)</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/clustering_metrics.html">Clustering metrics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/k_means.html">K-means</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/hierarchic_clustering.html">Hierarchical Clustering</a></li>
@@ -271,8 +272,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../rl/RL.html">Reinforcement Learning</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../rl/basics.html">RL basics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../rl/multiarmed_bandits.html">Multiarmed bandits</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../rl/mdp.html">Markov decision process (MDP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rl/multiarmed_bandits.html">Multi-armed bandits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rl/mdp.html">Markov Decision Process (MDP)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rl/q_learning.html">Q-learning</a></li>
 </ul>
 </li>
@@ -508,13 +509,13 @@ document.write(`
 <p>Binary logistic regression predicts the probability of positive class:</p>
 <div class="math notranslate nohighlight">
 \[
-    \mathbb P(y = 1 \vert \boldsymbol x,  \boldsymbol w) = \sigma(\boldsymbol x^\intercal \boldsymbol w), \quad \sigma(t) = \frac 1{1 + e^{-t}}.
+    \mathbb P(y = 1 \vert \boldsymbol x,  \boldsymbol w) = \sigma(\boldsymbol x^{\mathsf T} \boldsymbol w), \quad \sigma(t) = \frac 1{1 + e^{-t}}.
 \]</div>
 <p><strong>Q</strong>. What is the probability of negative class <span class="math notranslate nohighlight">\(\mathbb P(y = 0 \vert \boldsymbol x,  \boldsymbol w)\)</span>?</p>
 <p>It follows that</p>
 <div class="math notranslate nohighlight">
 \[
-p(y \vert \boldsymbol x,  \boldsymbol w) = \mathrm{Bern}(\sigma(\boldsymbol x^\intercal \boldsymbol w))
+p(y \vert \boldsymbol x,  \boldsymbol w) = \mathrm{Bern}(\sigma(\boldsymbol x^{\mathsf T} \boldsymbol w))
 \]</div>
 <p><strong>Q</strong>. What is <span class="math notranslate nohighlight">\(p(y \vert \boldsymbol x,  \boldsymbol w)\)</span> if <span class="math notranslate nohighlight">\(y \in\{-1, +1\}\)</span>?</p>
 <section id="mle">
@@ -522,7 +523,7 @@ p(y \vert \boldsymbol x,  \boldsymbol w) = \mathrm{Bern}(\sigma(\boldsymbol x^\i
 <section id="binary-case">
 <h3>Binary case<a class="headerlink" href="#binary-case" title="Permalink to this heading">#</a></h3>
 <p>Note that if <span class="math notranslate nohighlight">\(\xi \sim \mathrm{Bern}(q)\)</span> then <span class="math notranslate nohighlight">\(\mathbb P(\xi = t) = q^{t} (1-q)^{1-t}\)</span>.
-Denote <span class="math notranslate nohighlight">\(\widehat y_i = \sigma(\boldsymbol x_i^\intercal \boldsymbol w)\)</span> and write down the negative log-likelihood:</p>
+Denote <span class="math notranslate nohighlight">\(\widehat y_i = \sigma(\boldsymbol x_i^{\mathsf T} \boldsymbol w)\)</span> and write down the negative log-likelihood:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
     \begin{multline*}
@@ -537,7 +538,7 @@ Denote <span class="math notranslate nohighlight">\(\widehat y_i = \sigma(\bolds
 <p>Suppose that <span class="math notranslate nohighlight">\(\mathcal Y = \{1, \ldots, K\}\)</span>, then prediction on a sample <span class="math notranslate nohighlight">\(\boldsymbol x \in \mathbb R^d\)</span> is a vector of probabilities</p>
 <div class="math notranslate nohighlight">
 \[
-    \boldsymbol{\widehat y} = \mathrm{Softmax}(\boldsymbol x^\intercal \boldsymbol W), \quad \boldsymbol W \in \mathbb R^{d\times K}.
+    \boldsymbol{\widehat y} = \mathrm{Softmax}(\boldsymbol x^{\mathsf T} \boldsymbol W), \quad \boldsymbol W \in \mathbb R^{d\times K}.
 \]</div>
 <p>Thus,</p>
 <div class="math notranslate nohighlight">
@@ -565,7 +566,7 @@ Denote <span class="math notranslate nohighlight">\(\widehat y_i = \sigma(\bolds
 \[
 -\log p(\boldsymbol w \vert \boldsymbol X, \boldsymbol y) = -\sum_{i=1}^n \big(y_i\log(\widehat y_i) + (1-y_i) \log(1 - \widehat y_i)\big) +  \frac 1{2\tau^2} \sum\limits_{j=1}^d w_j^2,
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\widehat y_i = \sigma(\boldsymbol x_i^\intercal \boldsymbol w)\)</span>. Hence,</p>
+<p>where <span class="math notranslate nohighlight">\(\widehat y_i = \sigma(\boldsymbol x_i^{\mathsf T} \boldsymbol w)\)</span>. Hence,</p>
 <div class="math notranslate nohighlight">
 \[
 \boldsymbol {\widehat w}_{\mathrm{MAP}} = \arg\min\limits_{\boldsymbol w}
