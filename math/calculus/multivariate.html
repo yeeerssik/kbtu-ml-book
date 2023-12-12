@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Multivariate calculus &#8212; ML book</title>
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -39,8 +39,9 @@
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -80,6 +81,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -133,9 +143,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../../README.html">
+  
   
   
   
@@ -145,8 +157,8 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="ML book - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="ML book - Home"/>`);</script>
   
   
 </a></div>
@@ -195,30 +207,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../eval_metrics/hyperparameters.html">Hyperparameters tuning</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../probabilistic_models/probabilistic.html">Probabilistic models</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../probabilistic_models/bayesian_inference.html">Bayesian inference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../probabilistic_models/lin_reg_prob.html">Probabilistic models for linear regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../probabilistic_models/log_reg_prob.html">Probabilistic models for logistic regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../probabilistic_models/LDA.html">Linear Discriminant Analysis (QDA)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../probabilistic_models/QDA.html">Quadratic Discriminant Analysis (QDA)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../probabilistic_models/naive_bayes.html">Naive Bayes classifier</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../decision_trees/decision_tree.html">Decision Trees</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../decision_trees/decision_tree.html">Decision Trees</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../decision_trees/classification.html">Classification tree</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../decision_trees/regression.html">Regression tree</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../decision_trees/impurity.html">Impurity and information criterions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../decision_trees/pruning.html">Tree pruning</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../ensembling/ensemble.html">Ensembling</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../ensembling/bias_variance.html">Bias-variance decomposition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../ensembling/voting_stacking_blending.html">Voting, stacking and blending</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../ensembling/bagging.html">Bagging</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../ensembling/random_forest.html">Random forests</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../gradient_boosting/gradient_boosting.html">Gradient boosting</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../gradient_boosting/gradient_boosting.html">Gradient boosting</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../gradient_boosting/boosting.html">Boosting and additive modeling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../gradient_boosting/generic_gb.html">Generic gradient boosting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../gradient_boosting/adaboost.html">AdaBoost</a></li>
@@ -226,7 +222,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../gradient_boosting/catboost.html">CatBoost</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../unsupervised_learning/unsupervised.html">Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../unsupervised_learning/unsupervised.html">Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../unsupervised_learning/pca.html">Principal components analysis (PCA)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../unsupervised_learning/clustering_metrics.html">Clustering metrics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../unsupervised_learning/k_means.html">K-means</a></li>
@@ -236,7 +232,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../mlp/mlp.html">Multilayer perceptron (MLP)</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../mlp/mlp.html">Multilayer perceptron (MLP)</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../mlp/layers.html">Layers of MLP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../mlp/forward_backward_pass.html">Forward and backward pass</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../mlp/activations.html">Activation functions</a></li>
@@ -246,7 +242,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../mlp/optimization_dl.html">Optimization in DL</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../cnn/cnn.html">CNN</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../cnn/cnn.html">CNN</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../cnn/convolutions_2d.html">Convolution of matrices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../cnn/convolutions_3d.html">Convolutions of tensors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../cnn/pooling.html">Pooling</a></li>
@@ -255,7 +251,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../cnn/architectures.html">Architectures of CNN</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../rnn/sequential.html">Sequential NNs</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../rnn/sequential.html">Sequential NNs</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../rnn/vanilla_rnn.html">Vanilla RNN</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../rnn/lstm.html">LSTM</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../rnn/gru.html">GRU</a></li>
@@ -263,13 +259,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../rnn/transformers.html">Transformers</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../gm/generative.html">Generative models</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../gm/generative.html">Generative models</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../gm/autoencoders.html">Autoencoders</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../gm/vae.html">Variational autoencoders (VAE)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../gm/gan.html">Ganerative adversarial networks (GAN)</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../rl/RL.html">Reinforcement Learning</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../rl/RL.html">Reinforcement Learning</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../rl/basics.html">RL basics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../rl/multiarmed_bandits.html">Multiarmed bandits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../rl/mdp.html">Markov decision process (MDP)</a></li>
@@ -279,7 +275,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python for ML</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../python/python_basics.html">Python Basics</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../python/python_basics.html">Python Basics</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../python/basics/basic_types.html">Basic Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../python/basics/variables.html">Variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../python/basics/control_flow.html">Control flow</a></li>
@@ -291,11 +287,10 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../python/numpy.html">NumPy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../python/pandas.html">Pandas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../python/visual.html">Data visualization</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Math for ML</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../linear_algebra.html">Linear Algebra</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../linear_algebra.html">Linear Algebra</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../lin_alg/vectors.html">Vectors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../lin_alg/matrices.html">Matrices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../lin_alg/linear_systems.html">Linear systems</a></li>
@@ -310,30 +305,23 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../lin_alg/SVD.html">Singular Value Decomposition (SVD)</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../calculus.html">Calculus</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../calculus.html">Calculus</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="1-d.html">1-d calculus</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Multivariate calculus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="matrix_diff.html">Matrix calculus</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../probability.html">Probability</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../proba/entropy.html">Entropy</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../statistics.html">Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1"><a class="reference internal" href="../probability.html">Probability</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../statistics.html">Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../stats/MLE.html">Maximum likelihood estimation (MLE)</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../optimization.html">Optimization</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../optimization.html">Optimization</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../optimization/GD.html">Gradient descent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../optimization/SGD.html">Stochastic gradient descent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../optimization/newton.html">Newton’s method</a></li>
 </ul>
 </li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">HW</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../not_mnist_student.html">HW notMNIST</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul class="nav bd-sidenav">
@@ -446,20 +434,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -534,7 +524,7 @@ f(x+h) - f(x) \approx Df(x)[h].
 <h3>Functions of vectors<a class="headerlink" href="#functions-of-vectors" title="Permalink to this heading">#</a></h3>
 <p>Пусть <span class="math notranslate nohighlight">\(f\colon \mathbb R^n \to \mathbb R\)</span> — скалярная функция векторного аргумента <span class="math notranslate nohighlight">\(\boldsymbol x = (x_1, \ldots, x_n)^\top\)</span> (под вектором по умолчанию понимается вектор-столбец). Тогда</p>
 <div class="math notranslate nohighlight" id="equation-vector-func-diff">
-<span class="eqno">(49)<a class="headerlink" href="#equation-vector-func-diff" title="Permalink to this equation">#</a></span>\[	Df(\boldsymbol x)[\boldsymbol h] = \sum\limits_{i=1}^n
+<span class="eqno">(46)<a class="headerlink" href="#equation-vector-func-diff" title="Permalink to this equation">#</a></span>\[	Df(\boldsymbol x)[\boldsymbol h] = \sum\limits_{i=1}^n
 	\frac{\partial f(\boldsymbol x)}        {\partial 	 x_i} h_i = 
 	\langle \nabla f(\boldsymbol x), \boldsymbol h\rangle = 
 	\nabla     f       (\boldsymbol x)^\top 		\boldsymbol h,\]</div>
@@ -578,9 +568,9 @@ f(x+h) - f(x) \approx Df(x)[h].
 </section>
 <section id="functions-of-matrices">
 <h3>Functions of matrices<a class="headerlink" href="#functions-of-matrices" title="Permalink to this heading">#</a></h3>
-<p>Пусть <span class="math notranslate nohighlight">\(f\colon \mathbb R^{m\times n} \to \mathbb R\)</span> — скалярная функция матричного аргумента <span class="math notranslate nohighlight">\(\boldsymbol X\)</span>. Такую функцию можно представлять себе как функцию от вектора из <span class="math notranslate nohighlight">\(\mathbb R^{mn}\)</span> в <span class="math notranslate nohighlight">\(\mathbb R\)</span> и дифференцировать аналогично <a class="reference internal" href="#equation-vector-func-diff">(49)</a>:</p>
+<p>Пусть <span class="math notranslate nohighlight">\(f\colon \mathbb R^{m\times n} \to \mathbb R\)</span> — скалярная функция матричного аргумента <span class="math notranslate nohighlight">\(\boldsymbol X\)</span>. Такую функцию можно представлять себе как функцию от вектора из <span class="math notranslate nohighlight">\(\mathbb R^{mn}\)</span> в <span class="math notranslate nohighlight">\(\mathbb R\)</span> и дифференцировать аналогично <a class="reference internal" href="#equation-vector-func-diff">(46)</a>:</p>
 <div class="math notranslate nohighlight" id="equation-matrix-func-diff">
-<span class="eqno">(50)<a class="headerlink" href="#equation-matrix-func-diff" title="Permalink to this equation">#</a></span>\[	Df(\boldsymbol X)[\boldsymbol H] = \sum\limits_{i=1}^m \sum\limits_{j=1}^n \frac{\partial f (\boldsymbol X)}{\partial X_{ij}} H_{ij} = \mathrm{tr}(\nabla f(\boldsymbol X)^\top \boldsymbol H).\]</div>
+<span class="eqno">(47)<a class="headerlink" href="#equation-matrix-func-diff" title="Permalink to this equation">#</a></span>\[	Df(\boldsymbol X)[\boldsymbol H] = \sum\limits_{i=1}^m \sum\limits_{j=1}^n \frac{\partial f (\boldsymbol X)}{\partial X_{ij}} H_{ij} = \mathrm{tr}(\nabla f(\boldsymbol X)^\top \boldsymbol H).\]</div>
 <p>Здесь мы упаковали градиент функции <span class="math notranslate nohighlight">\(f\)</span> в матрице того же размера, что и матрица <span class="math notranslate nohighlight">\(\boldsymbol X\)</span>, а также воспользовались равенством</p>
 <div class="math notranslate nohighlight">
 \[
@@ -599,7 +589,7 @@ f(x+h) - f(x) \approx Df(x)[h].
 </section>
 <section id="gradients-shape">
 <h3>Gradients shape<a class="headerlink" href="#gradients-shape" title="Permalink to this heading">#</a></h3>
-<p>В <a class="reference internal" href="#equation-vector-func-diff">(49)</a> и <a class="reference internal" href="#equation-matrix-func-diff">(50)</a> пришлось столкнуться с давним знакомым из матанализа: градиентом <span class="math notranslate nohighlight">\(\nabla f\)</span> скалярной функции <span class="math notranslate nohighlight">\(f\)</span>, который состоит из частных производных этой функции по всем координатам её аргумента <span class="math notranslate nohighlight">\(x\)</span>. При этом его обычно упаковывают в ту же форму, что и сам аргумент: если <span class="math notranslate nohighlight">\(x\)</span> — вектор-строка, то и градиент записывается вектор-строкой, а если <span class="math notranslate nohighlight">\(x\)</span> — матрица, то и градиент тоже будет матрицей того же размера. Это важно, например, для алгоритма градиентного спуска, при осуществлении которого мы должны уметь прибавлять градиент к точке, в которой он посчитан.</p>
+<p>В <a class="reference internal" href="#equation-vector-func-diff">(46)</a> и <a class="reference internal" href="#equation-matrix-func-diff">(47)</a> пришлось столкнуться с давним знакомым из матанализа: градиентом <span class="math notranslate nohighlight">\(\nabla f\)</span> скалярной функции <span class="math notranslate nohighlight">\(f\)</span>, который состоит из частных производных этой функции по всем координатам её аргумента <span class="math notranslate nohighlight">\(x\)</span>. При этом его обычно упаковывают в ту же форму, что и сам аргумент: если <span class="math notranslate nohighlight">\(x\)</span> — вектор-строка, то и градиент записывается вектор-строкой, а если <span class="math notranslate nohighlight">\(x\)</span> — матрица, то и градиент тоже будет матрицей того же размера. Это важно, например, для алгоритма градиентного спуска, при осуществлении которого мы должны уметь прибавлять градиент к точке, в которой он посчитан.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Иногда приходится дифференцировать функции, зависящие от различных наборов аргументов, и тогда во избежание неоднозачности в индексе у буквы <span class="math notranslate nohighlight">\(\nabla\)</span> указывают аргумент, по которому осуществляется дифференцирование. Например, запись <span class="math notranslate nohighlight">\(\nabla_{\boldsymbol w} f(\boldsymbol X, \boldsymbol y, \boldsymbol w)\)</span> недвусмысленно даёт понять, что мы дифференцируем фукнцию <span class="math notranslate nohighlight">\(f\)</span> по вектору <span class="math notranslate nohighlight">\(\boldsymbol w\)</span>, а <span class="math notranslate nohighlight">\(\boldsymbol X\)</span> и <span class="math notranslate nohighlight">\(\boldsymbol y\)</span> рассматриваем при этом как фиксированные параметры.</p>
@@ -613,7 +603,7 @@ f(x+h) - f(x) \approx Df(x)[h].
 <h3>Applying a function elementwise<a class="headerlink" href="#applying-a-function-elementwise" title="Permalink to this heading">#</a></h3>
 <p>Пусть</p>
 <div class="math notranslate nohighlight" id="equation-elementwise-func">
-<span class="eqno">(51)<a class="headerlink" href="#equation-elementwise-func" title="Permalink to this equation">#</a></span>\[\begin{split}f \colon \mathbb R^m \to \mathbb R^m,\quad  
+<span class="eqno">(48)<a class="headerlink" href="#equation-elementwise-func" title="Permalink to this equation">#</a></span>\[\begin{split}f \colon \mathbb R^m \to \mathbb R^m,\quad  
 f(\boldsymbol x) = \begin{pmatrix} 
 \varphi(x_1)\\ \vdots\\ \varphi(x_m) 
 \end{pmatrix},\end{split}\]</div>
@@ -664,7 +654,7 @@ f(\boldsymbol X + \boldsymbol H) - f(\boldsymbol X) = (\boldsymbol X + \boldsymb
 <h3>Vector-to-vector functions<a class="headerlink" href="#vector-to-vector-functions" title="Permalink to this heading">#</a></h3>
 <p>Пусть <span class="math notranslate nohighlight">\(f\colon \mathbb R^m \to \mathbb R^n\)</span>, тогда дифференциал должен быть линейным оператором из <span class="math notranslate nohighlight">\(\mathbb R^m\)</span> в <span class="math notranslate nohighlight">\(\mathbb R^n\)</span>, то есть матрицей размера <span class="math notranslate nohighlight">\(n\times m\)</span>. И, действительно, с помощью <strong>матрицы Якоби</strong></p>
 <div class="math notranslate nohighlight" id="equation-jacobi">
-<span class="eqno">(52)<a class="headerlink" href="#equation-jacobi" title="Permalink to this equation">#</a></span>\[\begin{split}\boldsymbol J_f = \frac{\partial f}{\partial \boldsymbol x} = 
+<span class="eqno">(49)<a class="headerlink" href="#equation-jacobi" title="Permalink to this equation">#</a></span>\[\begin{split}\boldsymbol J_f = \frac{\partial f}{\partial \boldsymbol x} = 
 		    \begin{pmatrix} 
 	    	        \frac{\partial f_1}{\partial x_1} &amp; \ldots &amp; 
 	        	    \frac{\partial f_1}{\partial x_m} \\
@@ -675,7 +665,7 @@ f(\boldsymbol X + \boldsymbol H) - f(\boldsymbol X) = (\boldsymbol X + \boldsymb
 <p>дифференциал записывается как <span class="math notranslate nohighlight">\(Df(\boldsymbol x)[\boldsymbol h] = \boldsymbol J_f(\boldsymbol x)\boldsymbol h\)</span>, или <span class="math notranslate nohighlight">\(df(\boldsymbol x) = \boldsymbol J_f(\boldsymbol x) d\boldsymbol x\)</span>.</p>
 <div class="important admonition">
 <p class="admonition-title">Exercise</p>
-<p>According to <a class="reference internal" href="#equation-jacobi">(52)</a>, the differential of the function <a class="reference internal" href="#equation-elementwise-func">(51)</a> should be a <span class="math notranslate nohighlight">\(m\times m\)</span> matrix. How does it look like?</p>
+<p>According to <a class="reference internal" href="#equation-jacobi">(49)</a>, the differential of the function <a class="reference internal" href="#equation-elementwise-func">(48)</a> should be a <span class="math notranslate nohighlight">\(m\times m\)</span> matrix. How does it look like?</p>
 </div>
 <p><strong>Вопрос на подумать</strong>. Как записать в векторно-матричной форме дифференциал функции <span class="math notranslate nohighlight">\(f\colon \mathbb R^m \to \mathbb R^n\)</span>, отображающей вектор-строку <span class="math notranslate nohighlight">\(\boldsymbol x = (x_1, \ldots, x_m)\)</span> в вектор-строку <span class="math notranslate nohighlight">\((f_1(\boldsymbol x), \ldots, f_n(\boldsymbol x))\)</span>?</p>
 <details>
@@ -831,7 +821,7 @@ D^2f(x)[h_1, h_2] \text{ или } d^2f(x).
         },
         kernelOptions: {
             name: "python3",
-            path: "./math/calculus"
+            path: "./math\calculus"
         },
         predefinedOutput: true
     }
@@ -843,11 +833,10 @@ D^2f(x)[h_1, h_2] \text{ или } d^2f(x).
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="1-d.html"
@@ -867,10 +856,7 @@ D^2f(x)[h_1, h_2] \text{ или } d^2f(x).
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -920,6 +906,7 @@ By KBTU
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2022.
@@ -946,8 +933,8 @@ By KBTU
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
 
   <footer class="bd-footer">
   </footer>

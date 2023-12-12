@@ -3,13 +3,13 @@
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Multi-armed bandits &#8212; ML book</title>
+    <title>Multiarmed bandits &#8212; ML book</title>
   
   
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -39,8 +39,9 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -63,8 +64,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'rl/multiarmed_bandits';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -80,6 +79,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -133,9 +141,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../README.html">
+  
   
   
   
@@ -145,8 +155,8 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-light" alt="ML book - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="ML book - Home"/>`);</script>
   
   
 </a></div>
@@ -195,30 +205,14 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../eval_metrics/hyperparameters.html">Hyperparameters tuning</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../probabilistic_models/probabilistic.html">Probabilistic models</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/bayesian_inference.html">Bayesian inference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/lin_reg_prob.html">Probabilistic models for linear regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/log_reg_prob.html">Probabilistic models for logistic regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/LDA.html">Linear Discriminant Analysis (QDA)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/QDA.html">Quadratic Discriminant Analysis (QDA)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../probabilistic_models/naive_bayes.html">Naive Bayes classifier</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../decision_trees/decision_tree.html">Decision Trees</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../decision_trees/decision_tree.html">Decision Trees</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../decision_trees/classification.html">Classification tree</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../decision_trees/regression.html">Regression tree</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../decision_trees/impurity.html">Impurity and information criterions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../decision_trees/pruning.html">Tree pruning</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../ensembling/ensemble.html">Ensembling</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../ensembling/bias_variance.html">Bias-variance decomposition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ensembling/voting_stacking_blending.html">Voting, stacking and blending</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ensembling/bagging.html">Bagging</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ensembling/random_forest.html">Random forests</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../gradient_boosting/gradient_boosting.html">Gradient boosting</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gradient_boosting/gradient_boosting.html">Gradient boosting</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../gradient_boosting/boosting.html">Boosting and additive modeling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../gradient_boosting/generic_gb.html">Generic gradient boosting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../gradient_boosting/adaboost.html">AdaBoost</a></li>
@@ -226,9 +220,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../gradient_boosting/catboost.html">CatBoost</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../unsupervised_learning/unsupervised.html">Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../unsupervised_learning/unsupervised.html">Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/pca.html">Principal components analysis (PCA)</a></li>
-
 <li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/clustering_metrics.html">Clustering metrics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/k_means.html">K-means</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../unsupervised_learning/hierarchic_clustering.html">Hierarchical Clustering</a></li>
@@ -237,7 +230,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../mlp/mlp.html">Multilayer perceptron (MLP)</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../mlp/mlp.html">Multilayer perceptron (MLP)</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../mlp/layers.html">Layers of MLP</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../mlp/forward_backward_pass.html">Forward and backward pass</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../mlp/activations.html">Activation functions</a></li>
@@ -247,7 +240,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../mlp/optimization_dl.html">Optimization in DL</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../cnn/cnn.html">CNN</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../cnn/cnn.html">CNN</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../cnn/convolutions_2d.html">Convolution of matrices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cnn/convolutions_3d.html">Convolutions of tensors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../cnn/pooling.html">Pooling</a></li>
@@ -256,7 +249,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../cnn/architectures.html">Architectures of CNN</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../rnn/sequential.html">Sequential NNs</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../rnn/sequential.html">Sequential NNs</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../rnn/vanilla_rnn.html">Vanilla RNN</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rnn/lstm.html">LSTM</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rnn/gru.html">GRU</a></li>
@@ -264,15 +257,15 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../rnn/transformers.html">Transformers</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../gm/generative.html">Generative models</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gm/generative.html">Generative models</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../gm/autoencoders.html">Autoencoders</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../gm/vae.html">Variational autoencoders (VAE)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../gm/gan.html">Ganerative adversarial networks (GAN)</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="RL.html">Reinforcement Learning</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="RL.html">Reinforcement Learning</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="basics.html">RL basics</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Multi-armed bandits</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Multiarmed bandits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mdp.html">Markov decision process (MDP)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="q_learning.html">Q-learning</a></li>
 </ul>
@@ -280,7 +273,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python for ML</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../python/python_basics.html">Python Basics</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python/python_basics.html">Python Basics</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-13"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../python/basics/basic_types.html">Basic Types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python/basics/variables.html">Variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../python/basics/control_flow.html">Control flow</a></li>
@@ -292,11 +285,10 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../python/numpy.html">NumPy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../python/pandas.html">Pandas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../python/visual.html">Data visualization</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Math for ML</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../math/linear_algebra.html">Linear Algebra</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../math/linear_algebra.html">Linear Algebra</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-14"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/vectors.html">Vectors</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/matrices.html">Matrices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/linear_systems.html">Linear systems</a></li>
@@ -311,30 +303,23 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../math/lin_alg/SVD.html">Singular Value Decomposition (SVD)</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../math/calculus.html">Calculus</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../math/calculus.html">Calculus</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-15"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../math/calculus/1-d.html">1-d calculus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/calculus/multivariate.html">Multivariate calculus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/calculus/matrix_diff.html">Matrix calculus</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../math/probability.html">Probability</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-18"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../math/proba/entropy.html">Entropy</a></li>
-</ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../math/statistics.html">Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-19"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1"><a class="reference internal" href="../math/probability.html">Probability</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../math/statistics.html">Statistics</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-16"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../math/stats/MLE.html">Maximum likelihood estimation (MLE)</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../math/optimization.html">Optimization</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-20"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../math/optimization.html">Optimization</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-17"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../math/optimization/GD.html">Gradient descent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/optimization/SGD.html">Stochastic gradient descent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../math/optimization/newton.html">Newton’s method</a></li>
 </ul>
 </li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">HW</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../not_mnist_student.html">HW notMNIST</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
 <ul class="nav bd-sidenav">
@@ -447,26 +432,26 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -477,25 +462,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Multi-armed bandits</h1>
+    <h1>Multiarmed bandits</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notation">Notation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-average-method">Sample-average method</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#greedy-policy">Greedy policy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#varepsilon-greedy-policy"><span class="math notranslate nohighlight">\(\varepsilon\)</span>-greedy policy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testbed">Testbed</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimistic-initial-value">Optimistic initial value</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#upper-confidence-bound">Upper Confidence Bound</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -505,271 +476,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="cell tag_remove-input docutils container">
-</div>
-<section class="tex2jax_ignore mathjax_ignore" id="multi-armed-bandits">
-<h1>Multi-armed bandits<a class="headerlink" href="#multi-armed-bandits" title="Permalink to this heading">#</a></h1>
-<img alt="https://miro.medium.com/max/339/0*l7Ra4R_CpJfc-hjz.png" src="https://miro.medium.com/max/339/0*l7Ra4R_CpJfc-hjz.png" />
-<section id="notation">
-<h2>Notation<a class="headerlink" href="#notation" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Actions: <span class="math notranslate nohighlight">\(\mathcal A = \{a_1, \ldots, a_k\}\)</span> (<span class="math notranslate nohighlight">\(k\)</span> levers)</p></li>
-<li><p><span class="math notranslate nohighlight">\(A_t \in \mathcal A\)</span> — action selected by the agent at time step <span class="math notranslate nohighlight">\(t\)</span></p></li>
-<li><p>Action value: <span class="math notranslate nohighlight">\(q(a) = \mathbb E[R_t | A_t = a]\)</span></p></li>
-<li><p>Optimal value: <span class="math notranslate nohighlight">\(v_* = \max\limits_{a \in \mathcal A} q(a)\)</span></p></li>
-<li><p>Optimal action: <span class="math notranslate nohighlight">\(a_* = \arg\max\limits_{a \in \mathcal A} q(a)\)</span></p></li>
-<li><p>Regret: <span class="math notranslate nohighlight">\(\Delta_a = v_* - q(a)\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(Q_t(a)\)</span> — estimation of <span class="math notranslate nohighlight">\(q(a)\)</span> at time step <span class="math notranslate nohighlight">\(t\)</span></p></li>
-</ul>
-<p>The goal is to maximize expected cumulative reward</p>
-<div class="math notranslate nohighlight">
-\[
-    \sum\limits_{i=1}^t q(A_i) = \sum\limits_{i=1}^t \mathbb E[R_i | A_i = a] \to \max
-\]</div>
-<p>This is the same as to minimize cumulative regret:</p>
-<div class="math notranslate nohighlight">
-\[
-    \sum\limits_{i=1}^t \Delta_{A_i} \to \min
-\]</div>
-</section>
-<section id="sample-average-method">
-<h2>Sample-average method<a class="headerlink" href="#sample-average-method" title="Permalink to this heading">#</a></h2>
-<div class="math notranslate nohighlight">
-\[
-Q_t(a) = \frac 1{N_t(a)}\sum\limits_{i=1}^{t-1} R_i \mathbb I[A_i=a],
-\]</div>
-<div class="math notranslate nohighlight">
-\[
-\quad N_t(a) = \sum\limits_{i=1}^{t-1} \mathbb I[A_i=a]
-\]</div>
-<p><span class="math notranslate nohighlight">\(N_t(a)\)</span> is the number of times the action <span class="math notranslate nohighlight">\(a\)</span> was taken. If <span class="math notranslate nohighlight">\(N_t(a) = 0\)</span>, then <span class="math notranslate nohighlight">\(Q_t(a)=0\)</span> or some other default value.</p>
-<p><strong>Q.</strong> Suppose <span class="math notranslate nohighlight">\(k=2\)</span>. What are <span class="math notranslate nohighlight">\(Q_5(a)\)</span> and <span class="math notranslate nohighlight">\(Q_5(b)\)</span>?</p>
-<table class="colwidths-auto table">
-<thead>
-<tr class="row-odd"><th class="text-center head"><p></p></th>
-<th class="text-center head"><p>1</p></th>
-<th class="text-center head"><p>2</p></th>
-<th class="head"><p>3</p></th>
-<th class="head"><p>4</p></th>
-<th class="head"><p>5</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(a\)</span></p></td>
-<td class="text-center"><p>0</p></td>
-<td class="text-center"><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p>?</p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(b\)</span></p></td>
-<td class="text-center"><p></p></td>
-<td class="text-center"><p>1</p></td>
-<td><p>0</p></td>
-<td><p>0</p></td>
-<td><p>?</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="greedy-policy">
-<h2>Greedy policy<a class="headerlink" href="#greedy-policy" title="Permalink to this heading">#</a></h2>
-<p>Select action with the highest estimation:</p>
-<div class="math notranslate nohighlight">
-\[
-    A_t = \arg\max\limits_{a\in \mathcal A} Q_t(a), \text{ or } \pi_t(a) = \mathbb I[A_t = \arg\max\limits_{a\in \mathcal A} Q_t(a)]
-\]</div>
-<p><strong>Q.</strong> According to greedy policy, what is <span class="math notranslate nohighlight">\(A_5\)</span> in the previous example?</p>
-</section>
-<section id="varepsilon-greedy-policy">
-<h2><span class="math notranslate nohighlight">\(\varepsilon\)</span>-greedy policy<a class="headerlink" href="#varepsilon-greedy-policy" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>With probability <span class="math notranslate nohighlight">\(1-\varepsilon\)</span> select greedy action</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[
-A_t = \arg\max\limits_{a\in \mathcal A} Q_t(a)
-\]</div>
-<ul class="simple">
-<li><p>With probability <span class="math notranslate nohighlight">\(\varepsilon\)</span> select a random action</p></li>
-</ul>
-<p><strong>Q.</strong> If we follow <span class="math notranslate nohighlight">\(\varepsilon\)</span>-greedy strategy, what is the probability of selection of the greedy action?</p>
-</section>
-<section id="testbed">
-<h2>Testbed<a class="headerlink" href="#testbed" title="Permalink to this heading">#</a></h2>
-<p>A testbed for k-armed bandits is created in class <code class="docutils literal notranslate"><span class="pre">Testbed</span></code>. The reward produced by each arm is taken from <span class="math notranslate nohighlight">\(\mathcal N(a_i, 1)\)</span>, where <span class="math notranslate nohighlight">\(a_i\)</span> are in turn sampled from the standard normal distribuion.</p>
-<div class="cell tag_remove-input docutils container">
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tb</span> <span class="o">=</span> <span class="n">Testbed</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">242</span><span class="p">)</span>
-<span class="n">idx</span> <span class="o">=</span> <span class="mi">11</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal action:&quot;</span><span class="p">,</span> <span class="n">tb</span><span class="o">.</span><span class="n">optimal_action</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Optimal mean reward:&quot;</span><span class="p">,</span> <span class="n">tb</span><span class="o">.</span><span class="n">means</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
-<span class="n">tb</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimal action: 1
-Optimal mean reward: 1.3376758127929265
-</pre></div>
-</div>
-<img alt="../_images/335d9c3b98760f6ca41aad7a407556d6457540a74c70492a9d30c90974d9b0c5.svg" src="../_images/335d9c3b98760f6ca41aad7a407556d6457540a74c70492a9d30c90974d9b0c5.svg" /></div>
-</div>
-<div class="cell tag_remove-input docutils container">
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
-<span class="n">eps_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span>
-<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="sa">r</span><span class="s2">&quot;$\varepsilon = </span><span class="si">{}</span><span class="s2">$&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span> <span class="k">for</span> <span class="n">eps</span> <span class="ow">in</span> <span class="n">eps_list</span><span class="p">]</span>
-<span class="n">rewards_list</span><span class="p">,</span> <span class="n">optimal_action_list</span> <span class="o">=</span> <span class="n">mean_rewards_and_optimal_actions</span><span class="p">(</span><span class="n">eps_list</span><span class="p">,</span> <span class="n">n_steps</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 13.9 s, sys: 164 ms, total: 14.1 s
-Wall time: 14.8 s
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell tag_remove-input docutils container">
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_mean_rewards</span><span class="p">(</span><span class="n">rewards_list</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/d3b2bc2f6aff5dc7bae7229930cd05b1666c78ce39a614b5e94226d7e90a2c7f.svg" src="../_images/d3b2bc2f6aff5dc7bae7229930cd05b1666c78ce39a614b5e94226d7e90a2c7f.svg" /></div>
-</div>
-<div class="cell tag_remove-input docutils container">
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_mean_optimal_actions</span><span class="p">(</span><span class="n">optimal_action_list</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/c012e8bc3f505f04653d37a85e6ac5c21bde6ad8cbe122e4153c5ade1b27a46f.svg" src="../_images/c012e8bc3f505f04653d37a85e6ac5c21bde6ad8cbe122e4153c5ade1b27a46f.svg" /></div>
-</div>
-<p><strong>Q.</strong> What is the cumulative regret of <span class="math notranslate nohighlight">\(\varepsilon\)</span>-greedy policy for a single testbed? Calculate</p>
-<div class="math notranslate nohighlight">
-\[
-    \lim\limits_{t\to\infty} \frac 1t \sum\limits_{i=1}^t \Delta_{A_i} \text{ and }
-    \lim\limits_{t\to\infty} \frac 1t \sum\limits_{i=1}^t \mathbb P(A_i = a_*)
-\]</div>
-<p>if all the actions <span class="math notranslate nohighlight">\(A_i\)</span> are selected according to <span class="math notranslate nohighlight">\(\varepsilon\)</span>-greedy policy.</p>
-</section>
-<section id="optimistic-initial-value">
-<h2>Optimistic initial value<a class="headerlink" href="#optimistic-initial-value" title="Permalink to this heading">#</a></h2>
-<p>Putting <span class="math notranslate nohighlight">\(Q_1(a)=5\)</span> for all actions will encourage the exploration in the first steps.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
-<span class="n">rewards_opt_0_const</span><span class="p">,</span> <span class="n">actions_opt_0_const</span> <span class="o">=</span> <span class="n">train_eps_greedy_agent</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">n_steps</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
-<span class="n">rewards_opt_01</span><span class="p">,</span> <span class="n">actions_opt_01</span> <span class="o">=</span> <span class="n">train_eps_greedy_agent</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="n">n_steps</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
-<span class="n">rewards_01_const</span><span class="p">,</span> <span class="n">actions_01_const</span> <span class="o">=</span> <span class="n">train_eps_greedy_agent</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">n_steps</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3.26 s, sys: 39.2 ms, total: 3.3 s
-Wall time: 3.4 s
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="sa">r</span><span class="s2">&quot;$Q_1=5, \varepsilon=0, \alpha=0.1$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$Q_1=5, \varepsilon=0.1$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$Q_1=0, \varepsilon=0.1, \alpha=0.1$&quot;</span><span class="p">]</span>
-<span class="n">plot_mean_rewards</span><span class="p">([</span><span class="n">rewards_opt_0_const</span><span class="p">,</span> <span class="n">rewards_opt_01</span><span class="p">,</span> <span class="n">rewards_01_const</span><span class="p">],</span> <span class="n">labels</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/ff524b66a9518174f2ad27728e3d3d706d6d8296a6a1f240411679be8b93d8f2.svg" src="../_images/ff524b66a9518174f2ad27728e3d3d706d6d8296a6a1f240411679be8b93d8f2.svg" /></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_mean_optimal_actions</span><span class="p">([</span><span class="n">actions_opt_0_const</span><span class="p">,</span> <span class="n">actions_opt_01</span><span class="p">,</span> <span class="n">actions_01_const</span><span class="p">],</span> <span class="n">labels</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/cc411ad5eb3e23b77c0c79f793c8f03c938e918177cb49852e0c179e3c4dbb12.svg" src="../_images/cc411ad5eb3e23b77c0c79f793c8f03c938e918177cb49852e0c179e3c4dbb12.svg" /></div>
-</div>
-</section>
-<section id="upper-confidence-bound">
-<h2>Upper Confidence Bound<a class="headerlink" href="#upper-confidence-bound" title="Permalink to this heading">#</a></h2>
-<div class="math notranslate nohighlight">
-\[
-A_t = \arg\max\limits_a \bigg\{Q_t(a) + c\sqrt{\frac{\log t}{N_t(a)}}\bigg\}
-\]</div>
-<p>For more information about this mysterious formula see</p>
-<ul class="simple">
-<li><p>Sutton&amp;Barto, chapter 2.7</p></li>
-<li><p><a class="reference external" href="https://www.youtube.com/watch?v=aQJP3Z2Ho8U&amp;list=PLqYmG7hTraZDVH599EItlEWsUOsJbAodm&amp;index=2&amp;t=3100s">Lecture 2</a> from DeepMind, 53:20 — 1:10:00</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">train_ucb_agent</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">n_steps</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">n_runs</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">242</span><span class="p">):</span>
-    <span class="n">mean_rewards</span> <span class="o">=</span> <span class="p">[]</span> 
-    <span class="n">mean_optimal_actions</span> <span class="o">=</span> <span class="p">[]</span>
-
-    <span class="n">tb</span> <span class="o">=</span> <span class="n">Testbed</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n_runs</span><span class="p">,</span> <span class="n">random_state</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_steps</span><span class="p">):</span>
-        <span class="n">actions</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">ucb_action</span><span class="p">(</span><span class="n">t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
-        <span class="n">optimals</span> <span class="o">=</span> <span class="p">(</span><span class="n">actions</span> <span class="o">==</span> <span class="n">tb</span><span class="o">.</span><span class="n">optimal_action</span><span class="p">())</span>
-        <span class="n">rewards</span> <span class="o">=</span> <span class="n">tb</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
-        <span class="n">mean_rewards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rewards</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
-        <span class="n">mean_optimal_actions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">optimals</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
-    
-    <span class="k">return</span> <span class="n">mean_rewards</span><span class="p">,</span> <span class="n">mean_optimal_actions</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
-<span class="n">rewards_eps</span><span class="p">,</span> <span class="n">optimals_eps</span> <span class="o">=</span> <span class="n">train_eps_greedy_agent</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">n_steps</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">rewards_ucb_1</span><span class="p">,</span> <span class="n">optimals_ucb_1</span> <span class="o">=</span> <span class="n">train_ucb_agent</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_steps</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">rewards_ucb_2</span><span class="p">,</span> <span class="n">optimals_ucb_2</span> <span class="o">=</span> <span class="n">train_ucb_agent</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n_steps</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1.87 s, sys: 30.7 ms, total: 1.9 s
-Wall time: 1.96 s
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="sa">r</span><span class="s2">&quot;ucb, $c=1$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;ucb, $c=2$&quot;</span><span class="p">,</span> <span class="sa">r</span><span class="s2">&quot;$\varepsilon$-greedy, $\varepsilon=0.1$&quot;</span><span class="p">]</span>
-<span class="n">plot_mean_rewards</span><span class="p">([</span><span class="n">rewards_ucb_1</span><span class="p">,</span> <span class="n">rewards_ucb_2</span><span class="p">,</span> <span class="n">rewards_eps</span><span class="p">],</span> <span class="n">labels</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/00ac13488a3eb13ab7e8b82806ea4b7e1db9d5f79547459f6e5aead691fc6639.svg" src="../_images/00ac13488a3eb13ab7e8b82806ea4b7e1db9d5f79547459f6e5aead691fc6639.svg" /></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_mean_optimal_actions</span><span class="p">([</span><span class="n">optimals_ucb_1</span><span class="p">,</span> <span class="n">optimals_ucb_2</span><span class="p">,</span> <span class="n">optimals_eps</span><span class="p">],</span> <span class="n">labels</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/e5a13af4f22723842c5ae829310b8a3bb4cf53092c8033984820a3ab0c46caa5.svg" src="../_images/e5a13af4f22723842c5ae829310b8a3bb4cf53092c8033984820a3ab0c46caa5.svg" /></div>
-</div>
-</section>
+  <section class="tex2jax_ignore mathjax_ignore" id="multiarmed-bandits">
+<h1>Multiarmed bandits<a class="headerlink" href="#multiarmed-bandits" title="Permalink to this heading">#</a></h1>
 </section>
 
     <script type="text/x-thebe-config">
@@ -797,11 +505,10 @@ Wall time: 1.96 s
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="basics.html"
@@ -821,35 +528,12 @@ Wall time: 1.96 s
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notation">Notation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sample-average-method">Sample-average method</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#greedy-policy">Greedy policy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#varepsilon-greedy-policy"><span class="math notranslate nohighlight">\(\varepsilon\)</span>-greedy policy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testbed">Testbed</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimistic-initial-value">Optimistic initial value</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#upper-confidence-bound">Upper Confidence Bound</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>
@@ -867,6 +551,7 @@ By KBTU
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2022.
@@ -893,8 +578,8 @@ By KBTU
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
 
   <footer class="bd-footer">
   </footer>
